@@ -9,10 +9,7 @@ namespace JsonReader
         public string Password { get; set; } = string.Empty;
         public string CreditcardNumber { get; set; } = string.Empty;
 
-        public static string JsonFileName()
-        {
-            return Path.Combine("data", "accounts.json");
-        }
+        public static string JsonFileName() => Path.Combine("data", "accounts.json");
 
         public static List<Account> ReadAll()
         {
