@@ -16,7 +16,6 @@ namespace Cinema.page
             Menu mainMenu = new Menu(prompt, options);
             int selectedIndex = mainMenu.Run();
 
-            
             if (selectedIndex == options.Length - 1)
             {
                 Home myHome = new Home();
@@ -28,23 +27,6 @@ namespace Cinema.page
                 Seating mySeating = new Seating();
                 mySeating.SeatingPage(filmName);
             }
-            
-
-            /* switch (selectedIndex)
-             {
-                 case 0:
-                     WriteLine($"{options.IndexOf}");
-                     break;
-                 case 1:
-                     WriteLine($"{options.Rank}");
-                     break;
-                 case 2:
-                     break;
-                 case 3:
-                     Home myHome = new Home();
-                     myHome.HomePage();
-                     break;
-             }*/
         }
     }
 }
