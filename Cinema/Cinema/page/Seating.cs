@@ -11,7 +11,7 @@ namespace Cinema.page
         public void SeatingPage(string filmName)
         {
             string prompt = $"Choice your seat for the film {filmName}\n";
-            string[] options = { "test", "blayt", "kanker\n", "Back" };
+            string[] options = { "rij: 1", "rij: 2", "rij: 3\n", "Back" };
             Menu mainMenu = new Menu(prompt, options);
             int selectedIndex = mainMenu.Run();
 
