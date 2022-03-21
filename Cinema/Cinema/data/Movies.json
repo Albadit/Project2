@@ -1,51 +1,59 @@
 [
   {
     "Id": 0,
-    "Movies": "Uncharted",
+    "Name": "Uncharted",
     "Age": "12",
     "Genre": "Action, Adventure"
   },
   {
     "Id": 1,
-    "Movies": "The Batman",
+    "Name": "The Batman",
     "Age": "12",
-    "Genre": "Action, Drama, Crime",
-
+    "Genre": "Action, Drama, Crime"
+  },
+  {
     "Id": 2,
-    "Movies": "Spider-Man No Way Home",
+    "Name": "Spider-Man No Way Home",
     "Age": "12",
-    "Genre": "Action, Adventure",
-
+    "Genre": "Action, Adventure"
+  },
+  {
     "Id": 3,
-    "Movies": "Moonfall",
+    "Name": "Moonfall",
     "Age": "12",
-    "Genre": "Action, Science Fiction",
-
+    "Genre": "Action, Science Fiction"
+  },
+  {
     "Id": 4,
-    "Movies": "X",
+    "Name": "X",
     "Age": "16",
-    "Genre": "Horror",
-
+    "Genre": "Horror"
+  },
+  {
     "Id": 5,
-    "Movies": "Ambulance",
+    "Name": "Ambulance",
     "Age": "16",
-    "Genre": "Action, Thriller",
-
+    "Genre": "Action, Thriller"
+  },
+  {
     "Id": 6,
-    "Movies": "Blacklight",
+    "Name": "Blacklight",
     "Age": "12",
-    "Genre": "Action, Thriller",
-
+    "Genre": "Action, Thriller"
+  },
+  {
     "Id": 7,
-    "Movies": "Dog",
+    "": "Dog",
     "Age": "12",
-    "Genre": "Drama",
-
+    "Genre": "Drama"
+  },
+  {
     "Id": 8,
     "Movies": "De Drekkies",
     "Age": "AL",
-    "Genre": "Children's Movie",
-
+    "Genre": "Children's Movie"
+  },
+  {
     "Id": 9,
     "Movies": "Sing 2",
     "Age": "6",
