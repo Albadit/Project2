@@ -5,6 +5,9 @@ namespace Cinema {
         static void Main(string[] args) {
             Home myHome = new Home();
             myHome.HomePage();
+
+            /*Movie myHome = new Movie();
+            myHome.Movies();*/
         }
     }
 }

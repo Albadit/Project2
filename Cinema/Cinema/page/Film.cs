@@ -11,8 +11,13 @@ namespace Cinema.page
     {
         public void FilmPage()
         {
+            /*Movie myMovie = new Movie();
+            string[] films = myMovie.Movies();*/
+
+            /*films = $"{myMovie.Name}\n {myMovie.Genre}\n {myMovie.Age}";*/
+
             string prompt = "Choice your film\n";
-            string[] options = { "Harry Potter", "Naruto", "Attack on Titan\n", "Back" };
+            string[] options = { "Uncharted", "The Batman", "Spider-Man No Way Home\n", "Back" };
             Menu mainMenu = new Menu(prompt, options);
             int selectedIndex = mainMenu.Run();
 
