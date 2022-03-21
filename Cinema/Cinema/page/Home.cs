@@ -10,7 +10,13 @@ namespace Cinema.page
     {
         public void HomePage()
         {
-            string prompt = "Welcome to Cinema Ultimate ultra super sonic 16k 5D\n";
+            string prompt = @"
+       _______                           
+      / ____(_)___  ___  ____ ___  ____ _
+     / /   / / __ \/ _ \/ __ `__ \/ __ `/
+    / /___/ / / / /  __/ / / / / / /_/ / 
+    \____/_/_/ /_/\___/_/ /_/ /_/\__,_/  
+    ";
             string[] options = { "Films", "Account\n", "Exit" };
             Menu mainMenu = new Menu(prompt, options);
             int selectedIndex = mainMenu.Run();
