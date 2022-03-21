@@ -2,61 +2,61 @@
   {
     "Id": 0,
     "Name": "Uncharted",
-    "Age": 12,
-    "Genre": [ "Action", "Adventure" ]
+    "Genre": [ "Action", "Adventure" ],
+    "Age": 12
   },
   {
     "Id": 1,
     "Name": "The Batman",
-    "Age": 12,
-    "Genre": [ "Action", "Drama", "Crime" ]
+    "Genre": [ "Action", "Drama", "Crime" ],
+    "Age": 12
   },
   {
     "Id": 2,
     "Name": "Spider-Man No Way Home",
-    "Age": 12,
-    "Genre": [ "Action", "Adventure" ]
+    "Genre": [ "Action", "Adventure" ],
+    "Age": 12
   },
   {
     "Id": 3,
     "Name": "Moonfall",
-    "Age": 12,
-    "Genre": [ "Action", "Science Fiction" ]
+    "Genre": [ "Action", "Science Fiction" ],
+    "Age": 12
   },
   {
     "Id": 4,
     "Name": "X",
-    "Age": 16,
-    "Genre": [ "Horror" ]
+    "Genre": [ "Horror" ],
+    "Age": 16
   },
   {
     "Id": 5,
     "Name": "Ambulance",
-    "Age": 16,
-    "Genre": [ "Action", "Thriller" ]
+    "Genre": [ "Action", "Thriller" ],
+    "Age": 16
   },
   {
     "Id": 6,
     "Name": "Blacklight",
-    "Age": 12,
-    "Genre": [ "Action", "Thriller" ]
+    "Genre": [ "Action", "Thriller" ],
+    "Age": 12
   },
   {
     "Id": 7,
     "Name": "Dog",
-    "Age": 12,
-    "Genre": [ "Drama" ]
+    "Genre": [ "Drama" ],
+    "Age": 12
   },
   {
     "Id": 8,
     "Movies": "De Drekkies",
-    "Age": 0,
-    "Genre": [ "Kids" ]
+    "Genre": [ "Kids" ],
+    "Age": 0
   },
   {
     "Id": 9,
     "Movies": "Sing 2",
-    "Age": 6,
-    "Genre": [ "Kids" ]
+    "Genre": [ "Kids" ],
+    "Age": 6
   }
 ]
