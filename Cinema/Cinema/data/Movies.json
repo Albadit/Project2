@@ -49,13 +49,13 @@
   },
   {
     "Id": 8,
-    "Movies": "De Drekkies",
+    "Name": "De Drekkies",
     "Genre": [ "Kids" ],
     "Age": 0
   },
   {
     "Id": 9,
-    "Movies": "Sing 2",
+    "Name": "Sing 2",
     "Genre": [ "Kids" ],
     "Age": 6
   }
