@@ -31,11 +31,10 @@ namespace Cinema.page
                 " 1 |        S  S  S  S  S  S  S  S        |",
                 "   +--------------------------------------+",
                 "     ------------------------------------  ",
-                "                    screen                 \n", 
-                "Back" };
+                "                    screen                 \n",
+                "Payment\n", "Back" };
             Cinema.Seat mainMenu = new Cinema.Seat(prompt, options);
             int selectedIndex = mainMenu.Run();
-
 
             if (selectedIndex == options.Length - 1)
             {
@@ -43,7 +42,13 @@ namespace Cinema.page
                 myFilm.FilmPage();
             }
 
-            switch (selectedIndex)
+            if (selectedIndex == options.Length - 2)
+            {
+                Pay myPay = new Pay();
+                myPay.PayPage(filmName);
+            }
+
+           /* switch (selectedIndex)
             {
                 case 0:
                     break;
@@ -52,10 +57,8 @@ namespace Cinema.page
                 case 2:
                     break;
                 case 3:
-                    Film myFilm = new Film();
-                    myFilm.FilmPage();
                     break;
-            }
+            }*/
         }
     }
 }
