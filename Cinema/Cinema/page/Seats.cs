@@ -32,7 +32,7 @@ namespace Cinema.page
                 "   +--------------------------------------+",
                 "     ------------------------------------  ",
                 "                    screen                 \n", 
-                "Back" };
+                "Payment\n", "Back" };
             Cinema.Seat mainMenu = new Cinema.Seat(prompt, options);
             int selectedIndex = mainMenu.Run();
 
@@ -41,6 +41,12 @@ namespace Cinema.page
             {
                 Film myFilm = new Film();
                 myFilm.FilmPage();
+            }
+
+            if (selectedIndex == options.Length - 2)
+            {
+                Pay myPay = new Pay();
+                myPay.PayPage(filmName);
             }
 
             switch (selectedIndex)
