@@ -14,6 +14,8 @@ namespace Cinema
         public string Name { get; set; } = string.Empty;
         public string[] Genre { get; set; } = new string[0];
         public int Age { get; set; } = 0;
+        /*public string[] filmList { get; set; } = new string[0];*/
+        List<string> filmList = new List<string>();
 
         public static string JsonFileName() => Path.Combine("data", "movies.json");
 
@@ -33,7 +35,8 @@ namespace Cinema
             var movies = Movie.ReadAll();
             foreach (var movie in movies)
             {
-                WriteLine($"{movie.Id} {movie.Name}");
+                filmList.Add($"{movie.Id} {movie.Name}");
+                /*WriteLine($"{movie.Id} {movie.Name}");*/
                 /*movie.Password = $"reset-{movie.Id}";*/
             }
             Movie.WriteAll(movies);
