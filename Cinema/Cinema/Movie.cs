@@ -54,7 +54,7 @@ namespace Cinema
                     }
                 }
                 filmNames.Add(movie.Name);
-                filmList.Add($"{movie.Name}\nGenre: {genreList}\nAge: {movie.Age}");
+                filmList.Add($"{movie.Name} | Genre: {genreList} | Age: {movie.Age}");
             }
             Movie.WriteAll(movies);
         }
