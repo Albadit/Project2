@@ -12,6 +12,8 @@ namespace Cinema.page
     {
         public void FilmPage()
         {
+            List<string> filmNames = Movie.filmNames;
+
             List<string> filmList = Movie.filmList;
             filmList.Clear();
 
@@ -31,7 +33,7 @@ namespace Cinema.page
             }
             else
             {
-                string filmName = options[selectedIndex].Replace("\n", String.Empty);
+                string filmName = filmNames[selectedIndex];
                 Seats mySeating = new Seats();
                 mySeating.SeatingPage(filmName);
             }
