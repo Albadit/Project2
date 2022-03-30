@@ -32,7 +32,7 @@ namespace Cinema.page
                 "   +--------------------------------------+",
                 "     ------------------------------------  ",
                 "                    screen                 \n",
-                "Payment\n", "Back" };
+                "Payment", "Back" };
             Cinema.Seat mainMenu = new Cinema.Seat(prompt, options);
             int selectedIndex = mainMenu.Run();
 
@@ -47,18 +47,6 @@ namespace Cinema.page
                 Pay myPay = new Pay();
                 myPay.PayPage(filmName);
             }
-
-           /* switch (selectedIndex)
-            {
-                case 0:
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-            }*/
         }
     }
 }

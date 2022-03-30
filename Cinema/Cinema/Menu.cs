@@ -13,9 +13,9 @@ namespace Cinema
         private string[] Options;
         private string Prompt;
 
-        public Menu(string prompt, string[] options)
+        public Menu(string title, string[] options)
         {
-            Prompt = prompt;
+            Prompt = title;
             Options = options;
             SelectedIndex = 0;
         }
@@ -37,7 +37,20 @@ namespace Cinema
                     ForegroundColor = ConsoleColor.White;
                     BackgroundColor = ConsoleColor.Black;
                 }
-                WriteLine($" {currentOptions}");
+
+                if (i == Options.Length - 1)
+                {
+                    WriteLine($" {currentOptions}");
+                }
+                else if (i == Options.Length - 2)
+                {
+                    WriteLine($"{i + 1}) {currentOptions}\n");
+                }
+                else
+                {
+                    WriteLine($"{i + 1}) {currentOptions}");
+                }
+                
             }
             ResetColor();
         }

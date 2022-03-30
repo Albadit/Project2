@@ -12,9 +12,16 @@ namespace Cinema.page
     {
         public void FilmPage()
         {
-            string prompt = "Choice your film\n";
-            string[] options = { "Uncharted", "The Batman", "Spider-Man No Way Home", "Moonfall", "X", "Ambulance", "Blacklight", "Dog", "De Drekkies", "Sing 2\n", "Back" };
-            Menu mainMenu = new Menu(prompt, options);
+            List<string> filmList = Movie.filmList;
+            filmList.Clear();
+
+            Movie myMovie = new Movie();
+            myMovie.Movies();
+            filmList.Add("Back");
+
+            string title = "Choice your film\n";
+            string[] options = filmList.ToArray();
+            Menu mainMenu = new Menu(title, options);
             int selectedIndex = mainMenu.Run();
 
             if (selectedIndex == options.Length - 1)

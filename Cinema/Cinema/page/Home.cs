@@ -10,15 +10,15 @@ namespace Cinema.page
     {
         public void HomePage()
         {
-            string prompt = @"
+            string title = @"
        _______                           
       / ____(_)___  ___  ____ ___  ____ _
      / /   / / __ \/ _ \/ __ `__ \/ __ `/
     / /___/ / / / /  __/ / / / / / /_/ / 
     \____/_/_/ /_/\___/_/ /_/ /_/\__,_/  
     ";
-            string[] options = { "Films", "Account\n", "Exit" };
-            Menu mainMenu = new Menu(prompt, options);
+            string[] options = { "Films", "Account", "Exit" };
+            Menu mainMenu = new Menu(title, options);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex) 
