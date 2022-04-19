@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Cinema.page
 {
-    class Pay
+    class chooseScreen
     {
-        public void PayPage(string filmName)
+        public void chooseScreenPage()
         {
-            string title = "Choose a payment method:\n";
-            string[] options = { "Paypal", "Ideal", "CreditcardW", "Back" };
+            string title = "Do you have an account?\n";
+            string[] options = { "Yes, login", "No, make an account", "Back" };
             Menu mainMenu = new Menu(title, options);
             int selectedIndex = mainMenu.Run();
 
@@ -20,13 +20,13 @@ namespace Cinema.page
                 case 0:
                     break;
                 case 1:
+                    loginScreen myloginScreen = new loginScreen();
+                    myloginScreen.loginScreenPage();
                     break;
                 case 2:
-                    break;
-                case 3:
-                    Seats mySeating = new Seats();
-                    mySeating.SeatingPage(filmName);
-                    break;
+                    Login myLogin = new Login();
+                    myLogin.LoginPage();
+                    break;     
             }
         }
     }

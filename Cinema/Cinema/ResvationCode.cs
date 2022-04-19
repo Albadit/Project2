@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinema.page;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,13 +8,13 @@ using static System.Console;
 
 namespace Cinema
 {
-    class Menu
+    class res
     {
         private int SelectedIndex;
         private string[] Options;
         private string Prompt;
 
-        public Menu(string title, string[] options)
+        public res(string title, string[] options)
         {
             Prompt = title;
             Options = options;
@@ -23,6 +24,21 @@ namespace Cinema
         private void Display()
         {
             WriteLine(Prompt);
+
+            Console.Write("Enter reservation code: ");
+            var reservatioCode = ReadLine();
+
+            if (reservatioCode == "123")
+            {
+                chooseScreen mychooseScreen = new chooseScreen();
+                mychooseScreen.chooseScreenPage();
+            }
+            else
+            {
+                Console.WriteLine("Reservation ID is not know.");
+            }
+            
+
             for (int i = 0; i < Options.Length; i++)
             {
                 string currentOptions = Options[i];
