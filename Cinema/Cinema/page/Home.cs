@@ -17,7 +17,7 @@ namespace Cinema.page
     / /___/ / / / /  __/ / / / / / /_/ / 
     \____/_/_/ /_/\___/_/ /_/ /_/\__,_/  
     ";
-            string[] options = { "Films", "Account", "Exit" };
+            string[] options = { "Films", "Account", "resic","Exit" };
             Menu mainMenu = new Menu(title, options);
             int selectedIndex = mainMenu.Run();
 
@@ -32,6 +32,10 @@ namespace Cinema.page
                     myLogin.LoginPage();
                     break;
                 case 2:
+                    Registration myRegistration = new Registration();
+                    myRegistration.RegistrationPage();
+                    break;
+                case 3:
                     Environment.Exit(0);
                     break;
             }
