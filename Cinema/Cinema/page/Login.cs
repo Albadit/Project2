@@ -11,7 +11,7 @@ namespace Cinema.page
         public void LoginPage()
         {
             string prompt = "Select you login screen\n";
-            string[] options = { "Admin", "Reservation\n", "Back" };
+            string[] options = { "Admin", "Reservation", "Back" };
             Menu mainMenu = new Menu(prompt, options);
             int selectedIndex = mainMenu.Run();
 
