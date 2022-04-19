@@ -24,9 +24,16 @@ namespace Cinema
 
         private void Display()
         {
-            WriteLine(Prompt);
-
             string display = string.Empty;
+
+            WriteLine(Prompt);
+            
+
+            foreach (int[] row in Options)
+            {
+                display += "--";
+            }
+
             foreach (int[] row in Options)
             {
                 foreach (int column in row)
