@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinema.page;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,48 +25,27 @@ namespace Cinema
 
         private void Display()
         {
-            string display = string.Empty;
-            int i = 0;
+            int rows = 0, columns = 0;
             WriteLine(Prompt);
 
             foreach (int[] row in Options)
             {
-                
                 foreach (int column in row)
                 {
-                    if (SelectedIndexVer == column) 
-                    { 
-                        ForegroundColor = ConsoleColor.Red;
-                        BackgroundColor = ConsoleColor.White;
-                    }
-                    else 
-                    { 
-                        ForegroundColor = ConsoleColor.White;
-                        BackgroundColor = ConsoleColor.Black;
-                    }
+                    if (SelectedIndexHor == columns && SelectedIndexVer == rows) { ForegroundColor = ConsoleColor.Red; }
+                    else { ForegroundColor = ConsoleColor.White; }
                     Write(column + " ");
+                    columns++;
                 }
+                
                 Write("\n");
+                columns = 0;
+                rows++;
             }
-            
-            WriteLine(display);
-            WriteLine("Back");
-            /*for (int i = 0; i < Options.Length; i++)
-            {
-                int currentOptions = Options[i][1];
 
-                if (SelectedIndexVer == i)
-                {
-                    ForegroundColor = ConsoleColor.Black;
-                    BackgroundColor = ConsoleColor.White;
-                }
-                else
-                {
-                    ForegroundColor = ConsoleColor.White;
-                    BackgroundColor = ConsoleColor.Black;
-                }
-                *//*WriteLine($" {currentOptions}");*//*
-            }*/
+            /*WriteLine(display);*/
+            WriteLine("");
+            WriteLine("Press Backspace to go back");
             ResetColor();
         }
 
@@ -79,6 +59,12 @@ namespace Cinema
 
                 ConsoleKeyInfo keyInfo = ReadKey(true);
                 keyPressed = keyInfo.Key;
+
+                if (keyPressed == ConsoleKey.Backspace)
+                {
+                    Film myFilm = new Film();
+                    myFilm.FilmPage();
+                }
 
                 if (keyPressed == ConsoleKey.UpArrow)
                 {

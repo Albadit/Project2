@@ -16,10 +16,13 @@ namespace Cinema.page
             {
                 new int[] { 1, 1, 1 },
                 new int[] { 0, 2, 0 },
-                new int[] { 1, 2, 1 }
+                new int[] { 1, 2, 1, 0 }
             };
-            Cinema.Seat mainMenu = new Cinema.Seat(prompt, options);
+            Seat mainMenu = new Seat(prompt, options);
             int selectedIndex = mainMenu.Run();
+
+            
+
 
             if (selectedIndex == options.Length - 1)
             {
@@ -27,7 +30,7 @@ namespace Cinema.page
                 myFilm.FilmPage();
             }
 
-            if (selectedIndex == options.Length - 2)
+            if (selectedIndex <= options.Length - 2)
             {
                 Pay myPay = new Pay();
                 myPay.PayPage(filmName);
