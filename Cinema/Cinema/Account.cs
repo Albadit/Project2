@@ -30,13 +30,12 @@ namespace Cinema
         }
         public void Accounts()
         {
-            var accounts = Account.ReadAll();
+            var accounts = ReadAll();
             foreach (var account in accounts)
             {
                 WriteLine($"{account.Id} {account.Email}");
-                /*account.Password = $"reset-{account.Id}";*/
             }
-            Account.WriteAll(accounts);
+            WriteAll(accounts);
         }
     }
 }

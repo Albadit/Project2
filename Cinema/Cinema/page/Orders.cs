@@ -8,20 +8,19 @@ using static System.Console;
 
 namespace Cinema.page
 {
-    class Film
+    class Order
     {
-        public void FilmPage()
+        public void OrdersPage()
         {
-            List<string> filmNames = Movie.filmNames;
-            List<string> filmList = Movie.filmList;
-            filmList.Clear();
+            List<string> orderList = Product.orderList;
+            orderList.Clear();
 
-            Movie myMovie = new Movie();
-            myMovie.Movies();
-            filmList.Add("Back");
+            Product myOrder = new Product();
+            myOrder.Products();
+            orderList.Add("Back");
 
             string title = "Choice your film\n";
-            string[] options = filmList.ToArray();
+            string[] options = orderList.ToArray();
             Menu mainMenu = new Menu(title, options);
             int selectedIndex = mainMenu.Run();
 
@@ -29,12 +28,6 @@ namespace Cinema.page
             {
                 Home myHome = new Home();
                 myHome.HomePage();
-            }
-            else
-            {
-                string filmName = filmNames[selectedIndex];
-                Seats mySeating = new Seats();
-                mySeating.SeatingPage(filmName);
             }
         }
     }

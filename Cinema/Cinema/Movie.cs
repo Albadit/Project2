@@ -35,7 +35,7 @@ namespace Cinema
         }
         public void Movies()
         {
-            var movies = Movie.ReadAll();
+            var movies = ReadAll();
             foreach (var movie in movies)
             {
                 genreList = string.Empty;
@@ -56,7 +56,7 @@ namespace Cinema
                 filmNames.Add(movie.Name);
                 filmList.Add($"{movie.Name} | Genre: {genreList} | Age: {movie.Age}");
             }
-            Movie.WriteAll(movies);
+            WriteAll(movies);
         }
     }
 }

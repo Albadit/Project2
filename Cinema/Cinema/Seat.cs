@@ -25,25 +25,31 @@ namespace Cinema
         private void Display()
         {
             string display = string.Empty;
-
+            int i = 0;
             WriteLine(Prompt);
-            
 
             foreach (int[] row in Options)
             {
-                display += "--";
-            }
-
-            foreach (int[] row in Options)
-            {
+                
                 foreach (int column in row)
                 {
-                    display += column + " ";
+                    if (SelectedIndexVer == column) 
+                    { 
+                        ForegroundColor = ConsoleColor.Red;
+                        BackgroundColor = ConsoleColor.White;
+                    }
+                    else 
+                    { 
+                        ForegroundColor = ConsoleColor.White;
+                        BackgroundColor = ConsoleColor.Black;
+                    }
+                    Write(column + " ");
                 }
-                // move to the next line
-                display += "\n";
+                Write("\n");
             }
-            Console.WriteLine(display);
+            
+            WriteLine(display);
+            WriteLine("Back");
             /*for (int i = 0; i < Options.Length; i++)
             {
                 int currentOptions = Options[i][1];
@@ -58,9 +64,9 @@ namespace Cinema
                     ForegroundColor = ConsoleColor.White;
                     BackgroundColor = ConsoleColor.Black;
                 }
-                WriteLine($" {currentOptions}");
+                *//*WriteLine($" {currentOptions}");*//*
             }*/
-            /*ResetColor();*/
+            ResetColor();
         }
 
         public int Run()
