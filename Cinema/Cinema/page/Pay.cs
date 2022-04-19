@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Cinema.page
 {
-    class Seating
+    class Pay
     {
-        public void SeatingPage(string filmName)
+        public void PayPage(string filmName)
         {
-            string prompt = $"Choice your seat for the film {filmName}\n";
-            string[] options = { "rij: 1", "rij: 2", "rij: 3\n", "Back" };
-            Menu mainMenu = new Menu(prompt, options);
+            string title = "Choose a payment method:\n";
+            string[] options = { "Paypal", "Ideal", "CreditcardW", "Back" };
+            Menu mainMenu = new Menu(title, options);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex)
@@ -24,8 +24,8 @@ namespace Cinema.page
                 case 2:
                     break;
                 case 3:
-                    Film myFilm = new Film();
-                    myFilm.FilmPage();
+                    Seats mySeating = new Seats();
+                    mySeating.SeatingPage(filmName);
                     break;
             }
         }

@@ -7,17 +7,19 @@ using static System.Console;
 
 namespace Cinema
 {
-    class Menu
+    class Seat
     {
-        private int SelectedIndex;
+        private int SelectedIndexHor;
+        private int SelectedIndexVer;
         private string[] Options;
         private string Prompt;
 
-        public Menu(string title, string[] options)
+        public Seat(string prompt, string[] options)
         {
-            Prompt = title;
+            Prompt = prompt;
             Options = options;
-            SelectedIndex = 0;
+            SelectedIndexHor = 0;
+            SelectedIndexVer = 0;
         }
 
         private void Display()
@@ -27,30 +29,17 @@ namespace Cinema
             {
                 string currentOptions = Options[i];
 
-                if (SelectedIndex == i) 
-                { 
+                if (SelectedIndexVer == i)
+                {
                     ForegroundColor = ConsoleColor.Black;
                     BackgroundColor = ConsoleColor.White;
                 }
-                else 
+                else
                 {
                     ForegroundColor = ConsoleColor.White;
                     BackgroundColor = ConsoleColor.Black;
                 }
-
-                if (i == Options.Length - 1)
-                {
-                    WriteLine($" {currentOptions}");
-                }
-                else if (i == Options.Length - 2)
-                {
-                    WriteLine($"{i + 1}) {currentOptions}\n");
-                }
-                else
-                {
-                    WriteLine($"{i + 1}) {currentOptions}");
-                }
-                
+                WriteLine($" {currentOptions}");
             }
             ResetColor();
         }
@@ -68,26 +57,46 @@ namespace Cinema
 
                 if (keyPressed == ConsoleKey.UpArrow)
                 {
-                    SelectedIndex--;
+                    SelectedIndexVer--;
 
-                    if(SelectedIndex < 0)
+                    if(SelectedIndexVer < 0)
                     {
-                        SelectedIndex = Options.Length - 1;
+                        SelectedIndexVer = Options.Length - 1;
                     }
                 }
                 else if (keyPressed == ConsoleKey.DownArrow)
                 {
-                    SelectedIndex++;
+                    SelectedIndexVer++;
 
-                    if (SelectedIndex > Options.Length - 1)
+                    if (SelectedIndexVer > Options.Length - 1)
                     {
-                        SelectedIndex = 0;
+                        SelectedIndexVer = 0;
+                    }
+                }
+
+                else if (keyPressed == ConsoleKey.RightArrow)
+                {
+                    SelectedIndexHor++;
+
+                    if (SelectedIndexHor > Options.Length - 1)
+                    {
+                        SelectedIndexHor = 0;
+                    }
+                }
+
+                else if(keyPressed == ConsoleKey.LeftArrow)
+                {
+                    SelectedIndexHor--;
+
+                    if (SelectedIndexHor < 0)
+                    {
+                        SelectedIndexHor = Options.Length - 1;
                     }
                 }
             }
             while (keyPressed != ConsoleKey.Enter);
 
-            return SelectedIndex;
+            return SelectedIndexVer + SelectedIndexHor;
         }
     }
 }

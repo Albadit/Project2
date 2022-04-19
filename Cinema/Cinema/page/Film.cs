@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 using static System.Console;
 
 namespace Cinema.page
@@ -11,14 +12,18 @@ namespace Cinema.page
     {
         public void FilmPage()
         {
-            /*Movie myMovie = new Movie();
-            string[] films = myMovie.Movies();*/
+            List<string> filmNames = Movie.filmNames;
 
-            /*films = $"{myMovie.Name}\n {myMovie.Genre}\n {myMovie.Age}";*/
+            List<string> filmList = Movie.filmList;
+            filmList.Clear();
 
-            string prompt = "Choice your film\n";
-            string[] options = { "Uncharted", "The Batman", "Spider-Man No Way Home\n", "Back" };
-            Menu mainMenu = new Menu(prompt, options);
+            Movie myMovie = new Movie();
+            myMovie.Movies();
+            filmList.Add("Back");
+
+            string title = "Choice your film\n";
+            string[] options = filmList.ToArray();
+            Menu mainMenu = new Menu(title, options);
             int selectedIndex = mainMenu.Run();
 
             if (selectedIndex == options.Length - 1)
@@ -28,8 +33,8 @@ namespace Cinema.page
             }
             else
             {
-                string filmName = options[selectedIndex].Replace("\n", String.Empty);
-                Seating mySeating = new Seating();
+                string filmName = filmNames[selectedIndex];
+                Seats mySeating = new Seats();
                 mySeating.SeatingPage(filmName);
             }
         }

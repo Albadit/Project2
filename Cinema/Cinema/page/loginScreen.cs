@@ -6,26 +6,23 @@ using System.Threading.Tasks;
 
 namespace Cinema.page
 {
-    class Login
+    class loginScreen
     {
-        public void LoginPage()
+        public void loginScreenPage()
         {
-            string prompt = "Select you login screen\n";
-            string[] options = { "Admin", "Reservation", "Back" };
-            Menu mainMenu = new Menu(prompt, options);
+            string title = "Please make an account.\n";
+            string[] options = {"Back"};
+            
+            res mainMenu = new res(title, options);
             int selectedIndex = mainMenu.Run();
+
+            
 
             switch (selectedIndex)
             {
                 case 0:
-                    break;
-                case 1:
                     chooseScreen mychooseScreen = new chooseScreen();
                     mychooseScreen.chooseScreenPage();
-                    break;
-                case 2:
-                    Home myHome = new Home();
-                    myHome.HomePage();
                     break;
             }
         }
