@@ -11,10 +11,10 @@ namespace Cinema
     {
         private int SelectedIndexHor;
         private int SelectedIndexVer;
-        private string[] Options;
+        private int[][] Options;
         private string Prompt;
 
-        public Seat(string prompt, string[] options)
+        public Seat(string prompt, int[][] options)
         {
             Prompt = prompt;
             Options = options;
@@ -27,7 +27,7 @@ namespace Cinema
             WriteLine(Prompt);
             for (int i = 0; i < Options.Length; i++)
             {
-                string currentOptions = Options[i];
+                int currentOptions = Options[i][1];
 
                 if (SelectedIndexVer == i)
                 {
