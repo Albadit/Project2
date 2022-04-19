@@ -25,7 +25,19 @@ namespace Cinema
         private void Display()
         {
             WriteLine(Prompt);
-            for (int i = 0; i < Options.Length; i++)
+
+            string display = string.Empty;
+            foreach (int[] row in Options)
+            {
+                foreach (int column in row)
+                {
+                    display += column + " ";
+                }
+                // move to the next line
+                display += "\n";
+            }
+            Console.WriteLine(display);
+            /*for (int i = 0; i < Options.Length; i++)
             {
                 int currentOptions = Options[i][1];
 
@@ -40,8 +52,8 @@ namespace Cinema
                     BackgroundColor = ConsoleColor.Black;
                 }
                 WriteLine($" {currentOptions}");
-            }
-            ResetColor();
+            }*/
+            /*ResetColor();*/
         }
 
         public int Run()

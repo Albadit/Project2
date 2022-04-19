@@ -12,10 +12,11 @@ namespace Cinema.page
         public void SeatingPage(string filmName)
         {        
             string prompt = $"Choice your seat for the film: {filmName}\n";
-            int[][] options = {
-                new int[] { 1, 3, 5 },
-                new int[] { 0, 2, 4 },
-                new int[] { 11, 22, 12 }
+            int[][] options =
+            {
+                new int[] { 1, 1, 1 },
+                new int[] { 0, 2, 0 },
+                new int[] { 1, 2, 1 }
             };
             Cinema.Seat mainMenu = new Cinema.Seat(prompt, options);
             int selectedIndex = mainMenu.Run();
