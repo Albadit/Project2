@@ -9,17 +9,90 @@ using static System.Console;
 
 namespace Cinema
 {
-    class Reservation
+    class Registration
     {
         private int SelectedIndex;
         private string[] Options;
         private string Prompt;
+        public static string Name = string.Empty;
+        public static string Email = string.Empty;
+        public static string Number = string.Empty;
+        public static int Age = 0;
 
-        public Reservation(string title, string[] options)
+        public Registration(string title, string[] options)
         {
             Prompt = title;
             Options = options;
             SelectedIndex = 0;
+        }
+
+        public void Info()
+        {
+            // Name
+            Write("Naam: ");
+            var name = ReadLine();
+            while (name == string.Empty)
+            {
+                WriteLine("Niet leeg laten!");
+                Thread.Sleep(1000);
+                Clear();
+                WriteLine(Prompt);
+                Write("Naam: ");
+                name = ReadLine();
+            }
+            Name = Convert.ToString(name!);
+
+            // Email
+            Write("Email: ");
+            var email = ReadLine();
+            while (email == string.Empty)
+            {
+                WriteLine("Niet leeg laten!");
+                Thread.Sleep(1000);
+                Clear();
+                WriteLine(Prompt);
+                WriteLine("Naam: " + Name);
+                Write("Email: ");
+                email = ReadLine();
+            }
+            Email = Convert.ToString(email!);
+
+            // Number
+            Write("Nummer: ");
+            var number = ReadLine();
+
+            while (number == string.Empty)
+            {
+                WriteLine("Niet leeg laten!");
+                Thread.Sleep(1000);
+                Clear();
+                WriteLine(Prompt);
+                WriteLine("Naam: " + Name);
+                WriteLine("Email: " + Email);
+                Write("Nummer: ");
+                number = ReadLine();
+            }
+            Number = Convert.ToString(number!);
+
+            // Age
+            Write("Leeftijd: ");
+            var age = ReadLine();
+
+            while (age == string.Empty)
+            {
+                WriteLine("Niet leeg laten!");
+                Thread.Sleep(1000);
+                Clear();
+                WriteLine(Prompt);
+                WriteLine("Name: " + Name);
+                WriteLine("Email: " + Email);
+                Write("Nummer: " + Number);
+                Write("\nLeeftijd: ");
+                age = ReadLine();
+            }
+            Age = Convert.ToInt32(age!);
+
+            WriteLine("\n");
         }
 
         private void Display()
@@ -27,70 +100,7 @@ namespace Cinema
 
             WriteLine(Prompt);
 
-            Write("Name: ");
-            var Name = ReadLine();
-
-            while (Name == string.Empty)
-            {
-                WriteLine("Niet leeg laten!");
-                Thread.Sleep(1000);
-                Clear();
-                WriteLine(Prompt);
-                Write("Name: ");
-                Name = ReadLine();
-            }
-
-            Write("Email: ");
-            var Email = ReadLine();
-
-            while (Email == string.Empty)
-            {
-                WriteLine("Niet leeg laten!");
-                Thread.Sleep(1000);
-                Clear();
-                WriteLine(Prompt);
-                WriteLine("Name: " + Name);
-                Write("Email: ");
-                Email = ReadLine();
-            }
-
-            Write("Nummer: ");
-            var Nummer = ReadLine();
-
-            while (Nummer == string.Empty)
-            {
-                WriteLine("Niet leeg laten!");
-                Thread.Sleep(1000);
-                Clear();
-                WriteLine(Prompt);
-                WriteLine("Name: " + Name);
-                WriteLine("Email: " + Email);
-                Write("Nummer: ");
-                Nummer = ReadLine();
-            }
-
-            Write("Leeftijd: ");
-            var Leeftijd = ReadLine();
-
-            /*if (Leeftijd )
-            {
-                Console.WriteLine("x is greater than y");
-            }*/
-
-            while (Leeftijd == string.Empty)
-            {
-                WriteLine("Niet leeg laten!");
-                Thread.Sleep(1000);
-                Clear();
-                WriteLine(Prompt);
-                WriteLine("Name: " + Name);
-                WriteLine("Email: " + Email);
-                Write("Nummer: " + Nummer);
-                Write("\nLeeftijd: ");
-                Leeftijd = ReadLine();
-            }
-
-            WriteLine("\n");
+            Info();
 
             for (int i = 0; i < Options.Length; i++)
             {
