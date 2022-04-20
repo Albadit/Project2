@@ -44,8 +44,8 @@ namespace Cinema.page
 
             if (selectedIndex == options.Length - 2)
             {
-                Pay myPay = new Pay();
-                myPay.PayPage(filmName);
+                Order myOrder = new Order();
+                myOrder.OrdersPage();
             }
         }
     }
