@@ -14,15 +14,23 @@ namespace Cinema.page
             string prompt = $"Choice your seat for the film: {filmName}\n";
             int[][] options =
             {
-                new int[] { 1, 1, 1 },
-                new int[] { 0, 2, 0 },
-                new int[] { 1, 2, 1, 0 }
+                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
+                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
+                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                new int[] { 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 },
+                new int[] { 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1 },
+                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new int[] { 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1 },
+                new int[] { 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 },
+                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
             };
             Seat mainMenu = new Seat(prompt, options);
             int selectedIndex = mainMenu.Run();
-
-            
-
 
             if (selectedIndex == options.Length - 1)
             {
