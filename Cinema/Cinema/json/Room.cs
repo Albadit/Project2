@@ -12,13 +12,17 @@ namespace Cinema
     class Room
     {
         public int Id { get; set; } = 0;
-        public string Name { get; set; } = string.Empty;
-        public string Category { get;  set; } = string.Empty;
-        public decimal Price { get;  set; } = 0;
+        /*public int Seats { get; set; } = 0;*/
+        public static int[] Seats { get; set; } = new int[0];
 
-        public static List<string> orderList = new List<string>();
+        /*public static int[] seatList = new int[0];*/
 
-        public static string JsonFileName() => Path.Combine("data", "products.json");
+        public static List<int> seatList1 = new List<int>();
+        /*public static List<List<int>> seatList2 = new List<List<int>>();*/
+        /*public static int[] seatList2 = new int[0];*/
+
+
+        public static string JsonFileName() => Path.Combine("data", "room.json");
 
         public static List<Room> ReadAll()
         {
@@ -26,21 +30,25 @@ namespace Cinema
             return JsonSerializer.Deserialize<List<Room>>(json) ?? new List<Room>();
         }
 
-        public static void WriteAll(List<Room> accounts)
+        public static void WriteAll(List<Room> List)
         {
-            string json = JsonSerializer.Serialize(accounts);
+            string json = JsonSerializer.Serialize(List);
             File.WriteAllText(JsonFileName(), json);
         }
+
         public void Products()
         {
-            var orders = ReadAll();
-            foreach (var order in orders)
+            var seats = ReadAll();
+            foreach (var seat in seats)
             {
-                string price = order.Price.ToString("0.00", CultureInfo.InvariantCulture);
+                /*foreach (var item in seat)
+                {
+                   
+                }*/
+                
+                seatList1.Add(seat.Id);
 
-                orderList.Add($"{order.Name} | Category: {order.Category} | Price: {price}");
             }
-            WriteAll(orders);
         }
     }
 }

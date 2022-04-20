@@ -10,7 +10,12 @@ namespace Cinema.page
     class Seats
     {
         public void SeatingPage(string filmName)
-        {        
+        {
+            /*int[][] Seats = Room.seatList2;*/
+
+            /*Room myFilms = new Room();
+            myFilms.Products();*/
+
             string prompt = $"Choice your seat for the film: {filmName}\n";
             int[][] options =
             {
