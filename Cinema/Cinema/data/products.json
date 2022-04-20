@@ -1,0 +1,92 @@
+[
+  {
+    "Id": 0,
+    "Name": "Koffie",
+    "Category": "Drink",
+    "Price": 2.60
+  },
+  {
+    "Id": 1,
+    "Name": "Coca Cola",
+    "Category": "Drink",
+    "Price": 3.10
+  },
+  {
+    "Id": 2,
+    "Name": "Lipton Ice Tea",
+    "Category": "Drink",
+    "Price": 3.10
+  },
+  {
+    "Id": 3,
+    "Name": "Redbull",
+    "Category": "Drink",
+    "Price": 3.50
+  },
+  {
+    "Id": 4,
+    "Name": "Fanta",
+    "Category": "Drink",
+    "Price": 3.10
+  },
+  {
+    "Id": 5,
+    "Name": "Bier",
+    "Category": "Drink",
+    "Price": 3.70
+  },
+  {
+    "Id": 6,
+    "Name": "Water",
+    "Category": "Drink",
+    "Price": 3.10
+  },
+  {
+    "Id": 7,
+    "Name": "Popcorn Zout",
+    "Category": "Food",
+    "Price": 3.50
+  },
+  {
+    "Id": 8,
+    "Name": "Popcorn Zoet",
+    "Category": "Food",
+    "Price": 3.50
+  },
+  {
+    "Id": 9,
+    "Name": "Popcorn Gemixed",
+    "Category": "Food",
+    "Price": 3.50
+  },
+  {
+    "Id": 10,
+    "Name": "Haribo Cola Flesjes",
+    "Category": "Food",
+    "Price": 2.70
+  },
+  {
+    "Id": 11,
+    "Name": "Kitkat",
+    "Category": "Food",
+    "Price": 2.50
+  },
+  {
+    "Id": 12,
+    "Name": "Twix",
+    "Category": "Food",
+    "Price": 2.50
+  },
+  {
+    "Id": 13,
+    "Name": "Snickers",
+    "Category": "Food",
+    "Price": 2.50
+  },
+  {
+    "Id": 14,
+    "Name": "Autodrop",
+    "Category": "Food",
+    "Price": 2.70
+  }
+]
