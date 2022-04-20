@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static System.Console;
 
@@ -23,6 +24,7 @@ namespace Cinema
 
         private void Display()
         {
+
             WriteLine(Prompt);
 
             Write("Name: ");
@@ -40,13 +42,49 @@ namespace Cinema
 
             Write("Email: ");
             var Email = ReadLine();
+           
+            while (Email == string.Empty)
+            {
+                WriteLine("Niet leeg laten!");
+                Thread.Sleep(1000);
+                Clear();
+                WriteLine(Prompt);
+                WriteLine("Name: " + Name);
+                Write("Email: ");
+                Email = ReadLine();
+            }
 
             Write("Nummer: ");
             var Nummer = ReadLine();
 
-            Write("Leeftijd: ");
-            var Geboorte = ReadLine();
+            while (Nummer == string.Empty)
+            {
+                WriteLine("Niet leeg laten!");
+                Thread.Sleep(1000);
+                Clear();
+                WriteLine(Prompt);
+                WriteLine("Name: " + Name);
+                WriteLine("Email: " + Email);
+                Write("Nummer: ");
+                Nummer = ReadLine();
+            }
 
+            Write("Leeftijd: ");
+            var Leeftijd = ReadLine();
+
+
+            while (Leeftijd == string.Empty)
+            {
+                WriteLine("Niet leeg laten!");
+                Thread.Sleep(1000);
+                Clear();
+                WriteLine(Prompt);
+                WriteLine("Name: " + Name);
+                WriteLine("Email: " + Email);
+                Write("Nummer: " + Nummer);
+                Write("\nLeeftijd: ");
+                Leeftijd = ReadLine();
+            }
 
             for (int i = 0; i < Options.Length; i++)
             {
@@ -116,3 +154,4 @@ namespace Cinema
         }
     }
 }
+ 
