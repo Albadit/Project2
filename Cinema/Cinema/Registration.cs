@@ -72,6 +72,10 @@ namespace Cinema
             Write("Leeftijd: ");
             var Leeftijd = ReadLine();
 
+            /*if (Leeftijd )
+            {
+                Console.WriteLine("x is greater than y");
+            }*/
 
             while (Leeftijd == string.Empty)
             {

@@ -8,24 +8,26 @@ namespace Cinema.page
 {
     class Registration
     {
-        public void RegistrationPage()
+        public void RegistrationPage(string filmName)
         {
             string title = "Fill in your info.\n";
-            string[] options = {"Back"};
+            string[] options = {"Payment", "Back"};
             Reservation mainMenu = new Reservation(title, options);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex)
             {
                 case 0:
+                    Pay myPay = new Pay();
+                    myPay.PayPage(filmName);
                     break;
                 case 1:
                     break;
                 case 2:
                     break;
                 case 3:
-                    /*Seats mySeating = new Seats();
-                    mySeating.SeatingPage();*/
+                    Seats mySeating = new Seats();
+                    mySeating.SeatingPage(filmName);
                     break;
             }
         }
