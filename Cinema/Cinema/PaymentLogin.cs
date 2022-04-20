@@ -26,7 +26,7 @@ namespace Cinema
             WriteLine(Prompt);
 
             Write("Gebruikersnaam: ");
-            var reservationCode = ReadLine();
+            var username = ReadLine();
             Write("Wachtwoord: ");
             var password = string.Empty;
             ConsoleKey key;
@@ -51,18 +51,16 @@ namespace Cinema
                 }
             } while (key != ConsoleKey.Enter);
 
-            if (reservationCode == "123")
-            {
-                chooseScreen mychooseScreen = new chooseScreen();
-                mychooseScreen.chooseScreenPage();
-            }
-            else
-            {
-                WriteLine("\n");
-                WriteLine(password);
-                WriteLine("Reservation ID is not know.");
-            }
-            
+            WriteLine("\n");
+            WriteLine("Thank you for your reservation. Your reservation had been succesfully received.\n" +
+            "You will receive a confirmation e-mail within 10 minutes.\n");
+
+            Random generator = new Random();
+            int random = generator.Next(0, 1000000);
+            string reservationCode = random.ToString("000000");
+
+            WriteLine("Your reservationcode is: " + reservationCode);
+
 
             for (int i = 0; i < Options.Length; i++)
             {
