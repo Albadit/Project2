@@ -28,14 +28,9 @@ namespace Cinema
             return JsonSerializer.Deserialize<List<Movie>>(json) ?? new List<Movie>();
         }
 
-        public static void WriteAll(List<Movie> accounts)
-        {
-            string json = JsonSerializer.Serialize(accounts);
-            File.WriteAllText(JsonFileName(), json);
-        }
         public void Movies()
         {
-            var movies = Movie.ReadAll();
+            var movies = ReadAll();
             foreach (var movie in movies)
             {
                 genreList = string.Empty;
@@ -56,7 +51,6 @@ namespace Cinema
                 filmNames.Add(movie.Name);
                 filmList.Add($"{movie.Name} | Genre: {genreList} | Age: {movie.Age}");
             }
-            Movie.WriteAll(movies);
         }
     }
 }

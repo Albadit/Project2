@@ -10,30 +10,31 @@ namespace Cinema.page
     class Seats
     {
         public void SeatingPage(string filmName)
-        {        
+        {
+            /*int[][] Seats = Room.seatList2;*/
+
+            /*Room myFilms = new Room();
+            myFilms.Products();*/
+
             string prompt = $"Choice your seat for the film: {filmName}\n";
-            string[] options = {
-                "      1  2  3  4  5  6  7  8  9 10 11 12   ", 
-                "   +--------------------------------------+",
-                "14 |        S  S  S  S  S  S  S  S        |",
-                "13 |     S  S  S  S  S  S  S  S  S  S     |",
-                "12 |     S  S  S  S  S  S  S  S  S  S     |",
-                "11 |  S  S  S  S  S  M  M  S  S  S  S  S  |",
-                "10 |  S  S  S  S  M  M  M  M  S  S  S  S  |",
-                " 9 |  S  S  S  M  M  V  V  M  M  S  S  S  |",
-                " 8 |  S  S  S  M  M  V  V  M  M  S  S  S  |",
-                " 7 |  S  S  S  M  M  V  V  M  M  S  S  S  |",
-                " 6 |  S  S  S  M  M  V  V  M  M  S  S  S  |",
-                " 5 |  S  S  S  S  M  M  M  M  S  S  S  S  |",
-                " 4 |  S  S  S  S  S  M  M  S  S  S  S  S  |",
-                " 3 |     S  S  S  S  S  S  S  S  S  S     |",
-                " 2 |        S  S  S  S  S  S  S  S        |",
-                " 1 |        S  S  S  S  S  S  S  S        |",
-                "   +--------------------------------------+",
-                "     ------------------------------------  ",
-                "                    screen                 \n",
-                "Next Page", "Back" };
-            Cinema.Seat mainMenu = new Cinema.Seat(prompt, options);
+            int[][] options =
+            {
+                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
+                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
+                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                new int[] { 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 },
+                new int[] { 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1 },
+                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new int[] { 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1 },
+                new int[] { 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 },
+                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
+            };
+            Seat mainMenu = new Seat(prompt, options);
             int selectedIndex = mainMenu.Run();
 
             if (selectedIndex == options.Length - 1)
@@ -42,10 +43,10 @@ namespace Cinema.page
                 myFilm.FilmPage();
             }
 
-            if (selectedIndex == options.Length - 2)
+            if (selectedIndex <= options.Length - 2)
             {
-                RegistrationPage myRegistrationPage = new RegistrationPage();
-                myRegistrationPage.RegistrationPagePage(filmName);
+                Pay myPay = new Pay();
+                myPay.PayPage(filmName);
             }
         }
     }

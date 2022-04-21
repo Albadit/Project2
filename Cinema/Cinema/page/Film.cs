@@ -13,7 +13,6 @@ namespace Cinema.page
         public void FilmPage()
         {
             List<string> filmNames = Movie.filmNames;
-
             List<string> filmList = Movie.filmList;
             filmList.Clear();
 
