@@ -61,6 +61,11 @@ namespace Cinema
 
             WriteLine("Your reservationcode is: " + reservationCode);
 
+            WriteLine("Name: " + Registration.Name);
+            WriteLine("E-mail: " + Registration.Email);
+            WriteLine("Number: " + Registration.Number);
+            WriteLine("Age: " + Registration.Age);
+
 
             for (int i = 0; i < Options.Length; i++)
             {
