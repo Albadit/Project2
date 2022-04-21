@@ -11,7 +11,7 @@ namespace Cinema.page
         public void RegistrationPagePage(string filmName)
         {
             string title = "Fill in your info.\n";
-            string[] options = { "Payment", "Back" };
+            string[] options = {"Payment", "Back"};
             Registration mainMenu = new Registration(title, options);
             int selectedIndex = mainMenu.Run();
 

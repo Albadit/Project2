@@ -29,37 +29,94 @@ namespace Cinema
         public void Info()
         {
             // Name
-            Write("Naam: ");
+            Write("(1) Voor- en achternaam: ");
             var name = ReadLine();
+            string patroon = @"^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)";
+
             while (name == string.Empty)
             {
-                WriteLine("Niet leeg laten!");
+                WriteLine("\nNiet leeg laten!");
                 Thread.Sleep(1000);
                 Clear();
                 WriteLine(Prompt);
-                Write("Naam: ");
+                Write("(1) Voor- en achternaam: ");
                 name = ReadLine();
             }
+
+            while (!Regex.IsMatch(name, patroon))
+            {
+                if(name == string.Empty)
+                {
+                    WriteLine("\nNiet leeg laten!");
+                    Thread.Sleep(1000);
+                    Clear();
+                    WriteLine(Prompt);
+                    Write("(1) Voor- en achternaam: ");
+                    name = ReadLine();
+                }
+                else
+                {
+                    WriteLine("\n" + name + " is not a valid name!");
+                    Thread.Sleep(1000);
+                    Clear();
+                    WriteLine(Prompt);
+                    Write("(1) Voor- en achternaam: " + Name);
+                    name = ReadLine();
+                }
+                /*WriteLine("\n" + name + " is not a valid name!");
+                Thread.Sleep(1000);
+                Clear();
+                WriteLine(Prompt);
+                Write("(1) Voor- en achternaam: " + Name);
+                name = ReadLine();*/
+            }
+
             Name = Convert.ToString(name!);
 
+
             // Email
-            Write("Email: ");
+            Write("(2) Email: ");
             var email = ReadLine();
+            string pattern = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+
+            while (!Regex.IsMatch(email, pattern))
+            {
+                WriteLine(email + " is not a valid Email address");
+                Thread.Sleep(1000);
+                Clear();
+                WriteLine(Prompt);
+                WriteLine("(1) Voor- en achternaam: " + Name);
+                Write("(2) Email: ");
+                email = ReadLine();
+            }
+
             while (email == string.Empty)
             {
                 WriteLine("Niet leeg laten!");
                 Thread.Sleep(1000);
                 Clear();
                 WriteLine(Prompt);
-                WriteLine("Naam: " + Name);
-                Write("Email: ");
+                WriteLine("(1) Voor- en achternaam: " + Name);
+                Write("(2) Email: ");
                 email = ReadLine();
             }
             Email = Convert.ToString(email!);
 
             // Number
-            Write("Nummer: ");
+            Write("(3) Nummer: 06-");
             var number = ReadLine();
+
+            while (number.Length < 8)
+            {
+                WriteLine("Vul een geldige nummer in!");
+                Thread.Sleep(1000);
+                Clear();
+                WriteLine(Prompt);
+                WriteLine("(1) Voor- en achternaam: " + Name);
+                WriteLine("(2) Email: " + Email);
+                Write("(3) Nummer: 06-");
+                number = ReadLine();
+            }
 
             while (number == string.Empty)
             {
@@ -67,30 +124,39 @@ namespace Cinema
                 Thread.Sleep(1000);
                 Clear();
                 WriteLine(Prompt);
-                WriteLine("Naam: " + Name);
-                WriteLine("Email: " + Email);
-                Write("Nummer: ");
+                WriteLine("(1) Voor- en achternaam: " + Name);
+                WriteLine("(2) Email: " + Email);
+                Write("(3) Nummer: 06-");
                 number = ReadLine();
             }
             Number = Convert.ToInt32(number!);
 
             // Age
-            Write("Leeftijd: ");
+            Write("(4) Leeftijd: ");
             var age = ReadLine();
-
+            
             while (age == string.Empty)
             {
                 WriteLine("Niet leeg laten!");
                 Thread.Sleep(1000);
                 Clear();
                 WriteLine(Prompt);
-                WriteLine("Name: " + Name);
-                WriteLine("Email: " + Email);
-                Write("Nummer: " + Number);
-                Write("\nLeeftijd: ");
+                WriteLine("(1) Name: " + Name);
+                WriteLine("(2) Email: " + Email);
+                Write("(3) Nummer: 06-" + Number);
+                Write("\n(4) Leeftijd: ");
                 age = ReadLine();
-            }
+             }
+
             Age = Convert.ToInt32(age!);
+
+            if (Age < 18)
+            {
+                WriteLine("\nJij bent te jong!");
+                Thread.Sleep(1000);
+                Film myFilm = new Film();
+                myFilm.FilmPage();
+            }
 
             WriteLine("\n");
         }
