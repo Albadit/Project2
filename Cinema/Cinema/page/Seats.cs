@@ -44,8 +44,8 @@ namespace Cinema.page
 
             if (selectedIndex == options.Length - 2)
             {
-                Registration myRegistration = new Registration();
-                myRegistration.RegistrationPage(filmName);
+                RegistrationPage myRegistration = new RegistrationPage();
+                myRegistration.RegistrationPagePage(filmName);
             }
         }
     }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Cinema.page
 {
-    class Registration
+    class RegistrationPage
     {
-        public void RegistrationPage(string filmName)
+        public void RegistrationPagePage(string filmName)
         {
             string title = "Fill in your info.\n";
             string[] options = {"Payment", "Back"};

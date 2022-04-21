@@ -90,6 +90,8 @@ namespace Cinema
                 Leeftijd = ReadLine();
             }
 
+            WriteLine("\n");
+
             for (int i = 0; i < Options.Length; i++)
             {
                 string currentOptions = Options[i];

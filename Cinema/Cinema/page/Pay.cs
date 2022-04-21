@@ -26,8 +26,8 @@ namespace Cinema.page
                 case 2:
                     break;
                 case 3:
-                    Seats mySeating = new Seats();
-                    mySeating.SeatingPage(filmName);
+                    RegistrationPage myRegistrationPage = new RegistrationPage();
+                    myRegistrationPage.RegistrationPagePage(filmName);
                     break;
             }
         }
