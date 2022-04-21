@@ -17,6 +17,7 @@ namespace Cinema
         public decimal Price { get;  set; } = 0;
 
         public static List<string> orderList = new List<string>();
+        public static List<decimal> orderPriceList = new List<decimal>();
 
         public static string JsonFileName() => Path.Combine("data", "products.json");
 
@@ -39,7 +40,8 @@ namespace Cinema
                 /*String temp_str = order.Price.ToString();*/
                 string price = order.Price.ToString("0.00", CultureInfo.InvariantCulture);
 
-                orderList.Add($"{order.Name} | Category: {order.Category} | Price: {price}");
+                orderList.Add($"{order.Name} | Price: {price}");
+                orderPriceList.Add(order.Price);
             }
             Products.WriteAll(orders);
         }

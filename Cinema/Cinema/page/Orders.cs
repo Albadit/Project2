@@ -12,16 +12,16 @@ namespace Cinema.page
     {
         public void OrdersPage()
         {
-            List<string> filmList = Products.orderList;
-            filmList.Clear();
+            List<string> orderList = Products.orderList;
+            orderList.Clear();
 
             Products myOrder = new Products();
             myOrder.Product();
-            filmList.Add("Back");
+            orderList.Add("Back");
 
-            string title = "Choice your film\n";
-            string[] options = filmList.ToArray();
-            Menu mainMenu = new Menu(title, options);
+            string title = "Choice your product\n";
+            string[] options = orderList.ToArray();
+            OrderFunctie mainMenu = new OrderFunctie(title, options);
             int selectedIndex = mainMenu.Run();
 
             if (selectedIndex == options.Length - 1)
