@@ -31,22 +31,15 @@ namespace Cinema
         public void Reservations()
         {
             var ReservationCheck = ReadAll();
-            bool checks = false;
-            Write("Reservation Code: ");
-            var reservationcode = ReadLine();
-            int ReservationCode = Convert.ToInt32(reservationcode);
 
             foreach (var check in ReservationCheck)
             {
-                if (ReservationCode == check.ReservationCode)
-                {
-                    ReservationList.Add($"Reservationcode: {check.ReservationCode} \n " +
-                                            $"Movie: {check.Movies} \n " +
-                                            $"Name: {check.Name} \n " +
-                                            $"Email: {check.Email} \n " +
-                                            $"Number: {check.Number} \n " +
-                                            $"Age: {check.Age} \n ");
-                }
+                ReservationList.Add($"Reservationcode: {check.ReservationCode} \n " +
+                                    $"Movie: {check.Movies} \n " +
+                                    $"Name: {check.Name} \n " +
+                                    $"Email: {check.Email} \n " +
+                                    $"Number: {check.Number} \n " +
+                                    $"Age: {check.Age} \n ");
                 checkList.Add(check.ReservationCode);
             }
         }
