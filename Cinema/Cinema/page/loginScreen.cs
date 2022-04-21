@@ -10,21 +10,30 @@ namespace Cinema.page
     {
         public void loginScreenPage()
         {
-            string title = "Please make an account.\n";
-            string[] options = {"Back"};
-            
-            res mainMenu = new res(title, options);
+            List<string> ReservationList = ReservationCheck.ReservationList;
+
+/*            ReservationCheck myReservationCheck = new ReservationCheck();
+            myReservationCheck.Reservations();
+            ReservationList.Add("Back");*/
+
+            string title = "Please put in your reservation code.\n";
+            string[] options = ReservationList.ToArray();
+            ReservationCodeCheck mainMenu = new ReservationCodeCheck(title, options);
             int selectedIndex = mainMenu.Run();
 
-            
+            if (selectedIndex == options.Length - 1)
+            {
+                chooseScreen mychooseScreen = new chooseScreen();
+                mychooseScreen.chooseScreenPage();
+            }
 
-            switch (selectedIndex)
+            /*switch (selectedIndex)
             {
                 case 0:
                     chooseScreen mychooseScreen = new chooseScreen();
                     mychooseScreen.chooseScreenPage();
                     break;
-            }
+            }*/
         }
     }
 }

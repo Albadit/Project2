@@ -16,7 +16,7 @@ namespace Cinema
         private string Prompt;
         public static string Name = string.Empty;
         public static string Email = string.Empty;
-        public static int Number = 0;
+        public static string Number = string.Empty;
         public static int Age = 0;
 
         public Registration(string title, string[] options)
@@ -129,7 +129,7 @@ namespace Cinema
                 Write("(3) Nummer: 06-");
                 number = ReadLine();
             }
-            Number = Convert.ToInt32(number!);
+            Number = Convert.ToString(number!);
 
             // Age
             Write("(4) Leeftijd: ");
