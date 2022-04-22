@@ -8,7 +8,7 @@ namespace Cinema.page
 {
     class Login
     {
-        public void LoginPage()
+        public static void LoginPage()
         {
             string prompt = "Select you login screen\n";
             string[] options = { "Admin", "Reservation", "Back" };
@@ -22,8 +22,7 @@ namespace Cinema.page
                 case 1:
                     break;
                 case 2:
-                    Home myHome = new Home();
-                    myHome.HomePage();
+                    Home.HomePage();
                     break;
             }
         }

@@ -8,7 +8,7 @@ namespace Cinema.page
 {
     class Pay
     {
-        public void PayPage(string filmName)
+        public static void PayPage(string filmName)
         {
             string title = "Choose a payment method:\n";
             string[] options = { "Paypal", "Ideal", "CreditcardW", "Back" };
@@ -24,8 +24,7 @@ namespace Cinema.page
                 case 2:
                     break;
                 case 3:
-                    Seats mySeating = new Seats();
-                    mySeating.SeatingPage(filmName);
+                    Seats.SeatPage(filmName);
                     break;
             }
         }

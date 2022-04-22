@@ -8,14 +8,20 @@ using static System.Console;
 
 namespace Cinema
 {
+    struct Values
+    {
+        public int hor;
+        public int ver;
+    }
+
     class Seat
     {
         private int SelectedIndexHor;
         private int SelectedIndexVer;
-        private int[][] Options;
+        private List<List<int>> Options;
         private string Prompt;
 
-        public Seat(string prompt, int[][] options)
+        public Seat(string prompt, List<List<int>> options)
         {
             Prompt = prompt;
             Options = options;
@@ -23,12 +29,13 @@ namespace Cinema
             SelectedIndexVer = 0;
         }
 
-        private void Display()
+        public void RoomDraw()
         {
-            int rows = Options.Length;
-            int columns = Options[0].Length;
+            int rows = Options.Count;
+            int columns = Options[0].Count;
+            /*int rows = 12;
+            int columns = 12;*/
             string name = "Screen";
-            WriteLine(Prompt);
 
             Write("    ");
             for (int numRow = 1; numRow < columns + 1; numRow++)
@@ -41,7 +48,7 @@ namespace Cinema
             for (int line = 0; line < columns + 1; line++)
             {
                 if (line < columns) { Write("---"); }
-                else { Write ("--+"); }
+                else { Write("--+"); }
             }
             WriteLine();
 
@@ -49,19 +56,19 @@ namespace Cinema
             {
                 if (row < 10) { Write($" {row} |"); }
                 else { Write($"{row} |"); }
-                
+
                 for (int column = 0; column < columns; column++)
                 {
-                    if (SelectedIndexHor == column && SelectedIndexVer == row - 1) { ForegroundColor = ConsoleColor.Red; }
+                    if (SelectedIndexHor == column && SelectedIndexVer == row - 1) { ForegroundColor = ConsoleColor.Green; }
                     else { ForegroundColor = ConsoleColor.White; BackgroundColor = ConsoleColor.Black; }
 
-                    if (Options[row - 1][column] == 0 && SelectedIndexHor == column && SelectedIndexVer == row - 1) { BackgroundColor = ConsoleColor.Red; }
-
-                    if      (Options[row-1][column] == 0) { Write("   "); }
-                    else if (Options[row-1][column] == 1) { Write("  S"); }
-                    else if (Options[row-1][column] == 2) { Write("  M"); }
-                    else if (Options[row-1][column] == 3) { Write("  V"); }
-                    else                                  { Write("  X"); }
+                    if (Options[row - 1][column] == 0 && SelectedIndexHor == column && SelectedIndexVer == row - 1) { ForegroundColor = ConsoleColor.Red; Write("  X"); }
+                    else if (Options[row - 1][column] == 0) { Write("   "); }
+                    else if (Options[row - 1][column] == 1) { Write("  S"); }
+                    else if (Options[row - 1][column] == 2) { Write("  M"); }
+                    else if (Options[row - 1][column] == 3) { Write("  V"); }
+                    if (Options[row - 1][column] == 4 && SelectedIndexHor == column && SelectedIndexVer == row - 1) { ForegroundColor = ConsoleColor.Red; Write("  X"); }
+                    else if (Options[row - 1][column] == 4) { ForegroundColor = ConsoleColor.DarkYellow; Write("  X"); }
                 }
                 ResetColor();
                 Write("  |\n");
@@ -77,7 +84,7 @@ namespace Cinema
 
             for (int align = 0; align < columns * 3; align++)
             {
-               Write("-");
+                Write("-");
             }
             Write("\n     ");
 
@@ -88,14 +95,20 @@ namespace Cinema
                 if (text == interval - interval2) { Write(name); }
                 else { Write(" "); }
             }
+        }
 
-            /*WriteLine(display);*/
+        private void Display()
+        {
+            WriteLine(Prompt);
+
+            RoomDraw();
+
             WriteLine();
             WriteLine("Press Backspace to go back");
             ResetColor();
         }
 
-        public int Run()
+        public (int, int) Run()
         {
             ConsoleKey keyPressed;
             do
@@ -108,8 +121,7 @@ namespace Cinema
 
                 if (keyPressed == ConsoleKey.Backspace)
                 {
-                    Film myFilm = new Film();
-                    myFilm.FilmPage();
+                    Film.FilmPage();
                 }
 
                 if (keyPressed == ConsoleKey.DownArrow)
@@ -118,14 +130,14 @@ namespace Cinema
 
                     if(SelectedIndexVer < 0)
                     {
-                        SelectedIndexVer = Options.Length - 1;
+                        SelectedIndexVer = Options.Count - 1;
                     }
                 }
                 else if (keyPressed == ConsoleKey.UpArrow)
                 {
                     SelectedIndexVer++;
 
-                    if (SelectedIndexVer > Options.Length - 1)
+                    if (SelectedIndexVer > Options.Count - 1)
                     {
                         SelectedIndexVer = 0;
                     }
@@ -135,7 +147,7 @@ namespace Cinema
                 {
                     SelectedIndexHor++;
 
-                    if (SelectedIndexHor > Options.Length - 3)
+                    if (SelectedIndexHor > Options[0].Count - 1)
                     {
                         SelectedIndexHor = 0;
                     }
@@ -147,13 +159,13 @@ namespace Cinema
 
                     if (SelectedIndexHor < 0)
                     {
-                        SelectedIndexHor = Options.Length - 3;
+                        SelectedIndexHor = Options[0].Count - 1;
                     }
                 }
             }
             while (keyPressed != ConsoleKey.Enter);
 
-            return SelectedIndexVer + SelectedIndexHor;
+            return (SelectedIndexHor, SelectedIndexVer);
         }
     }
 }

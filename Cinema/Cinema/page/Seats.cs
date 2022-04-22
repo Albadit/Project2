@@ -9,44 +9,44 @@ namespace Cinema.page
 {
     class Seats
     {
-        public void SeatingPage(string filmName)
+        public static void SeatPage(string filmName)
         {
-            Room myFilms = new Room();
-            Room.Products();
+            Room.Rooms();
 
-            int[][] Seats = {
-                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
-                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
-                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
-                new int[] { 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 },
-                new int[] { 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1 },
-                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
-                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
-                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
-                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
-                new int[] { 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1 },
-                new int[] { 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 },
-                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
-                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
-                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 }
+            /*List<List<List<int>>> seatList = Room.seatList;*/
+
+            List<List<int>> seatList2 = new List<List<int>>
+            {
+                new List<int> { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
+                new List<int> { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
+                new List<int> { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                new List<int> { 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 },
+                new List<int> { 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1 },
+                new List<int> { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new List<int> { 1, 1, 1, 4, 4, 4, 3, 2, 2, 1, 1, 1 },
+                new List<int> { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new List<int> { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new List<int> { 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1 },
+                new List<int> { 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 },
+                new List<int> { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                new List<int> { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                new List<int> { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 }
             };
 
             string prompt = $"Choice your seat for the film: {filmName}\n";
-            int[][] options = Seats;
-            Seat mainMenu = new Seat(prompt, options);
-            int selectedIndex = mainMenu.Run();
+            List<List<int>> options = seatList2;
+            Seat mainMenu = new(prompt, options);
+            (int hor, int ver) = mainMenu.Run();
 
-            if (selectedIndex == options.Length - 1)
+            if (hor + 1 == 1 && ver + 1 == 1)
             {
-                Film myFilm = new Film();
-                myFilm.FilmPage();
+                Film.FilmPage();
             }
 
-            if (selectedIndex <= options.Length - 2)
+            /*if (selectedIndex <= options.Count - 2)
             {
-                Pay myPay = new Pay();
-                myPay.PayPage(filmName);
-            }
+                Pay.PayPage(filmName);
+            }*/
         }
     }
 }

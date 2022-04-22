@@ -26,8 +26,7 @@ namespace Cinema.page
 
             if (selectedIndex == options.Length - 1)
             {
-                Home myHome = new Home();
-                myHome.HomePage();
+                Home.HomePage();
             }
         }
     }

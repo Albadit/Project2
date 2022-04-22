@@ -3,8 +3,7 @@
 namespace Cinema {
     class Program {
         static void Main(string[] args) {
-            Home myHome = new Home();
-            myHome.HomePage();
+            Home.HomePage();
         }
     }
 }
