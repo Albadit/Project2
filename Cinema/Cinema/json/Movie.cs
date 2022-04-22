@@ -12,12 +12,12 @@ namespace Cinema
     {
         public int Id { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
-        public string[] Genre { get; set; } = new string[0];
+        public string[] Genre { get; set; } = Array.Empty<string>();
         public int Age { get; set; } = 0;
 
-        public static List<string> filmNames = new List<string>();
-        public static List<string> filmList = new List<string>();
-        public static List<string> genreLists = new List<string>();
+        public static List<string> filmNames = new();
+        public static List<string> filmList = new();
+        public static List<string> genreLists = new();
         public string genreList = string.Empty;
 
         public static string JsonFileName() => Path.Combine("data", "movies.json");

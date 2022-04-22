@@ -12,15 +12,11 @@ namespace Cinema
     class Room
     {
         public int Id { get; set; } = 0;
-        /*public int Seats { get; set; } = 0;*/
-        public static int[] Seats { get; set; } = new int[0];
+        public int[][] Seats { get; set; } = Array.Empty<int[]>();
 
-        /*public static int[] seatList = new int[0];*/
-
-        public static List<int> seatList1 = new List<int>();
-        /*public static List<List<int>> seatList2 = new List<List<int>>();*/
-        /*public static int[] seatList2 = new int[0];*/
-
+        /*public static List<int> seatList1 = new();*/
+        public static int[][] seatList1 = Array.Empty<int[]>();
+        public static int[][] seatList2 = Array.Empty<int[]>();
 
         public static string JsonFileName() => Path.Combine("data", "room.json");
 
@@ -36,19 +32,13 @@ namespace Cinema
             File.WriteAllText(JsonFileName(), json);
         }
 
-        public void Products()
+        public static void Products()
         {
             var seats = ReadAll();
             foreach (var seat in seats)
             {
-                /*foreach (var item in seat)
-                {
-                   
-                }*/
-                
-                seatList1.Add(seat.Id);
-
-            }
+                seatList1.Add(seat.Seats);
+            } 
         }
     }
 }

@@ -11,29 +11,28 @@ namespace Cinema.page
     {
         public void SeatingPage(string filmName)
         {
-            /*int[][] Seats = Room.seatList2;*/
+            Room myFilms = new Room();
+            Room.Products();
 
-            /*Room myFilms = new Room();
-            myFilms.Products();*/
+            int[][] Seats = {
+                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
+                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
+                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                new int[] { 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 },
+                new int[] { 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1 },
+                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
+                new int[] { 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1 },
+                new int[] { 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 },
+                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 }
+            };
 
             string prompt = $"Choice your seat for the film: {filmName}\n";
-            int[][] options =
-            {
-                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
-                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
-                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
-                new int[] { 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 },
-                new int[] { 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1 },
-                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
-                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
-                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
-                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
-                new int[] { 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1 },
-                new int[] { 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 },
-                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
-                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
-                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
-            };
+            int[][] options = Seats;
             Seat mainMenu = new Seat(prompt, options);
             int selectedIndex = mainMenu.Run();
 
