@@ -5,6 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace Cinema
 {
@@ -13,6 +18,7 @@ namespace Cinema
         private int SelectedIndex;
         private string[] Options;
         private string Prompt;
+        public static int reservationCode = 0;
 
         public paymentlogin(string title, string[] options)
         {
@@ -56,8 +62,8 @@ namespace Cinema
             "You will receive a confirmation e-mail within 10 minutes.\n");
 
             Random generator = new Random();
-            int random = generator.Next(0, 1000000);
-            string reservationCode = random.ToString("000000");
+            reservationCode = generator.Next(100000, 1000000);
+            //random = reservationCode.ToString("000000");
 
             WriteLine("Your reservationcode is: " + reservationCode);
 
@@ -66,6 +72,7 @@ namespace Cinema
             WriteLine("Number: " + Registration.Number);
             WriteLine("Age: " + Registration.Age);
 
+            convert_cs_to_json();
 
             for (int i = 0; i < Options.Length; i++)
             {
@@ -97,6 +104,50 @@ namespace Cinema
                 
             }
             ResetColor();
+        }
+        static void convert_cs_to_json()
+        {
+            var newreservation = new ReservationFormat();
+            newreservation.ReservationCode = reservationCode;
+            newreservation.Movies = "test";
+            newreservation.Name = Registration.Name;
+            newreservation.Email = Registration.Email;
+            newreservation.Number = Registration.Number;
+            newreservation.Age = Registration.Age;
+
+            var newreservationJson = JsonConvert.SerializeObject(newreservation);
+            Console.WriteLine(newreservationJson);
+
+            static string JsonFileName() => Path.Combine("data", "reservation.json");
+            string fileName = @"C:\Users\31649\OneDrive - Hogeschool Rotterdam\Documents\GitHub\Project2\Cinema\Cinema\data\reservation.json";
+
+            if (System.IO.File.Exists(fileName))
+            {
+                if (new FileInfo(fileName).Length == 0)
+                {
+                    File.WriteAllText(fileName, "[\n" + newreservationJson + "\n]");
+                } else
+                {
+                    string reservationjsonfile = File.ReadAllText(fileName);
+                    var reservationjson = JsonConvert.DeserializeObject(reservationjsonfile);
+                    File.Delete(fileName);
+                    File.WriteAllText(fileName, "[\n" + reservationjsonfile.Substring(1, reservationjsonfile.Length - 2) + "," + newreservationJson + "\n]");
+                    Write(newreservationJson);
+                }
+            } else
+            {
+                File.WriteAllText(fileName, "[\n" + newreservationJson + "\n]");
+            }
+        }
+
+        public class ReservationFormat
+        {
+            public int ReservationCode { get; set; } = 0;
+            public string Movies { get; set; } = string.Empty;
+            public string Name { get; set; } = string.Empty;
+            public string Email { get; set; } = string.Empty;
+            public string Number { get; set; } = string.Empty;
+            public int Age { get; set; } = 0;
         }
 
         public int Run()

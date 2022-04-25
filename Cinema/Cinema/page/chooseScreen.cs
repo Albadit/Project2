@@ -10,18 +10,20 @@ namespace Cinema.page
     {
         public void chooseScreenPage()
         {
-            string title = "Do you have an account?\n";
-            string[] options = { "Yes, login", "No, make an account", "Back" };
+            string title = "What would you like to do?\n";
+            string[] options = { "Check Reservation", "Cancel Reservation", "Back" };
             Menu mainMenu = new Menu(title, options);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex)
             {
                 case 0:
-                    break;
-                case 1:
                     loginScreen myloginScreen = new loginScreen();
                     myloginScreen.loginScreenPage();
+                    break;
+                case 1:
+                    CancelReservationPage mycancelReservation = new CancelReservationPage();
+                    mycancelReservation.cancelReservationPage();
                     break;
                 case 2:
                     Login myLogin = new Login();

@@ -1,20 +1,5 @@
 [
-  {
-    "Id": 0,
-    "ReservationCode": 123456,
-    "Movies": "Test Film",
-    "Name": "Tawan Harink",
-    "Email": "tawanharink@gmail.com",
-    "Number": "0612345678",
-    "Age": 12
-  },
-  {
-    "Id": 1,
-    "ReservationCode": 100000,
-    "Movies": "Test Film",
-    "Name": "Tawan Harink",
-    "Email": "tawanharink@gmail.com",
-    "Number": "0612345678",
-    "Age": 20
-  }
+
+{"ReservationCode":559020,"Movies":"test","Name":"Tawan Harink","Email":"tawanharink@gmail.com","Number":"1234567891","Age":12}
+,{"ReservationCode":680041,"Movies":"test","Name":"Ayoeb","Email":"ayoeb@gmail.com","Number":"06-12345678","Age":21}
 ]

@@ -10,7 +10,6 @@ namespace Cinema
 {
     class ReservationCheck
     {
-        public int Id { get; set; } = 0;
         public int ReservationCode { get; set; } = 0;
         public string Movies { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
@@ -20,6 +19,7 @@ namespace Cinema
 
         public static List<string> ReservationList = new List<string>();
         public static List<int> checkList = new List<int>();
+
 
         public static string JsonFileName() => Path.Combine("data", "reservation.json");
 

@@ -25,7 +25,7 @@ namespace Cinema
         {
             WriteLine(Prompt);
 
-            Console.Write("Enter reservation code: ");
+            Console.Write("Enter the reservation code: ");
             var reservatioCode = ReadLine();
 
             if (reservatioCode == "123")

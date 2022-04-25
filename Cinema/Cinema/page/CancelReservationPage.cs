@@ -6,19 +6,14 @@ using System.Threading.Tasks;
 
 namespace Cinema.page
 {
-    class loginScreen
+    class CancelReservationPage
     {
-        public void loginScreenPage()
+        public void cancelReservationPage()
         {
             List<string> ReservationList = ReservationCheck.ReservationList;
-
-            /*            ReservationCheck myReservationCheck = new ReservationCheck();
-                        myReservationCheck.Reservations();
-                        ReservationList.Add("Back");*/
-
-            string title = "Please put in your reservation code.\n";
+            string title = "Please put in your reservation code you would like to cancel.\n";
             string[] options = ReservationList.ToArray();
-            ReservationCodeCheck mainMenu = new ReservationCodeCheck(title, options);
+            CancelReservation mainMenu = new CancelReservation(title, options);
             int selectedIndex = mainMenu.Run();
 
             if (selectedIndex == options.Length - 1)
