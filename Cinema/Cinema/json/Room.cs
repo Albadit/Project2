@@ -13,10 +13,6 @@ namespace Cinema
     {
         public int Id { get; set; } = 0;
         public int[][] Seats { get; set; } = Array.Empty<int[]>();
-
-        public static List<List<List<int>>> seatList = new();
-        public static List<List<int>> seatList2 = new();
-        public static List<int> seatList1 = new();
         
         public static string JsonFileName() => Path.Combine("data", "room.json");
 
@@ -26,20 +22,22 @@ namespace Cinema
             return JsonSerializer.Deserialize<List<Room>>(json) ?? new List<Room>();
         }
 
-        public static void Rooms()
+        public static List<List<List<int>>> Rooms()
         {
+            List<List<List<int>>> seatList = new();
+
             var rooms = ReadAll();
             foreach (var seats in rooms)
             {
+                List<List<int>> seatList2 = new();
                 foreach (var seat in seats.Seats)
                 {
-                    seatList1.Clear();
-                    seatList1.AddRange(seat);
-                    seatList2.Add(seatList1);
+                    List<int> temp = new(seat);
+                    seatList2.Add(temp);
                 }
                 seatList.Add(seatList2);
-                seatList2.Clear();
             }
+            return seatList;
         }
     }
 }
