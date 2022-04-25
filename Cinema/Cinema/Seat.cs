@@ -33,8 +33,6 @@ namespace Cinema
         {
             int rows = Options.Count;
             int columns = Options[0].Count;
-            /*int rows = 12;
-            int columns = 12;*/
             string name = "Screen";
 
             Write("    ");

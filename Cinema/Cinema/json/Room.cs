@@ -25,7 +25,6 @@ namespace Cinema
         public static List<List<List<int>>> Rooms()
         {
             List<List<List<int>>> seatList = new();
-
             var rooms = ReadAll();
             foreach (var seats in rooms)
             {
