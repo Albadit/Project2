@@ -130,8 +130,7 @@ namespace Cinema
 
                 if (keyPressed == ConsoleKey.Backspace)
                 {
-                    chooseScreen mychooseScreen = new chooseScreen();
-                    mychooseScreen.chooseScreenPage();
+                    chooseScreen.chooseScreenPage();
                 }
 
                 if (keyPressed == ConsoleKey.UpArrow)

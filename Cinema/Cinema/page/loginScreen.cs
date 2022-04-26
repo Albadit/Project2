@@ -8,23 +8,18 @@ namespace Cinema.page
 {
     class loginScreen
     {
-        public void loginScreenPage()
+        public static void loginScreenPage()
         {
             List<string> ReservationList = ReservationCheck.ReservationList;
 
-            /*            ReservationCheck myReservationCheck = new ReservationCheck();
-                        myReservationCheck.Reservations();
-                        ReservationList.Add("Back");*/
-
             string title = "Please put in your reservation code.\n";
             string[] options = ReservationList.ToArray();
-            ReservationCodeCheck mainMenu = new ReservationCodeCheck(title, options);
+            ReservationCodeCheck mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();
 
             if (selectedIndex == options.Length - 1)
             {
-                chooseScreen mychooseScreen = new chooseScreen();
-                mychooseScreen.chooseScreenPage();
+                chooseScreen.chooseScreenPage();
             }
 
         }

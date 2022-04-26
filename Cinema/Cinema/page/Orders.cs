@@ -8,26 +8,24 @@ using static System.Console;
 
 namespace Cinema.page
 {
-    class Order
+    class Orders
     {
-        public void OrdersPage()
+        public static void OrdersPage(string movieName)
         {
-            List<string> filmList = Products.orderList;
-            filmList.Clear();
+            List<string> orderList = Product.Products();
+            orderList.Add("Back");
 
-            Products myOrder = new Products();
-            myOrder.Product();
-            filmList.Add("Back");
-
-            string title = "Choice your film\n";
-            string[] options = filmList.ToArray();
-            Menu mainMenu = new Menu(title, options);
+            string title = "Choice your drinks and food\n";
+            string[] options = orderList.ToArray();
+            Order mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();
 
             if (selectedIndex == options.Length - 1)
             {
-                Home myHome = new Home();
-                myHome.HomePage();
+                Seats.SeatPage(movieName);
+            } else
+            {
+                RegistrationPage.RegistrationPagePage(movieName);
             }
         }
     }

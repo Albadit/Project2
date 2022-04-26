@@ -12,13 +12,10 @@ namespace Cinema
     {
         public int Id { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
-        public string[] Genre { get; set; } = new string[0];
+        public string[] Genre { get; set; } = Array.Empty<string>();
         public int Age { get; set; } = 0;
 
-        public static List<string> filmNames = new List<string>();
-        public static List<string> filmList = new List<string>();
-        public static List<string> genreLists = new List<string>();
-        public string genreList = string.Empty;
+        public static List<string> movieNames = new();
 
         public static string JsonFileName() => Path.Combine("data", "movies.json");
 
@@ -28,18 +25,15 @@ namespace Cinema
             return JsonSerializer.Deserialize<List<Movie>>(json) ?? new List<Movie>();
         }
 
-        public static void WriteAll(List<Movie> accounts)
+        public static List<string> Movies()
         {
-            string json = JsonSerializer.Serialize(accounts);
-            File.WriteAllText(JsonFileName(), json);
-        }
-        public void Movies()
-        {
-            var movies = Movie.ReadAll();
+            List<string> movieList = new();
+
+            var movies = ReadAll();
             foreach (var movie in movies)
             {
-                genreList = string.Empty;
-                genreLists.Clear();
+                string genreList = string.Empty;
+                List<string> genreLists = new();
                 foreach (var genre in movie.Genre)
                 {
                     if (genreLists.Count == movie.Genre.Length - 1)
@@ -53,10 +47,10 @@ namespace Cinema
                         genreList += genre + ", ";
                     }
                 }
-                filmNames.Add(movie.Name);
-                filmList.Add($"{movie.Name} | Genre: {genreList} | Age: {movie.Age}");
+                movieNames.Add(movie.Name);
+                movieList.Add($"{movie.Name} | Genre: {genreList} | Age: {movie.Age}");
             }
-            Movie.WriteAll(movies);
+            return movieList;
         }
     }
 }

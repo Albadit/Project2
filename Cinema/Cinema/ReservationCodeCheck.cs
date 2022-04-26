@@ -23,8 +23,7 @@ namespace Cinema
 
         public void ReservationChecks()
         {
-            ReservationCheck myReservationCode = new ReservationCheck();
-            myReservationCode.Reservations();
+            ReservationCheck.Reservations();
 
             bool checks = false;
             Write("Reservation Code: ");
@@ -100,8 +99,7 @@ namespace Cinema
 
                 if(keyPressed == ConsoleKey.Backspace)
                 {
-                    chooseScreen mychooseScreen = new chooseScreen();
-                    mychooseScreen.chooseScreenPage();
+                    chooseScreen.chooseScreenPage();
                 }
 
                 if (keyPressed == ConsoleKey.UpArrow)

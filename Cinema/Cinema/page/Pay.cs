@@ -8,11 +8,11 @@ namespace Cinema.page
 {
     class Pay
     {
-        public void PayPage(string filmName)
+        public static void PayPage(string filmName)
         {
             string title = "Choose a payment method:\n";
             string[] options = { "Paypal", "Ideal", "Creditcard", "Back" };
-            Menu mainMenu = new Menu(title, options);
+            Menu mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex)
@@ -20,14 +20,12 @@ namespace Cinema.page
                 case 0:
                     break;
                 case 1:
-                    Ideal myIdeal = new Ideal();
-                    myIdeal.IdealPage(filmName);
+                    Ideal.IdealPage(filmName);
                     break;
                 case 2:
                     break;
                 case 3:
-                    RegistrationPage myRegistrationPage = new RegistrationPage();
-                    myRegistrationPage.RegistrationPagePage(filmName);
+                    Seats.SeatPage(filmName);
                     break;
             }
         }

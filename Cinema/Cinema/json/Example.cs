@@ -8,7 +8,7 @@ using static System.Console;
 
 namespace Cinema
 {
-    class Account
+    class Example
     {
         public int Id { get; set; } = 0;
         public string Email { get; set; } = string.Empty;
@@ -17,26 +17,25 @@ namespace Cinema
 
         public static string JsonFileName() => Path.Combine("data", "accounts.json");
 
-        public static List<Account> ReadAll()
+        public static List<Example> ReadAll()
         {
             string json = File.ReadAllText(JsonFileName());
-            return JsonSerializer.Deserialize<List<Account>>(json) ?? new List<Account>();
+            return JsonSerializer.Deserialize<List<Example>>(json) ?? new List<Example>();
         }
 
-        public static void WriteAll(List<Account> accounts)
+        public static void WriteAll(List<Example> accounts)
         {
             string json = JsonSerializer.Serialize(accounts);
             File.WriteAllText(JsonFileName(), json);
         }
         public void Accounts()
         {
-            var accounts = Account.ReadAll();
+            var accounts = ReadAll();
             foreach (var account in accounts)
             {
                 WriteLine($"{account.Id} {account.Email}");
-                /*account.Password = $"reset-{account.Id}";*/
             }
-            Account.WriteAll(accounts);
+            WriteAll(accounts);
         }
     }
 }

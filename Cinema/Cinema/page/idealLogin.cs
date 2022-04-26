@@ -13,19 +13,18 @@ namespace Cinema.page
 {
     class idealLogin
     {
-        public void idealLoginPage(string filmName)
+        public static void idealLoginPage(string filmName)
         {
             string title = "Ideal Login Page\n";
             string[] options = {"Back"};
             
-            paymentlogin mainMenu = new paymentlogin(title, options);
+            paymentlogin mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex)
             {
                 case 0:
-                    Ideal myIdeal = new Ideal();
-                    myIdeal.IdealPage(filmName);
+                    Ideal.IdealPage(filmName);
                     break;
             }
         }
