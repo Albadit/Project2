@@ -24,7 +24,7 @@ namespace Cinema.page
             switch (selectedIndex)
             {
                 case 0:
-                    Ideal.IdealPage(filmName);
+                    Home.HomePage();
                     break;
             }
         }
