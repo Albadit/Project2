@@ -61,7 +61,7 @@ namespace Cinema
             WriteLine("Thank you for your reservation. Your reservation had been succesfully received.\n" +
             "You will receive a confirmation e-mail within 10 minutes.\n");
 
-            Random generator = new Random();
+            Random generator = new();
             reservationCode = generator.Next(100000, 1000000);
             //random = reservationCode.ToString("000000");
 
