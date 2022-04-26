@@ -8,36 +8,51 @@ using static System.Console;
 
 namespace Cinema
 {
-    class res
+    class ReservationCodeCheck
     {
         private int SelectedIndex;
         private string[] Options;
         private string Prompt;
 
-        public res(string title, string[] options)
+        public ReservationCodeCheck(string title, string[] options)
         {
             Prompt = title;
             Options = options;
             SelectedIndex = 0;
         }
 
+        public void ReservationChecks()
+        {
+            ReservationCheck.Reservations();
+
+            bool checks = false;
+            Write("Reservation Code: ");
+            var reservationcode = ReadLine();
+            int ReservationCode = Convert.ToInt32(reservationcode);
+            List<int> checkList = ReservationCheck.checkList;
+            List<string> ReservationList = ReservationCheck.ReservationList;
+            int i = 0;
+
+            foreach (int check in checkList.ToArray())
+            {
+                if (ReservationCode == check)
+                {
+                    Write(ReservationList[i]) ;
+                    checks = true;
+                }
+                i++;
+            }
+
+            if (checks == false)
+            {
+                Write("Reservation code is not know. Please try agian.");
+            }
+        }
+
         private void Display()
         {
             WriteLine(Prompt);
-
-            Write("Enter the reservation code: ");
-            var reservatioCode = ReadLine();
-
-            if (reservatioCode == "123")
-            {
-                chooseScreen.chooseScreenPage();
-            }
-            else
-            {
-                Console.WriteLine("Reservation ID is not know.");
-            }
             
-
             for (int i = 0; i < Options.Length; i++)
             {
                 string currentOptions = Options[i];
@@ -68,6 +83,7 @@ namespace Cinema
                 
             }
             ResetColor();
+            ReservationChecks();
         }
 
         public int Run()
@@ -80,6 +96,11 @@ namespace Cinema
 
                 ConsoleKeyInfo keyInfo = ReadKey(true);
                 keyPressed = keyInfo.Key;
+
+                if(keyPressed == ConsoleKey.Backspace)
+                {
+                    chooseScreen.chooseScreenPage();
+                }
 
                 if (keyPressed == ConsoleKey.UpArrow)
                 {

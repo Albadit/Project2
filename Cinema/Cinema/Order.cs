@@ -1,6 +1,6 @@
-﻿using Cinema.page;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,36 +8,22 @@ using static System.Console;
 
 namespace Cinema
 {
-    class res
+    class Order
     {
         private int SelectedIndex;
-        private string[] Options;
-        private string Prompt;
+        private readonly string[] Options;
+        private readonly string Prompt;
 
-        public res(string title, string[] options)
+        public Order(string title, string[] options)
         {
             Prompt = title;
             Options = options;
             SelectedIndex = 0;
         }
 
-        private void Display()
+        private void Display(List<string> check, decimal totalPrice)
         {
             WriteLine(Prompt);
-
-            Write("Enter the reservation code: ");
-            var reservatioCode = ReadLine();
-
-            if (reservatioCode == "123")
-            {
-                chooseScreen.chooseScreenPage();
-            }
-            else
-            {
-                Console.WriteLine("Reservation ID is not know.");
-            }
-            
-
             for (int i = 0; i < Options.Length; i++)
             {
                 string currentOptions = Options[i];
@@ -68,28 +54,49 @@ namespace Cinema
                 
             }
             ResetColor();
+
+            foreach (var productsOrder in check)
+            {
+                Write($"\n{productsOrder}");
+            }
+
+            string price = totalPrice.ToString("0.00", CultureInfo.InvariantCulture);
+            Write($"\n\nTotal: {price}");
+
         }
 
         public int Run()
         {
+            List<decimal> orderPriceList = Product.OrderPrice();
+            List<string> check = new();
+            decimal totalPrice = 0;
+
             ConsoleKey keyPressed;
             do
-            {
+            {   
                 Clear();
-                Display();
+                Display(check, totalPrice);
 
                 ConsoleKeyInfo keyInfo = ReadKey(true);
                 keyPressed = keyInfo.Key;
 
-                if (keyPressed == ConsoleKey.UpArrow)
+                if (keyPressed == ConsoleKey.A)
+                {
+                    check.Add(Options[SelectedIndex]);
+                    totalPrice += orderPriceList[SelectedIndex];
+                    Display(check, totalPrice);
+                }
+
+                else if (keyPressed == ConsoleKey.UpArrow)
                 {
                     SelectedIndex--;
 
-                    if(SelectedIndex < 0)
+                    if (SelectedIndex < 0)
                     {
                         SelectedIndex = Options.Length - 1;
                     }
                 }
+
                 else if (keyPressed == ConsoleKey.DownArrow)
                 {
                     SelectedIndex++;
@@ -101,7 +108,7 @@ namespace Cinema
                 }
             }
             while (keyPressed != ConsoleKey.Enter);
-
+            
             return SelectedIndex;
         }
     }
