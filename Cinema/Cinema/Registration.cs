@@ -45,7 +45,7 @@ namespace Cinema
 
             while (!Regex.IsMatch(name, patroon))
             {
-                if(name == string.Empty)
+                if (name == string.Empty)
                 {
                     WriteLine("\nNiet leeg laten!");
                     Thread.Sleep(1000);
@@ -56,7 +56,7 @@ namespace Cinema
                 }
                 else
                 {
-                    WriteLine("\n" + name + " is not a valid name!");
+                    WriteLine("\n" + name + " is geen geldige naam!");
                     Thread.Sleep(1000);
                     Clear();
                     WriteLine(Prompt);
@@ -73,9 +73,9 @@ namespace Cinema
             var email = ReadLine();
             string pattern = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
 
-            while (!Regex.IsMatch(email, pattern))
+            while (email == string.Empty)
             {
-                WriteLine(email + " is not a valid Email address");
+                WriteLine("\nNiet leeg laten!");
                 Thread.Sleep(1000);
                 Clear();
                 WriteLine(Prompt);
@@ -84,16 +84,30 @@ namespace Cinema
                 email = ReadLine();
             }
 
-            while (email == string.Empty)
+            while (!Regex.IsMatch(email, pattern))
             {
-                WriteLine("Niet leeg laten!");
-                Thread.Sleep(1000);
-                Clear();
-                WriteLine(Prompt);
-                WriteLine("(1) Voor- en achternaam: " + Name);
-                Write("(2) Email: ");
-                email = ReadLine();
+                if (email == string.Empty)
+                {
+                    WriteLine("\nNiet leeg laten!");
+                    Thread.Sleep(1000);
+                    Clear();
+                    WriteLine(Prompt);
+                    WriteLine("(1) Voor- en achternaam: " + Name);
+                    Write("(2) Email: ");
+                    email = ReadLine();
+                }
+                else
+                {
+                    WriteLine("\n" + email + " is geen geldige email address!");
+                    Thread.Sleep(1000);
+                    Clear();
+                    WriteLine(Prompt);
+                    WriteLine("(1) Voor- en achternaam: " + Name);
+                    Write("(2) Email: ");
+                    email = ReadLine();
+                }
             }
+
             Email = Convert.ToString(email!);
 
             // Number
@@ -102,17 +116,39 @@ namespace Cinema
 
             while (number.Length < 8)
             {
-                WriteLine("Vul een geldige nummer in!");
+                if (number == string.Empty)
+                {
+                    WriteLine("Niet leeg laten!");
+                    Thread.Sleep(1000);
+                    Clear();
+                    WriteLine(Prompt);
+                    WriteLine("(1) Voor- en achternaam: " + Name);
+                    WriteLine("(2) Email: " + Email);
+                    Write("(3) Nummer: 06-");
+                    number = ReadLine();
+                }
+                else
+                {
+                    WriteLine("Vul een geldige nummer in!");
+                    Thread.Sleep(1000);
+                    Clear();
+                    WriteLine(Prompt);
+                    WriteLine("(1) Voor- en achternaam: " + Name);
+                    WriteLine("(2) Email: " + Email);
+                    Write("(3) Nummer: 06-");
+                    number = ReadLine();
+                }
+                /*WriteLine("Vul een geldige nummer in!");
                 Thread.Sleep(1000);
                 Clear();
                 WriteLine(Prompt);
                 WriteLine("(1) Voor- en achternaam: " + Name);
                 WriteLine("(2) Email: " + Email);
                 Write("(3) Nummer: 06-");
-                number = ReadLine();
+                number = ReadLine();*/
             }
 
-            while (number == string.Empty)
+            /*while (number == string.Empty)
             {
                 WriteLine("Niet leeg laten!");
                 Thread.Sleep(1000);
@@ -122,13 +158,13 @@ namespace Cinema
                 WriteLine("(2) Email: " + Email);
                 Write("(3) Nummer: 06-");
                 number = ReadLine();
-            }
+            }*/
             Number = Convert.ToString(number!);
 
             // Age
             Write("(4) Leeftijd: ");
             var age = ReadLine();
-            
+
             while (age == string.Empty)
             {
                 WriteLine("Niet leeg laten!");
@@ -140,7 +176,7 @@ namespace Cinema
                 Write("(3) Nummer: 06-" + Number);
                 Write("\n(4) Leeftijd: ");
                 age = ReadLine();
-             }
+            }
 
             Age = Convert.ToInt32(age!);
 
@@ -149,7 +185,7 @@ namespace Cinema
                 WriteLine("\nJij bent te jong!");
                 Thread.Sleep(1000);
                 Film myFilm = new Film();
-                myFilm.FilmPage();
+                Film.FilmPage();
             }
 
             WriteLine("\n");

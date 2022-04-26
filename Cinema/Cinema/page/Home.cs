@@ -8,7 +8,7 @@ namespace Cinema.page
 {
     class Home
     {
-        public void HomePage()
+        public static void HomePage()
         {
             string title = @"
        _______                           
@@ -17,25 +17,19 @@ namespace Cinema.page
     / /___/ / / / /  __/ / / / / / /_/ / 
     \____/_/_/ /_/\___/_/ /_/ /_/\__,_/  
     ";
-            string[] options = { "Films", "Account", "Order", "Exit" };
-            Menu mainMenu = new Menu(title, options);
+            string[] options = { "Films", "Account", "Exit" };
+            Menu mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex) 
             { 
                 case 0:
-                    Film myFilm = new Film();
-                    myFilm.FilmPage();
+                    Film.FilmPage();
                     break;
                 case 1:
-                    Login myLogin = new Login();
-                    myLogin.LoginPage();
+                    Login.LoginPage();
                     break;
                 case 2:
-                    Order myOrder = new Order();
-                    myOrder.OrdersPage();
-                    break;
-                case 3:
                     Environment.Exit(0);
                     break;
             }

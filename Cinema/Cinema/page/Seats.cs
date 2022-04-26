@@ -9,44 +9,20 @@ namespace Cinema.page
 {
     class Seats
     {
-        public void SeatingPage(string filmName)
+        public static void SeatPage(string movieName)
         {
-            /*int[][] Seats = Room.seatList2;*/
+            List<List<List<int>>> seatList = Room.Rooms();
+            List<List<int>> seatSelect = seatList[0];
 
-            /*Room myFilms = new Room();
-            myFilms.Products();*/
 
-            string prompt = $"Choice your seat for the film: {filmName}\n";
-            int[][] options =
+            string prompt = $"Choice your seat for the film: {movieName}\n";
+            List<List<int>> options = seatSelect;
+            Seat mainMenu = new(prompt, options);
+            (int hor, int ver) = mainMenu.Run();
+
+            if (true)
             {
-                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
-                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
-                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
-                new int[] { 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 },
-                new int[] { 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1 },
-                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
-                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
-                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
-                new int[] { 1, 1, 1, 2, 2, 3, 3, 2, 2, 1, 1, 1 },
-                new int[] { 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1 },
-                new int[] { 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1 },
-                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
-                new int[] { 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
-                new int[] { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
-            };
-            Seat mainMenu = new Seat(prompt, options);
-            int selectedIndex = mainMenu.Run();
-
-            if (selectedIndex == options.Length - 1)
-            {
-                Film myFilm = new Film();
-                myFilm.FilmPage();
-            }
-
-            if (selectedIndex <= options.Length - 2)
-            {
-                RegistrationPage myRegistrationPage = new RegistrationPage();
-                myRegistrationPage.RegistrationPagePage(filmName);
+                Orders.OrdersPage(movieName);
             }
         }
     }

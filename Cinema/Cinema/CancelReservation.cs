@@ -5,27 +5,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace Cinema
 {
-    class ReservationCodeCheck
+    class CancelReservation
     {
         private int SelectedIndex;
         private string[] Options;
         private string Prompt;
 
-        public ReservationCodeCheck(string title, string[] options)
+        public CancelReservation(string title, string[] options)
         {
             Prompt = title;
             Options = options;
             SelectedIndex = 0;
         }
 
-        public void ReservationChecks()
+        public void CancelYourReservation()
         {
-            ReservationCheck.Reservations();
 
-            bool checks = false;
             Write("Reservation Code: ");
             var reservationcode = ReadLine();
             int ReservationCode = Convert.ToInt32(reservationcode);
@@ -37,32 +40,61 @@ namespace Cinema
             {
                 if (ReservationCode == check)
                 {
-                    Write(ReservationList[i]) ;
-                    checks = true;
+                    Write(ReservationList[i]);
                 }
                 i++;
             }
+        }
 
-            if (checks == false)
+        class Reservation
+        {
+            /*public int ReservationCode { get; set; } = 0;
+            public string Movies { get; set; } = string.Empty;
+            public string Name { get; set; } = string.Empty;
+            public string Email { get; set; } = string.Empty;
+            public string Number { get; set; } = string.Empty;
+            public int Age { get; set; } = 0;
+
+            public static List<string> jsonList = new List<string>();
+
+            public static string JsonFileName() => Path.Combine("data", "reservation.json");
+
+            public static List<Reservation> ReadAll()
             {
-                Write("Reservation code is not know. Please try agian.");
+                string json = File.ReadAllText(JsonFileName());
+                return JsonSerializer.Deserialize<List<Reservation>>(json) ?? new List<Reservation>();
             }
+
+            public static void WriteAll(List<Movie> accounts)
+            {
+                string json = JsonSerializer.Serialize(accounts);
+                File.WriteAllText(JsonFileName(), json);
+            }
+            public void Reservations()
+            {
+                var Reservations = Reservation.ReadAll();
+                foreach (var reservations in Reservations)
+                {
+
+                }
+                Reservation.WriteAll(Reservations);
+            }*/
         }
 
         private void Display()
         {
             WriteLine(Prompt);
-            
+
             for (int i = 0; i < Options.Length; i++)
             {
                 string currentOptions = Options[i];
 
-                if (SelectedIndex == i) 
-                { 
+                if (SelectedIndex == i)
+                {
                     ForegroundColor = ConsoleColor.Black;
                     BackgroundColor = ConsoleColor.White;
                 }
-                else 
+                else
                 {
                     ForegroundColor = ConsoleColor.White;
                     BackgroundColor = ConsoleColor.Black;
@@ -80,10 +112,9 @@ namespace Cinema
                 {
                     WriteLine($"{i + 1}) {currentOptions}");
                 }
-                
+
             }
             ResetColor();
-            ReservationChecks();
         }
 
         public int Run()
@@ -97,7 +128,7 @@ namespace Cinema
                 ConsoleKeyInfo keyInfo = ReadKey(true);
                 keyPressed = keyInfo.Key;
 
-                if(keyPressed == ConsoleKey.Backspace)
+                if (keyPressed == ConsoleKey.Backspace)
                 {
                     chooseScreen.chooseScreenPage();
                 }
@@ -106,7 +137,7 @@ namespace Cinema
                 {
                     SelectedIndex--;
 
-                    if(SelectedIndex < 0)
+                    if (SelectedIndex < 0)
                     {
                         SelectedIndex = Options.Length - 1;
                     }
