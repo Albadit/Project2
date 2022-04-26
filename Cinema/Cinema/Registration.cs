@@ -63,12 +63,6 @@ namespace Cinema
                     Write("(1) Voor- en achternaam: " + Name);
                     name = ReadLine();
                 }
-                /*WriteLine("\n" + name + " is not a valid name!");
-                Thread.Sleep(1000);
-                Clear();
-                WriteLine(Prompt);
-                Write("(1) Voor- en achternaam: " + Name);
-                name = ReadLine();*/
             }
 
             Name = Convert.ToString(name!);

@@ -45,8 +45,8 @@ namespace Cinema.page
 
             if (selectedIndex <= options.Length - 2)
             {
-                Pay myPay = new Pay();
-                myPay.PayPage(filmName);
+                RegistrationPage myRegistrationPage = new RegistrationPage();
+                myRegistrationPage.RegistrationPagePage(filmName);
             }
         }
     }
