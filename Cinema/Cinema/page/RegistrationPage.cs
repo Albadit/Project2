@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Cinema.page
         {
             string title = "Fill in your info.\n";
             string[] options = { "Payment", "Back" };
-            Registration mainMenu = new Registration(title, options);
+            Registration mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex)

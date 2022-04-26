@@ -25,13 +25,12 @@ namespace Cinema
         {
             WriteLine(Prompt);
 
-            Console.Write("Enter the reservation code: ");
+            Write("Enter the reservation code: ");
             var reservatioCode = ReadLine();
 
             if (reservatioCode == "123")
             {
-                chooseScreen mychooseScreen = new chooseScreen();
-                mychooseScreen.chooseScreenPage();
+                chooseScreen.chooseScreenPage();
             }
             else
             {

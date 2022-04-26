@@ -105,6 +105,7 @@ namespace Cinema
             }
             ResetColor();
         }
+
         static void convert_cs_to_json()
         {
             var newreservation = new ReservationFormat();
@@ -116,27 +117,15 @@ namespace Cinema
             newreservation.Age = Registration.Age;
 
             var newreservationJson = JsonConvert.SerializeObject(newreservation);
-            Console.WriteLine(newreservationJson);
 
-            static string JsonFileName() => Path.Combine("data", "reservation.json");
-            string fileName = @"C:\Users\31649\OneDrive - Hogeschool Rotterdam\Documents\GitHub\Project2\Cinema\Cinema\data\reservation.json";
+            static string JsonFileName() => Path.Combine("../../../data", "reservation.json");
 
-            if (System.IO.File.Exists(fileName))
+            if (System.IO.File.Exists(JsonFileName()))
             {
-                if (new FileInfo(fileName).Length == 0)
-                {
-                    File.WriteAllText(fileName, "[\n" + newreservationJson + "\n]");
-                } else
-                {
-                    string reservationjsonfile = File.ReadAllText(fileName);
-                    var reservationjson = JsonConvert.DeserializeObject(reservationjsonfile);
-                    File.Delete(fileName);
-                    File.WriteAllText(fileName, "[\n" + reservationjsonfile.Substring(1, reservationjsonfile.Length - 2) + "," + newreservationJson + "\n]");
-                    Write(newreservationJson);
-                }
-            } else
-            {
-                File.WriteAllText(fileName, "[\n" + newreservationJson + "\n]");
+                string reservationjsonfile = File.ReadAllText(JsonFileName());
+                var reservationjson = JsonConvert.DeserializeObject(reservationjsonfile);
+                File.Delete(JsonFileName());
+                File.WriteAllText(JsonFileName(), "[" + reservationjsonfile.Substring(1, reservationjsonfile.Length - 2) + "," + newreservationJson + "\n]");
             }
         }
 

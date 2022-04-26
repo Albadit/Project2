@@ -28,18 +28,13 @@ namespace Cinema
             string json = File.ReadAllText(JsonFileName());
             return JsonSerializer.Deserialize<List<ReservationCheck>>(json) ?? new List<ReservationCheck>();
         }
-        public void Reservations()
+        public static void Reservations()
         {
             var ReservationCheck = ReadAll();
 
             foreach (var check in ReservationCheck)
             {
-                ReservationList.Add($"Reservationcode: {check.ReservationCode} \n " +
-                                    $"Movie: {check.Movies} \n " +
-                                    $"Name: {check.Name} \n " +
-                                    $"Email: {check.Email} \n " +
-                                    $"Number: {check.Number} \n " +
-                                    $"Age: {check.Age} \n ");
+                ReservationList.Add($"Reservationcode: {check.ReservationCode}\n Movie: {check.Movies}\n Name: {check.Name}\n Email: {check.Email}\n Number: {check.Number}\n Age: {check.Age}\n");
                 checkList.Add(check.ReservationCode);
             }
         }

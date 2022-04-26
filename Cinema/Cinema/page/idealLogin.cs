@@ -18,7 +18,7 @@ namespace Cinema.page
             string title = "Ideal Login Page\n";
             string[] options = {"Back"};
             
-            paymentlogin mainMenu = new paymentlogin(title, options);
+            paymentlogin mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex)

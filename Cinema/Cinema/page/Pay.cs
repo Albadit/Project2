@@ -11,7 +11,7 @@ namespace Cinema.page
         public static void PayPage(string filmName)
         {
             string title = "Choose a payment method:\n";
-            string[] options = { "Paypal", "Ideal", "CreditcardW", "Back" };
+            string[] options = { "Paypal", "Ideal", "Creditcard", "Back" };
             Menu mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();
 
@@ -20,6 +20,7 @@ namespace Cinema.page
                 case 0:
                     break;
                 case 1:
+                    Ideal.IdealPage(filmName);
                     break;
                 case 2:
                     break;
