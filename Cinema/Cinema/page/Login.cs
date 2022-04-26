@@ -12,7 +12,7 @@ namespace Cinema.page
         {
             string prompt = "Select you login screen\n";
             string[] options = { "Admin", "Reservation", "Back" };
-            Menu mainMenu = new Menu(prompt, options);
+            Menu mainMenu = new(prompt, options);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex)
@@ -20,8 +20,7 @@ namespace Cinema.page
                 case 0:
                     break;
                 case 1:
-                    chooseScreen mychooseScreen = new chooseScreen();
-                    mychooseScreen.chooseScreenPage();
+                    chooseScreen.chooseScreenPage();
                     break;
                 case 2:
                     Home.HomePage();

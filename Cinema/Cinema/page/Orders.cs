@@ -23,6 +23,9 @@ namespace Cinema.page
             if (selectedIndex == options.Length - 1)
             {
                 Seats.SeatPage(movieName);
+            } else
+            {
+                RegistrationPage.RegistrationPagePage(movieName);
             }
         }
     }

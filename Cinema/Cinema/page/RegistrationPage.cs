@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace Cinema.page
 {
-    class Pay
+    class RegistrationPage
     {
-        public static void PayPage(string filmName)
+        public static void RegistrationPagePage(string filmName)
         {
-            string title = "Choose a payment method:\n";
-            string[] options = { "Paypal", "Ideal", "CreditcardW", "Back" };
-            Menu mainMenu = new(title, options);
+            string title = "Fill in your info.\n";
+            string[] options = { "Payment", "Back" };
+            Registration mainMenu = new Registration(title, options);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex)
             {
                 case 0:
+                    Pay.PayPage(filmName);
                     break;
                 case 1:
                     break;
