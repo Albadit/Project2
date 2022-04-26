@@ -8,25 +8,21 @@ using static System.Console;
 
 namespace Cinema.page
 {
-    class Order
+    class Orders
     {
-        public static void OrdersPage()
+        public static void OrdersPage(string movieName)
         {
-            List<string> orderList = Product.orderList;
-            orderList.Clear();
-
-            Product myOrder = new();
-            myOrder.Products();
+            List<string> orderList = Product.Products();
             orderList.Add("Back");
 
-            string title = "Choice your film\n";
+            string title = "Choice your drinks and food\n";
             string[] options = orderList.ToArray();
-            Menu mainMenu = new(title, options);
+            Order mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();
 
             if (selectedIndex == options.Length - 1)
             {
-                Home.HomePage();
+                Seats.SeatPage(movieName);
             }
         }
     }

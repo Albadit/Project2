@@ -8,18 +8,12 @@ using static System.Console;
 
 namespace Cinema
 {
-    struct Values
-    {
-        public int hor;
-        public int ver;
-    }
-
     class Seat
     {
         private int SelectedIndexHor;
         private int SelectedIndexVer;
-        private List<List<int>> Options;
-        private string Prompt;
+        private readonly List<List<int>> Options;
+        private readonly string Prompt;
 
         public Seat(string prompt, List<List<int>> options)
         {
@@ -29,7 +23,7 @@ namespace Cinema
             SelectedIndexVer = 0;
         }
 
-        public void RoomDraw()
+        public void RoomDraw(List<List<int>> check)
         {
             int rows = Options.Count;
             int columns = Options[0].Count;
@@ -67,6 +61,14 @@ namespace Cinema
                     else if (Options[row - 1][column] == 3) { Write("  V"); }
                     if (Options[row - 1][column] == 4 && SelectedIndexHor == column && SelectedIndexVer == row - 1) { ForegroundColor = ConsoleColor.Red; Write("  X"); }
                     else if (Options[row - 1][column] == 4) { ForegroundColor = ConsoleColor.DarkYellow; Write("  X"); }
+                    /*if (check.Count > row)
+                    {
+                        if (check[SelectedIndexVer][SelectedIndexHor] == Options[row - 1][column])
+                        {
+                            ForegroundColor = ConsoleColor.Yellow; Write("  X");
+                        }
+                    }*/
+                    
                 }
                 ResetColor();
                 Write("  |\n");
@@ -93,26 +95,48 @@ namespace Cinema
                 if (text == interval - interval2) { Write(name); }
                 else { Write(" "); }
             }
+            Write("\n");
         }
 
-        private void Display()
+        private void Display(List<List<int>> check, bool trigger)
         {
             WriteLine(Prompt);
 
-            RoomDraw();
+            RoomDraw(check);
 
-            WriteLine();
-            WriteLine("Press Backspace to go back");
+            if (trigger) { 
+                if (Options[SelectedIndexVer][SelectedIndexHor] == 4)
+                {
+                    Write("\nSorry this seat is already taken");
+                }
+                else if (Options[SelectedIndexVer][SelectedIndexHor] == 0)
+                {
+                    Write("\nSorry you can't select that seat");
+                }
+                else
+                {
+                    foreach (var item in check)
+                    {
+                        Write($"\nYour {item[0]} selected row {item[1] + 1} on column {item[2] + 1}");
+                    }
+                }
+            }
+
+            WriteLine("\n\nPress Backspace to go back");
             ResetColor();
         }
 
         public (int, int) Run()
         {
+            List<List<int>> check = new();
+            int count = 0;
+            bool trigger = false;
+
             ConsoleKey keyPressed;
             do
             {
                 Clear();
-                Display();
+                Display(check, trigger);
 
                 ConsoleKeyInfo keyInfo = ReadKey(true);
                 keyPressed = keyInfo.Key;
@@ -122,7 +146,40 @@ namespace Cinema
                     Film.FilmPage();
                 }
 
-                if (keyPressed == ConsoleKey.DownArrow)
+                else if (keyPressed == ConsoleKey.Spacebar)
+                {
+                    /*Orders.OrdersPage(movieName);*/
+                }
+
+                else if (keyPressed == ConsoleKey.A)
+                {
+                    bool aprove = true;
+                    trigger = true;
+                    if (Options[SelectedIndexVer][SelectedIndexHor] != 0 && Options[SelectedIndexVer][SelectedIndexHor] != 4)
+                    {
+                        if (check.Count != 0)
+                        {
+                            for (int i = 0; i < check.Count; i++)
+                            {
+                                if (SelectedIndexVer == check[i][1] && SelectedIndexHor == check[i][2])
+                                {
+                                    aprove = false;
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        if (aprove)
+                        {
+                            count++;
+                            check.Add(new() { count, SelectedIndexVer, SelectedIndexHor });
+                        }
+                        
+                    }
+                    Display(check, trigger);
+                }
+
+                else if(keyPressed == ConsoleKey.DownArrow)
                 {
                     SelectedIndexVer--;
 

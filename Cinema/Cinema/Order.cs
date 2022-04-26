@@ -11,8 +11,8 @@ namespace Cinema
     class Order
     {
         private int SelectedIndex;
-        private string[] Options;
-        private string Prompt;
+        private readonly string[] Options;
+        private readonly string Prompt;
 
         public Order(string title, string[] options)
         {
@@ -21,35 +21,7 @@ namespace Cinema
             SelectedIndex = 0;
         }
 
-        public string Test()
-        {
-            Products myProducts = new Products();
-            myProducts.Product();
-
-            List<string> productSelect = new List<string>();
-            List<string> orderList = Products.orderList;
-            List<decimal> orderPriceList = Products.orderPriceList;
-            int i = 0;
-
-            foreach (var test in orderPriceList.ToArray())
-            {
-                if (SelectedIndex == i)
-                {
-                    Write(orderList[SelectedIndex]);
-                }
-                i++;
-            }
-
-            return orderList[SelectedIndex];
-        }
-
-        public decimal Testing()
-        {
-            List<decimal> orderPriceList = Products.orderPriceList;
-            return orderPriceList[SelectedIndex];
-        }
-
-        private void Display(List<string> ress, decimal testing)
+        private void Display(List<string> check, decimal totalPrice)
         {
             WriteLine(Prompt);
             for (int i = 0; i < Options.Length; i++)
@@ -83,30 +55,39 @@ namespace Cinema
             }
             ResetColor();
 
-            foreach (var productsOrder in ress)
+            foreach (var productsOrder in check)
             {
                 Write($"\n{productsOrder}");
             }
 
-            string price = testing.ToString("0.00", CultureInfo.InvariantCulture);
+            string price = totalPrice.ToString("0.00", CultureInfo.InvariantCulture);
             Write($"\n\nTotal: {price}");
+
         }
 
         public int Run()
         {
-            List<string> ress = new List<string>();
-            decimal testing = 0;
+            List<decimal> orderPriceList = Product.OrderPrice();
+            List<string> check = new();
+            decimal totalPrice = 0;
 
             ConsoleKey keyPressed;
             do
             {   
                 Clear();
-                Display(ress, testing);
+                Display(check, totalPrice);
 
                 ConsoleKeyInfo keyInfo = ReadKey(true);
                 keyPressed = keyInfo.Key;
 
-                if (keyPressed == ConsoleKey.UpArrow)
+                if (keyPressed == ConsoleKey.A)
+                {
+                    check.Add(Options[SelectedIndex]);
+                    totalPrice += orderPriceList[SelectedIndex];
+                    Display(check, totalPrice);
+                }
+
+                else if (keyPressed == ConsoleKey.UpArrow)
                 {
                     SelectedIndex--;
 
@@ -115,6 +96,7 @@ namespace Cinema
                         SelectedIndex = Options.Length - 1;
                     }
                 }
+
                 else if (keyPressed == ConsoleKey.DownArrow)
                 {
                     SelectedIndex++;
@@ -123,13 +105,6 @@ namespace Cinema
                     {
                         SelectedIndex = 0;
                     }
-                }
-
-                if (keyPressed == ConsoleKey.A)
-                {
-                    ress.Add(Test());
-                    testing += Testing();
-                    Display(ress, testing);
                 }
             }
             while (keyPressed != ConsoleKey.Enter);

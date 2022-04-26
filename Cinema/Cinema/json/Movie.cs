@@ -15,7 +15,7 @@ namespace Cinema
         public string[] Genre { get; set; } = Array.Empty<string>();
         public int Age { get; set; } = 0;
 
-        public static List<string> filmNames = new();
+        public static List<string> movieNames = new();
 
         public static string JsonFileName() => Path.Combine("data", "movies.json");
 
@@ -47,7 +47,7 @@ namespace Cinema
                         genreList += genre + ", ";
                     }
                 }
-                filmNames.Add(movie.Name);
+                movieNames.Add(movie.Name);
                 movieList.Add($"{movie.Name} | Genre: {genreList} | Age: {movie.Age}");
             }
             return movieList;
