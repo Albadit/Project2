@@ -10,32 +10,26 @@ namespace Cinema.page
 {
     class Film
     {
-        public void FilmPage()
+        public static void FilmPage()
         {
-            List<string> filmNames = Movie.filmNames;
-
-            List<string> filmList = Movie.filmList;
-            filmList.Clear();
-
-            Movie myMovie = new Movie();
-            myMovie.Movies();
-            filmList.Add("Back");
+            List<string> movieList = Movie.Movies();
+            List<string> movieNames = Movie.movieNames;
+            movieList.Add("Back");
 
             string title = "Choice your film\n";
-            string[] options = filmList.ToArray();
-            Menu mainMenu = new Menu(title, options);
+            string[] options = movieList.ToArray();
+            Menu mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();
 
             if (selectedIndex == options.Length - 1)
             {
-                Home myHome = new Home();
-                myHome.HomePage();
+                Home.HomePage();
             }
+
             else
             {
-                string filmName = filmNames[selectedIndex];
-                Seats mySeating = new Seats();
-                mySeating.SeatingPage(filmName);
+                string movieName = movieNames[selectedIndex];
+                Seats.SeatPage(movieName);
             }
         }
     }
