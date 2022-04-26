@@ -138,27 +138,10 @@ namespace Cinema
                     Write("(3) Nummer: 06-");
                     number = ReadLine();
                 }
-                /*WriteLine("Vul een geldige nummer in!");
-                Thread.Sleep(1000);
-                Clear();
-                WriteLine(Prompt);
-                WriteLine("(1) Voor- en achternaam: " + Name);
-                WriteLine("(2) Email: " + Email);
-                Write("(3) Nummer: 06-");
-                number = ReadLine();*/
+               
             }
 
-            /*while (number == string.Empty)
-            {
-                WriteLine("Niet leeg laten!");
-                Thread.Sleep(1000);
-                Clear();
-                WriteLine(Prompt);
-                WriteLine("(1) Voor- en achternaam: " + Name);
-                WriteLine("(2) Email: " + Email);
-                Write("(3) Nummer: 06-");
-                number = ReadLine();
-            }*/
+            
             Number = Convert.ToString(number!);
 
             // Age
