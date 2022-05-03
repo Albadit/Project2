@@ -12,7 +12,7 @@ namespace Cinema.page
         {
             string title = "Choose a payment method:\n";
             string[] options = { "Paypal", "Ideal", "CreditcardW", "Back" };
-            Menu mainMenu = new Menu(title, options);
+            Menu mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex)

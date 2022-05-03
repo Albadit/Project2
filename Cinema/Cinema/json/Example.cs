@@ -28,6 +28,7 @@ namespace Cinema
             string json = JsonSerializer.Serialize(accounts);
             File.WriteAllText(JsonFileName(), json);
         }
+
         public void Accounts()
         {
             var accounts = ReadAll();

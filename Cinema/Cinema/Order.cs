@@ -82,7 +82,34 @@ namespace Cinema
 
                 if (keyPressed == ConsoleKey.A)
                 {
-                    check.Add(Options[SelectedIndex]);
+                    int total = 0;
+                    string num = string.Empty;
+                    string product = string.Empty;
+                    bool add = false;
+
+                    check.Add($"{total}x {Options[SelectedIndex]}");
+                    for (int i = check.Count - 1; i >= 0; i--)
+                    {
+
+                        foreach (var letter in check[i])
+                        {
+                            if (Char.IsNumber(letter) && !add) num += letter;
+                            if (add) product += letter;
+                            if (letter == ' ') add = true;
+                        }
+
+                        if (product == Options[SelectedIndex])
+                        {
+                            int con = Int32.Parse(num);
+                            total = con;
+                            total++;
+                            check.Remove(check[i]);
+                            product = string.Empty;
+                            num = string.Empty;
+                            add = false;
+                        }
+                    }
+                    check.Add($"{total}x {Options[SelectedIndex]}");
                     totalPrice += orderPriceList[SelectedIndex];
                     Display(check, totalPrice);
                 }

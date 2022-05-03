@@ -10,7 +10,7 @@ namespace Cinema.page
 {
     class Orders
     {
-        public static void OrdersPage(string movieName)
+        public static void OrdersPage(string movieName, List<List<int>> room)
         {
             List<string> orderList = Product.Products();
             orderList.Add("Back");

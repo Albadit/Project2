@@ -18,11 +18,11 @@ namespace Cinema.page
             string prompt = $"Choice your seat for the film: {movieName}\n";
             List<List<int>> options = seatSelect;
             Seat mainMenu = new(prompt, options);
-            (int hor, int ver) = mainMenu.Run();
+            List<List<int>> room = mainMenu.Run();
 
             if (true)
             {
-                Orders.OrdersPage(movieName);
+                Orders.OrdersPage(movieName, room);
             }
         }
     }

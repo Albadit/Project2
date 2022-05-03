@@ -12,7 +12,7 @@ namespace Cinema
     {
         private int SelectedIndexHor;
         private int SelectedIndexVer;
-        private readonly List<List<int>> Options;
+        private List<List<int>> Options;
         private readonly string Prompt;
 
         public Seat(string prompt, List<List<int>> options)
@@ -61,13 +61,6 @@ namespace Cinema
                     else if (Options[row - 1][column] == 3) { Write("  V"); }
                     if (Options[row - 1][column] == 4 && SelectedIndexHor == column && SelectedIndexVer == row - 1) { ForegroundColor = ConsoleColor.Red; Write("  X"); }
                     else if (Options[row - 1][column] == 4) { ForegroundColor = ConsoleColor.DarkYellow; Write("  X"); }
-                    /*if (check.Count > row)
-                    {
-                        if (check[SelectedIndexVer][SelectedIndexHor] == Options[row - 1][column])
-                        {
-                            ForegroundColor = ConsoleColor.Yellow; Write("  X");
-                        }
-                    }*/
                     
                 }
                 ResetColor();
@@ -126,7 +119,7 @@ namespace Cinema
             ResetColor();
         }
 
-        public (int, int) Run()
+        public List<List<int>> Run()
         {
             List<List<int>> check = new();
             int count = 0;
@@ -171,6 +164,7 @@ namespace Cinema
                         
                         if (aprove)
                         {
+                            Options[SelectedIndexVer][SelectedIndexHor] = 4;
                             count++;
                             check.Add(new() { count, SelectedIndexVer, SelectedIndexHor });
                         }
@@ -220,7 +214,7 @@ namespace Cinema
             }
             while (keyPressed != ConsoleKey.Enter);
 
-            return (SelectedIndexHor, SelectedIndexVer);
+            return Options;
         }
     }
 }
