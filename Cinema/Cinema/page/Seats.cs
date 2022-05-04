@@ -12,12 +12,9 @@ namespace Cinema.page
         public static void SeatPage(string movieName)
         {
             List<List<List<int>>> seatList = Room.Rooms();
-            List<List<int>> seatSelect = seatList[0];
-
 
             string prompt = $"Choice your seat for the film: {movieName}\n";
-            List<List<int>> options = seatSelect;
-            Seat mainMenu = new(prompt, options);
+            Seat mainMenu = new(prompt, seatList[0], seatList[0]);
             List<List<int>> room = mainMenu.Run();
 
             if (true)

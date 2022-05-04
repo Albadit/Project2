@@ -12,13 +12,15 @@ namespace Cinema
     {
         private int SelectedIndexHor;
         private int SelectedIndexVer;
-        private List<List<int>> Options;
+        private readonly List<List<int>> Options;
+        private readonly List<List<int>> OldOptions;
         private readonly string Prompt;
 
-        public Seat(string prompt, List<List<int>> options)
+        public Seat(string prompt, List<List<int>> options, List<List<int>> oldOptions)
         {
             Prompt = prompt;
             Options = options;
+            OldOptions = oldOptions;
             SelectedIndexHor = 0;
             SelectedIndexVer = 0;
         }
@@ -110,7 +112,11 @@ namespace Cinema
                 {
                     foreach (var item in check)
                     {
-                        Write($"\nYour {item[0]} selected row {item[1] + 1} on column {item[2] + 1}");
+                        string letter;
+                        if (item[0] == 1) letter = "S";
+                        else if (item[0] == 2) letter = "M";
+                        else letter = "V";
+                        Write($"\n{letter} seat | row: {item[1] + 1} | column: {item[2] + 1}");
                     }
                 }
             }
@@ -122,7 +128,6 @@ namespace Cinema
         public List<List<int>> Run()
         {
             List<List<int>> check = new();
-            int count = 0;
             bool trigger = false;
 
             ConsoleKey keyPressed;
@@ -137,11 +142,6 @@ namespace Cinema
                 if (keyPressed == ConsoleKey.Backspace)
                 {
                     Film.FilmPage();
-                }
-
-                else if (keyPressed == ConsoleKey.Spacebar)
-                {
-                    /*Orders.OrdersPage(movieName);*/
                 }
 
                 else if (keyPressed == ConsoleKey.A)
@@ -164,12 +164,43 @@ namespace Cinema
                         
                         if (aprove)
                         {
+                            int value = Options[SelectedIndexVer][SelectedIndexHor];
                             Options[SelectedIndexVer][SelectedIndexHor] = 4;
-                            count++;
-                            check.Add(new() { count, SelectedIndexVer, SelectedIndexHor });
+                            check.Add(new() { value, SelectedIndexVer, SelectedIndexHor });
                         }
                         
                     }
+                    Display(check, trigger);
+                }
+
+                //// need to  fix it
+                else if (keyPressed == ConsoleKey.D)
+                {
+                    bool aprove = true;
+                    trigger = true;
+                    if (Options[SelectedIndexVer][SelectedIndexHor] != 0 && Options[SelectedIndexVer][SelectedIndexHor] != 4)
+                    {
+                        if (check.Count != 0)
+                        {
+                            for (int i = 0; i < check.Count; i++)
+                            {
+                                if (SelectedIndexVer == check[i][1] && SelectedIndexHor == check[i][2])
+                                {
+                                    aprove = false;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (aprove)
+                        {
+                            Options[SelectedIndexVer][SelectedIndexHor] = OldOptions[SelectedIndexVer][SelectedIndexHor];
+
+                            //check.Add(new() { 's', SelectedIndexVer, SelectedIndexHor });
+                        }
+
+                    }
+                    Options[SelectedIndexVer][SelectedIndexHor] = OldOptions[SelectedIndexVer][SelectedIndexHor];
                     Display(check, trigger);
                 }
 
