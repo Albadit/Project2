@@ -82,14 +82,12 @@ namespace Cinema
 
                 if (keyPressed == ConsoleKey.A)
                 {
-                    int total = 0;
-                    string num = string.Empty;
-                    string product = string.Empty;
-                    bool add = false;
-
-                    check.Add($"{total}x {Options[SelectedIndex]}");
-                    for (int i = check.Count - 1; i >= 0; i--)
+                    int total = 1;
+                    for (int i = 0; i < check.Count; i++)
                     {
+                        string num = string.Empty;
+                        string product = string.Empty;
+                        bool add = false;
 
                         foreach (var letter in check[i])
                         {
@@ -100,17 +98,40 @@ namespace Cinema
 
                         if (product == Options[SelectedIndex])
                         {
-                            int con = Int32.Parse(num);
-                            total = con;
+                            total = Int32.Parse(num);
                             total++;
-                            check.Remove(check[i]);
-                            product = string.Empty;
-                            num = string.Empty;
-                            add = false;
+                            check[i] = $"{total}x {Options[SelectedIndex]}";
                         }
                     }
-                    check.Add($"{total}x {Options[SelectedIndex]}");
+                    if (total ==  1) check.Add($"{total}x {Options[SelectedIndex]}");
                     totalPrice += orderPriceList[SelectedIndex];
+                    Display(check, totalPrice);
+                }
+
+                else if (keyPressed == ConsoleKey.D)
+                {
+                    for (int i = check.Count - 1; i >= 0; i--)
+                    {
+                        string num = string.Empty;
+                        string product = string.Empty;
+                        bool add = false;
+
+                        foreach (var letter in check[i])
+                        {
+                            if (Char.IsNumber(letter) && !add) num += letter;
+                            if (add) product += letter;
+                            if (letter == ' ') add = true;
+                        }
+
+                        if (product == Options[SelectedIndex])
+                        {
+                            int total = Int32.Parse(num);
+                            total--;
+                            check[i] = $"{total}x {Options[SelectedIndex]}";
+                            if (total <= 0) check.Remove(check[i]);
+                            if (totalPrice > 0 && totalPrice - orderPriceList[SelectedIndex] >= 0) totalPrice -= orderPriceList[SelectedIndex];
+                        }
+                    }
                     Display(check, totalPrice);
                 }
 
