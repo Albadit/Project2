@@ -61,8 +61,7 @@ namespace Cinema
             }
 
             string price = totalPrice.ToString("0.00", CultureInfo.InvariantCulture);
-            Write($"\n\nTotal: {price}");
-
+            WriteLine($"\n\nTotal: {price}");
         }
 
         public int Run()

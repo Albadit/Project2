@@ -1,6 +1,7 @@
 ﻿using Cinema.page;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,19 +14,19 @@ namespace Cinema
         private int SelectedIndexHor;
         private int SelectedIndexVer;
         private readonly List<List<int>> Options;
-        private readonly List<List<int>> OldOptions;
+        private readonly List<decimal> SeatPrice;
         private readonly string Prompt;
 
-        public Seat(string prompt, List<List<int>> options, List<List<int>> oldOptions)
+        public Seat(string prompt, List<List<int>> options, List<decimal> seatPrice)
         {
             Prompt = prompt;
             Options = options;
-            OldOptions = oldOptions;
+            SeatPrice = seatPrice;
             SelectedIndexHor = 0;
             SelectedIndexVer = 0;
         }
 
-        public void RoomDraw(List<List<int>> check)
+        public void RoomDraw()
         {
             int rows = Options.Count;
             int columns = Options[0].Count;
@@ -93,11 +94,11 @@ namespace Cinema
             Write("\n");
         }
 
-        private void Display(List<List<int>> check, bool trigger)
+        private void Display(List<List<int>> check, decimal totalPrice, bool trigger)
         {
             WriteLine(Prompt);
 
-            RoomDraw(check);
+            RoomDraw();
 
             if (trigger) { 
                 if (Options[SelectedIndexVer][SelectedIndexHor] == 4)
@@ -120,6 +121,9 @@ namespace Cinema
                     }
                 }
             }
+            string price = totalPrice.ToString("0.00", CultureInfo.InvariantCulture);
+            WriteLine($"\n\nTotal: {price}");
+
 
             WriteLine("\n\nPress Backspace to go back");
             ResetColor();
@@ -127,14 +131,16 @@ namespace Cinema
 
         public List<List<int>> Run()
         {
+            (List<List<List<int>>> seatList, List<decimal> seatPrice) = Room.Rooms();
             List<List<int>> check = new();
+            decimal totalPrice = 0;
             bool trigger = false;
 
             ConsoleKey keyPressed;
             do
             {
                 Clear();
-                Display(check, trigger);
+                Display(check, totalPrice, trigger);
 
                 ConsoleKeyInfo keyInfo = ReadKey(true);
                 keyPressed = keyInfo.Key;
@@ -167,41 +173,36 @@ namespace Cinema
                             int value = Options[SelectedIndexVer][SelectedIndexHor];
                             Options[SelectedIndexVer][SelectedIndexHor] = 4;
                             check.Add(new() { value, SelectedIndexVer, SelectedIndexHor });
+                            for (int i = 0; i < seatPrice.Count; i++)
+                            {
+                                if (i == Options[SelectedIndexVer][SelectedIndexHor])
+                                {
+                                    totalPrice += SeatPrice[i];
+                                    break;
+                                }
+                            }
+
                         }
-                        
                     }
-                    Display(check, trigger);
+                    Display(check, totalPrice, trigger);
                 }
 
                 //// need to  fix it
                 else if (keyPressed == ConsoleKey.D)
                 {
-                    bool aprove = true;
-                    trigger = true;
-                    if (Options[SelectedIndexVer][SelectedIndexHor] != 0 && Options[SelectedIndexVer][SelectedIndexHor] != 4)
+                    if (Options[SelectedIndexVer][SelectedIndexHor] == 4)
                     {
-                        if (check.Count != 0)
+                        for (int i = 0; i < check.Count; i++)
                         {
-                            for (int i = 0; i < check.Count; i++)
+                            if (SelectedIndexVer == check[i][1] && SelectedIndexHor == check[i][2])
                             {
-                                if (SelectedIndexVer == check[i][1] && SelectedIndexHor == check[i][2])
-                                {
-                                    aprove = false;
-                                    break;
-                                }
+                                check.Remove(check[i]);
+                                Options[SelectedIndexVer][SelectedIndexHor] = seatList[0][SelectedIndexVer][SelectedIndexHor];
+                                break;
                             }
                         }
-
-                        if (aprove)
-                        {
-                            Options[SelectedIndexVer][SelectedIndexHor] = OldOptions[SelectedIndexVer][SelectedIndexHor];
-
-                            //check.Add(new() { 's', SelectedIndexVer, SelectedIndexHor });
-                        }
-
                     }
-                    Options[SelectedIndexVer][SelectedIndexHor] = OldOptions[SelectedIndexVer][SelectedIndexHor];
-                    Display(check, trigger);
+                    Display(check, totalPrice, trigger);
                 }
 
                 else if(keyPressed == ConsoleKey.DownArrow)
