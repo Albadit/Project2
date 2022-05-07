@@ -11,15 +11,16 @@ namespace Cinema.page
     {
         public static void SeatPage(string movieName)
         {
-            (List<List<List<int>>> seatList, List<decimal> seatPrice) = Room.Rooms();
+            (List<List<List<int>>> seatList, List<List<decimal>> seatPrice) = Room.Rooms();
+            int roomId = 1;
 
             string prompt = $"Choice your seat for the film: {movieName}\n";
-            Seat mainMenu = new(prompt, seatList[0], seatPrice);
-            List<List<int>> room = mainMenu.Run();
+            Seat mainMenu = new(prompt, seatList[roomId], seatPrice, roomId);
+            (List<List<int>> room, decimal totalPriceRoom)  = mainMenu.Run();
 
             if (true)
             {
-                Orders.OrdersPage(movieName, room);
+                Orders.OrdersPage(movieName, room, totalPriceRoom);
             }
         }
     }

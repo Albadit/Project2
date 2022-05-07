@@ -14,14 +14,16 @@ namespace Cinema
         private int SelectedIndexHor;
         private int SelectedIndexVer;
         private readonly List<List<int>> Options;
-        private readonly List<decimal> SeatPrice;
+        private readonly List<List<decimal>> SeatPrice;
+        private readonly int RoomId;
         private readonly string Prompt;
 
-        public Seat(string prompt, List<List<int>> options, List<decimal> seatPrice)
+        public Seat(string prompt, List<List<int>> options, List<List<decimal>> seatPrice, int roomId)
         {
             Prompt = prompt;
             Options = options;
             SeatPrice = seatPrice;
+            RoomId = roomId;
             SelectedIndexHor = 0;
             SelectedIndexVer = 0;
         }
@@ -94,7 +96,7 @@ namespace Cinema
             Write("\n");
         }
 
-        private void Display(List<List<int>> check, decimal totalPrice, bool trigger)
+        private void Display(List<List<int>> check, decimal totalPriceRoom, bool trigger)
         {
             WriteLine(Prompt);
 
@@ -121,7 +123,7 @@ namespace Cinema
                     }
                 }
             }
-            string price = totalPrice.ToString("0.00", CultureInfo.InvariantCulture);
+            string price = totalPriceRoom.ToString("0.00", CultureInfo.InvariantCulture);
             WriteLine($"\n\nTotal: {price}");
 
 
@@ -129,18 +131,18 @@ namespace Cinema
             ResetColor();
         }
 
-        public List<List<int>> Run()
+        public (List<List<int>>, decimal totalPriceRoom) Run()
         {
-            (List<List<List<int>>> seatList, List<decimal> seatPrice) = Room.Rooms();
+            (List<List<List<int>>> seatList, List<List<decimal>> seatPrice) = Room.Rooms();
             List<List<int>> check = new();
-            decimal totalPrice = 0;
+            decimal totalPriceRoom = 0;
             bool trigger = false;
 
             ConsoleKey keyPressed;
             do
             {
                 Clear();
-                Display(check, totalPrice, trigger);
+                Display(check, totalPriceRoom, trigger);
 
                 ConsoleKeyInfo keyInfo = ReadKey(true);
                 keyPressed = keyInfo.Key;
@@ -170,21 +172,20 @@ namespace Cinema
                         
                         if (aprove)
                         {
-                            int value = Options[SelectedIndexVer][SelectedIndexHor];
-                            Options[SelectedIndexVer][SelectedIndexHor] = 4;
-                            check.Add(new() { value, SelectedIndexVer, SelectedIndexHor });
-                            for (int i = 0; i < seatPrice.Count; i++)
+                            for (int i = 0; i < seatPrice[RoomId].Count; i++)
                             {
                                 if (i == Options[SelectedIndexVer][SelectedIndexHor])
                                 {
-                                    totalPrice += SeatPrice[i];
+                                    totalPriceRoom += SeatPrice[RoomId][i];
                                     break;
                                 }
                             }
-
+                            int value = Options[SelectedIndexVer][SelectedIndexHor];
+                            Options[SelectedIndexVer][SelectedIndexHor] = 4;
+                            check.Add(new() { value, SelectedIndexVer, SelectedIndexHor });
                         }
                     }
-                    Display(check, totalPrice, trigger);
+                    Display(check, totalPriceRoom, trigger);
                 }
 
                 //// need to  fix it
@@ -197,12 +198,20 @@ namespace Cinema
                             if (SelectedIndexVer == check[i][1] && SelectedIndexHor == check[i][2])
                             {
                                 check.Remove(check[i]);
-                                Options[SelectedIndexVer][SelectedIndexHor] = seatList[0][SelectedIndexVer][SelectedIndexHor];
+                                Options[SelectedIndexVer][SelectedIndexHor] = seatList[RoomId][SelectedIndexVer][SelectedIndexHor];
+                                for (int j = 0; j < seatPrice[RoomId].Count; j++)
+                                {
+                                    if (j == Options[SelectedIndexVer][SelectedIndexHor])
+                                    {
+                                        totalPriceRoom -= SeatPrice[RoomId][j];
+                                        break;
+                                    }
+                                }
                                 break;
                             }
                         }
                     }
-                    Display(check, totalPrice, trigger);
+                    Display(check, totalPriceRoom, trigger);
                 }
 
                 else if(keyPressed == ConsoleKey.DownArrow)
@@ -246,7 +255,7 @@ namespace Cinema
             }
             while (keyPressed != ConsoleKey.Enter);
 
-            return Options;
+            return (Options, totalPriceRoom);
         }
     }
 }

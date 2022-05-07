@@ -15,8 +15,6 @@ namespace Cinema
         public string[] Genre { get; set; } = Array.Empty<string>();
         public int Age { get; set; } = 0;
 
-        public static List<string> movieNames = new();
-
         public static string JsonFileName() => Path.Combine("data", "movies.json");
 
         public static List<Movie> ReadAll()
@@ -25,8 +23,9 @@ namespace Cinema
             return JsonSerializer.Deserialize<List<Movie>>(json) ?? new List<Movie>();
         }
 
-        public static List<string> Movies()
+        public static (List<string>, List<string>) Movies()
         {
+            List<string> movieNames = new();
             List<string> movieList = new();
 
             var movies = ReadAll();
@@ -50,7 +49,7 @@ namespace Cinema
                 movieNames.Add(movie.Name);
                 movieList.Add($"{movie.Name} | Genre: {genreList} | Age: {movie.Age}");
             }
-            return movieList;
+            return (movieList, movieNames);
         }
     }
 }

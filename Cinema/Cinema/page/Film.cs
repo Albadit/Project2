@@ -12,8 +12,7 @@ namespace Cinema.page
     {
         public static void FilmPage()
         {
-            List<string> movieList = Movie.Movies();
-            List<string> movieNames = Movie.movieNames;
+            (List<string> movieList, List<string> movieNames) = Movie.Movies();
             movieList.Add("Back");
 
             string title = "Choice your film\n";
