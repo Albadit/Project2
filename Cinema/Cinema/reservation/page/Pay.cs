@@ -24,7 +24,7 @@ namespace Cinema.page
                 case 2:
                     break;
                 case 3:
-                    Orders.OrdersPage(movieName, room, totalPriceRoom);
+                    //Orders.OrdersPage(movieName, room, totalPriceRoom);
                     break;
             }
         }

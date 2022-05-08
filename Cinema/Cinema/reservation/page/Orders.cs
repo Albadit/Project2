@@ -27,7 +27,7 @@ namespace Cinema.page
 
             else
             {
-                Pay.PayPage(movieName, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder);
+                Registration.RegistrationPage(movieName, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder);
             }
         }
     }
