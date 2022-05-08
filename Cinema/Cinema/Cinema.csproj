@@ -8,21 +8,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="data\accounts.json">
+    <None Update="reservation\data\accounts.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="data\movies.json">
+    <None Update="reservation\data\movies.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="data\products.json">
+    <None Update="reservation\data\products.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="data\reservation.json">
+    <None Update="reservation\data\reservation.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="data\room.json">
+    <None Update="reservation\data\Room.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="login\" />
   </ItemGroup>
 
 </Project>

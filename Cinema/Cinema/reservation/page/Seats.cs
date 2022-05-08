@@ -16,11 +16,11 @@ namespace Cinema.page
 
             string prompt = $"Choice your seat for the film: {movieName}\n";
             Seat mainMenu = new(prompt, seatList[roomId], seatPrice, roomId);
-            (List<List<int>> room, decimal totalPriceRoom)  = mainMenu.Run();
+            (List<List<int>> room, List<string> seatsList, decimal totalPriceRoom)  = mainMenu.Run();
 
             if (true)
             {
-                Orders.OrdersPage(movieName, room, totalPriceRoom);
+                Orders.OrdersPage(movieName, room, seatsList, totalPriceRoom);
             }
         }
     }

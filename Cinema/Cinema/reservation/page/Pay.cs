@@ -8,7 +8,7 @@ namespace Cinema.page
 {
     class Pay
     {
-        public static void PayPage(string filmName)
+        public static void PayPage(string movieName, List<List<int>> room, List<string> seatsList, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder)
         {
             string title = "Choose a payment method:\n";
             string[] options = { "Paypal", "Ideal", "CreditcardW", "Back" };
@@ -24,7 +24,7 @@ namespace Cinema.page
                 case 2:
                     break;
                 case 3:
-                    Seats.SeatPage(filmName);
+                    Orders.OrdersPage(movieName, room, totalPriceRoom);
                     break;
             }
         }

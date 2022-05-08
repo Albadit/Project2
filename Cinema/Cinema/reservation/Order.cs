@@ -21,7 +21,7 @@ namespace Cinema
             SelectedIndex = 0;
         }
 
-        private void Display(List<string> check, decimal totalPrice)
+        private void Display(List<string> ordersList, decimal totalPriceOrder)
         {
             WriteLine(Prompt);
             for (int i = 0; i < Options.Length; i++)
@@ -55,26 +55,26 @@ namespace Cinema
             }
             ResetColor();
 
-            foreach (var productsOrder in check)
+            foreach (var productsOrder in ordersList)
             {
                 Write($"\n{productsOrder}");
             }
 
-            string price = totalPrice.ToString("0.00", CultureInfo.InvariantCulture);
+            string price = totalPriceOrder.ToString("0.00", CultureInfo.InvariantCulture);
             WriteLine($"\n\nTotal: {price}");
         }
 
-        public int Run()
+        public (int, List<string>, decimal) Run()
         {
             List<decimal> orderPriceList = Product.OrderPrice();
-            List<string> check = new();
-            decimal totalPrice = 0;
+            List<string> ordersList = new();
+            decimal totalPriceOrder = 0;
 
             ConsoleKey keyPressed;
             do
             {   
                 Clear();
-                Display(check, totalPrice);
+                Display(ordersList, totalPriceOrder);
 
                 ConsoleKeyInfo keyInfo = ReadKey(true);
                 keyPressed = keyInfo.Key;
@@ -82,13 +82,13 @@ namespace Cinema
                 if (keyPressed == ConsoleKey.A)
                 {
                     int total = 1;
-                    for (int i = 0; i < check.Count; i++)
+                    for (int i = 0; i < ordersList.Count; i++)
                     {
                         string num = string.Empty;
                         string product = string.Empty;
                         bool add = false;
 
-                        foreach (var letter in check[i])
+                        foreach (var letter in ordersList[i])
                         {
                             if (Char.IsNumber(letter) && !add) num += letter;
                             if (add) product += letter;
@@ -99,23 +99,23 @@ namespace Cinema
                         {
                             total = Int32.Parse(num);
                             total++;
-                            check[i] = $"{total}x {Options[SelectedIndex]}";
+                            ordersList[i] = $"{total}x {Options[SelectedIndex]}";
                         }
                     }
-                    if (total ==  1) check.Add($"{total}x {Options[SelectedIndex]}");
-                    totalPrice += orderPriceList[SelectedIndex];
-                    Display(check, totalPrice);
+                    if (total ==  1) ordersList.Add($"{total}x {Options[SelectedIndex]}");
+                    totalPriceOrder += orderPriceList[SelectedIndex];
+                    Display(ordersList, totalPriceOrder);
                 }
 
                 else if (keyPressed == ConsoleKey.D)
                 {
-                    for (int i = check.Count - 1; i >= 0; i--)
+                    for (int i = ordersList.Count - 1; i >= 0; i--)
                     {
                         string num = string.Empty;
                         string product = string.Empty;
                         bool add = false;
 
-                        foreach (var letter in check[i])
+                        foreach (var letter in ordersList[i])
                         {
                             if (Char.IsNumber(letter) && !add) num += letter;
                             if (add) product += letter;
@@ -126,12 +126,12 @@ namespace Cinema
                         {
                             int total = Int32.Parse(num);
                             total--;
-                            check[i] = $"{total}x {Options[SelectedIndex]}";
-                            if (total <= 0) check.Remove(check[i]);
-                            if (totalPrice > 0 && totalPrice - orderPriceList[SelectedIndex] >= 0) totalPrice -= orderPriceList[SelectedIndex];
+                            ordersList[i] = $"{total}x {Options[SelectedIndex]}";
+                            if (total <= 0) ordersList.Remove(ordersList[i]);
+                            if (totalPriceOrder > 0 && totalPriceOrder - orderPriceList[SelectedIndex] >= 0) totalPriceOrder -= orderPriceList[SelectedIndex];
                         }
                     }
-                    Display(check, totalPrice);
+                    Display(ordersList, totalPriceOrder);
                 }
 
                 else if (keyPressed == ConsoleKey.UpArrow)
@@ -156,7 +156,7 @@ namespace Cinema
             }
             while (keyPressed != ConsoleKey.Enter);
             
-            return SelectedIndex;
+            return (SelectedIndex, ordersList, totalPriceOrder);
         }
     }
 }
