@@ -9,10 +9,10 @@ namespace Cinema.page
 {
     class Seats
     {
-        public static void SeatPage(string movieName)
+        public static void SeatPage(string movieName, int ageList)
         {
             (List<List<List<int>>> seatList, List<List<decimal>> seatPrice) = Room.Rooms();
-            int roomId = 1;
+            int roomId = 0;
 
             string prompt = $"Choice your seat for the film: {movieName}\n";
             Seat mainMenu = new(prompt, seatList[roomId], seatPrice, roomId);
@@ -20,7 +20,7 @@ namespace Cinema.page
 
             if (true)
             {
-                Orders.OrdersPage(movieName, room, seatsList, totalPriceRoom);
+                Orders.OrdersPage(movieName, ageList, room, seatsList, totalPriceRoom);
             }
         }
     }

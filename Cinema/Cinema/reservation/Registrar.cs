@@ -14,89 +14,124 @@ namespace Cinema
         private int SelectedIndex;
         private readonly string[] Options;
         private readonly string Prompt;
-        //private readonly string Name = string.Empty;
-        //private readonly string Email;
-        //private readonly string Number;
-        //private readonly string Age;
+        private readonly int AgeList;
+        private string Name;
+        private string Email;
+        private string Number;
+        private string Age;
+        private bool Check;
 
-        public Registrar(string title, string[] options)
+        public Registrar(string title, string[] options, int ageList)
         {
             Prompt = title;
             Options = options;
+            AgeList = ageList;
             SelectedIndex = 0;
+            Name = string.Empty;
+            Email = string.Empty;
+            Number = string.Empty;
+            Age = string.Empty;
+            Check = true;
         }
 
         public void Info()
         {
-            // name
-            Write("Full name: ");
-            string? name = ReadLine();
-            string patroon = @"^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)";
-           
-            while (!Regex.IsMatch(name, patroon) || name == string.Empty)
+            if (!Check)
             {
-                if (name == string.Empty) WriteLine("\nDon't leave blank!");
-                else WriteLine($"\n{name} is not a valid name!");
-                Thread.Sleep(1000);
-                Clear();
-                WriteLine(Prompt);
-                Write($"Full name: ");
-                name = ReadLine();
+                WriteLine($"Full name: {Name}");
+                WriteLine($"Email: {Email}");
+                WriteLine($"Number: 06-{Number}");
+                WriteLine($"Leeftijd: {Age}\n");
+
+
             }
 
-            // email
-            Write("email: ");
-            string? email = ReadLine();
-            string pattern = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
-            
-            while (!Regex.IsMatch(email, pattern) || email == string.Empty)
+            if (Check)
             {
-                if (email == string.Empty) WriteLine("\nDon't leave blank!");
-                else WriteLine($"\n{email} is not a valid email!");
-                Thread.Sleep(1000);
-                Clear();
-                WriteLine(Prompt);
-                WriteLine($"Full name: {name}");
-                Write("Email: ");
-                email = ReadLine();
-            }
+                // name
+                Write("Full name: ");
+                string? name = ReadLine();
+                string patroon = @"^([a-zA-Z]{2,}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)";
+                string names = name ?? string.Empty;
+                while (!Regex.IsMatch(names, patroon) || name == string.Empty)
+                {
+                    if (name == string.Empty) WriteLine("\nDon't leave blank!");
+                    else WriteLine($"\n{name} is not a valid name!");
+                    Thread.Sleep(1000);
+                    Clear();
+                    WriteLine(Prompt);
+                    Write($"Full name: ");
+                    name = ReadLine();
+                    names = name ?? string.Empty;
+                }
 
-            // number
-            Write("Phone Number: 06-");
-            string? number = ReadLine();
+                // email
+                Write("email: ");
+                string? email = ReadLine();
+                string pattern = @"\A(?:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?)\Z";
+                string emails = email ?? string.Empty;
+                while (!Regex.IsMatch(emails, pattern) || email == string.Empty)
+                {
+                    if (email == string.Empty) WriteLine("\nDon't leave blank!");
+                    else WriteLine($"\n{email} is not a valid email!");
+                    Thread.Sleep(1000);
+                    Clear();
+                    WriteLine(Prompt);
+                    WriteLine($"Full name: {name}");
+                    Write("Email: ");
+                    email = ReadLine();
+                    emails = email ?? string.Empty;
+                }
 
-            while (number.Length != 8 || number == string.Empty)
-            {
-                if (number == string.Empty) WriteLine("\nDon't leave blank!");
-                else WriteLine($"\n{number} is not a valid number!");
-                Thread.Sleep(1000);
-                Clear();
-                WriteLine(Prompt);
-                WriteLine($"Full name: {name}");
-                WriteLine($"Email: {email}");
-                Write("Nummer: 06-");
-                number = ReadLine();
-            }
+                // number
+                Write("Phone Number: 06-");
+                string? number = ReadLine();
+                string numbers = number ?? string.Empty;
+                while (numbers.Length != 8 || number == string.Empty || !numbers.All(char.IsNumber))
+                {
+                    if (number == string.Empty) WriteLine("\nDon't leave blank!");
+                    else WriteLine($"\n06-{number} is not a valid number!");
+                    Thread.Sleep(1000);
+                    Clear();
+                    WriteLine(Prompt);
+                    WriteLine($"Full name: {name}");
+                    WriteLine($"Email: {email}");
+                    Write("Nummer: 06-");
+                    number = ReadLine();
+                    numbers = number ?? string.Empty;
+                }
 
-            // age
-            Write("Leeftijd: ");
-            string? age = ReadLine();
-            while (age == string.Empty || age.All(char.IsDigit))
-            {
-                int ages = Convert.ToInt32(age);
-                if (ages < 18) WriteLine("You are too young!");
-                else if (age == string.Empty) WriteLine("\nDon't leave blank!");
-
-                Thread.Sleep(1000);
-                Clear();
-                WriteLine(Prompt);
-                WriteLine($"Full name: {name}");
-                WriteLine($"Email: {email}");
-                WriteLine($"Number: 06-{number}");
+                // age
                 Write("Leeftijd: ");
-                age = ReadLine();
+                string? age = ReadLine();
+                string agess = age ?? string.Empty;
+                int ages = 0;
+                if (agess.All(char.IsNumber) && age != string.Empty) ages = Convert.ToInt32(age);
+
+                while (age == string.Empty || ages < AgeList || !agess.All(char.IsNumber))
+                {
+                    if (ages > 0 && ages < AgeList) WriteLine("\nYou are too young!");
+                    else if (age == string.Empty) WriteLine("\nDon't leave blank!");
+                    else WriteLine($"\n{age} is not a valid age!");
+                    Thread.Sleep(1000);
+                    Clear();
+                    WriteLine(Prompt);
+                    WriteLine($"Full name: {name}");
+                    WriteLine($"Email: {email}");
+                    WriteLine($"Number: 06-{number}");
+                    Write("Leeftijd: ");
+                    age = ReadLine();
+                    agess = age ?? string.Empty;
+                    if (agess.All(char.IsNumber) && age != string.Empty) ages = Convert.ToInt32(age);
+                }
+                WriteLine();
+
+                Check = false;
+                Name = name ?? string.Empty;
+                Email = email ?? string.Empty;
+                Number = number ?? string.Empty;
+                Age = age ?? string.Empty;
             }
-            WriteLine("\n");
         }
 
         private void Display()
@@ -137,7 +172,7 @@ namespace Cinema
             ResetColor();
         }
 
-        public int Run()
+        public (int, string, string, string, string) Run()
         {
             ConsoleKey keyPressed;
             do
@@ -169,7 +204,7 @@ namespace Cinema
             }
             while (keyPressed != ConsoleKey.Enter);
 
-            return SelectedIndex;
+            return (SelectedIndex, Name, Email, Number, Age);
         }
     }
 }

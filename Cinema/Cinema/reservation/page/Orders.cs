@@ -10,7 +10,7 @@ namespace Cinema.page
 {
     class Orders
     {
-        public static void OrdersPage(string movieName, List<List<int>> room, List<string> seatsList, decimal totalPriceRoom)
+        public static void OrdersPage(string movieName, int ageList, List<List<int>> room, List<string> seatsList, decimal totalPriceRoom)
         {
             List<string> orderList = Product.Products();
             orderList.Add("Back");
@@ -22,12 +22,12 @@ namespace Cinema.page
 
             if (selectedIndex == options.Length - 1)
             {
-                Seats.SeatPage(movieName);
+                Seats.SeatPage(movieName, ageList);
             }
 
             else
             {
-                Registration.RegistrationPage(movieName, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder);
+                Registration.RegistrationPage(movieName, ageList, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder);
             }
         }
     }

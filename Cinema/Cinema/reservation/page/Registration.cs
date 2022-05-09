@@ -9,20 +9,20 @@ namespace Cinema.page
 {
     class Registration
     {
-        public static void RegistrationPage(string movieName, List<List<int>> room, List<string> seatsList, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder)
+        public static void RegistrationPage(string movieName, int ageList, List<List<int>> room, List<string> seatsList, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder)
         {
             string title = "Fill in your info.\n";
             string[] options = { "Payment", "Back" };
-            Registrar mainMenu = new(title, options);
-            int selectedIndex = mainMenu.Run();
+            Registrar mainMenu = new(title, options, ageList);
+            (int selectedIndex, string name, string email, string number, string age) = mainMenu.Run();
 
             switch (selectedIndex)
             {
                 case 0:
-                    Pay.PayPage(movieName, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder);
+                    Pay.PayPage(movieName, ageList, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder, name, email, number, age);
                     break;
-                case 3:
-                    Seats.SeatPage(movieName);
+                case 1:
+                    Orders.OrdersPage(movieName, ageList, room, seatsList, totalPriceRoom);
                     break;
             }
         }

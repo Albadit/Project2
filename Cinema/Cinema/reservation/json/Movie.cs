@@ -46,10 +46,23 @@ namespace Cinema
                         genreList += genre + ", ";
                     }
                 }
+
                 movieNames.Add(movie.Name);
                 movieList.Add($"{movie.Name} | Genre: {genreList} | Age: {movie.Age}");
             }
             return (movieList, movieNames);
+        }
+
+        public static List<int> MovieAge()
+        {
+            List<int> ageList = new();
+
+            var movies = ReadAll();
+            foreach (var movie in movies)
+            {
+                ageList.Add(movie.Age);
+            }
+            return ageList;
         }
     }
 }

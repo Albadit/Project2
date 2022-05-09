@@ -96,7 +96,7 @@ namespace Cinema
             Write("\n");
         }
 
-        private void Display(List<List<int>> check, decimal totalPriceRoom, bool trigger)
+        private void Display(List<string> seatsList, decimal totalPriceRoom, bool trigger)
         {
             WriteLine(Prompt);
 
@@ -113,14 +113,7 @@ namespace Cinema
                 }
                 else
                 {
-                    foreach (var item in check)
-                    {
-                        string letter;
-                        if (item[0] == 1) letter = "S";
-                        else if (item[0] == 2) letter = "M";
-                        else letter = "V";
-                        Write($"\n{letter} seat | row: {item[1] + 1} | column: {item[2] + 1}");
-                    }
+                    foreach (var item in seatsList) Write(item);
                 }
             }
             string price = totalPriceRoom.ToString("0.00", CultureInfo.InvariantCulture);
@@ -138,12 +131,13 @@ namespace Cinema
             List<string> seatsList = new();
             decimal totalPriceRoom = 0;
             bool trigger = false;
+            bool enter = false;
 
             ConsoleKey keyPressed;
             do
             {
                 Clear();
-                Display(check, totalPriceRoom, trigger);
+                Display(seatsList, totalPriceRoom, trigger);
 
                 ConsoleKeyInfo keyInfo = ReadKey(true);
                 keyPressed = keyInfo.Key;
@@ -194,7 +188,7 @@ namespace Cinema
                             seatsList.Add($"\n{letter} seat | row: {SelectedIndexVer + 1} | column: {SelectedIndexHor + 1} | Price: {seatPrice[RoomId][Price]}");
                         }
                     }
-                    Display(check, totalPriceRoom, trigger);
+                    Display(seatsList, totalPriceRoom, trigger);
                 }
 
                 else if (keyPressed == ConsoleKey.D)
@@ -220,7 +214,7 @@ namespace Cinema
                             }
                         }
                     }
-                    Display(check, totalPriceRoom, trigger);
+                    Display(seatsList, totalPriceRoom, trigger);
                 }
 
                 else if(keyPressed == ConsoleKey.DownArrow)
@@ -261,8 +255,14 @@ namespace Cinema
                         SelectedIndexHor = Options[0].Count - 1;
                     }
                 }
+
+                else if (keyPressed == ConsoleKey.Enter)
+                {
+                    if (check.Count != 0) enter = true;
+                    else enter = false;
+                }
             }
-            while (keyPressed != ConsoleKey.Enter);
+            while (!enter);
 
             return (Options, seatsList, totalPriceRoom);
         }
