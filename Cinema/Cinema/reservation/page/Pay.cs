@@ -10,21 +10,23 @@ namespace Cinema.page
     {
         public static void PayPage(string movieName, int ageList, List<List<int>> room, List<string> seatsList, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string name, string email, string number, string age)
         {
+            decimal totalPrice = totalPriceRoom + totalPriceOrder;
+
             string title = "Choose a payment method:\n";
             string[] options = { "Paypal", "Ideal", "CreditcardW", "Back" };
-            Menu mainMenu = new(title, options);
+            Pays mainMenu = new(title, options, totalPrice);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex)
             {
                 case 0:
-                    //Pay.PayPage(movieName, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder, Name, Email, Number, Age);
+                    BankLogin.BankLoginPage(movieName, ageList, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder, name, email, number, age);
                     break;
                 case 1:
-                    //Pay.PayPage(movieName, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder, Name, Email, Number, Age);
+                    Ideal.IdealPage(movieName, ageList, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder, name, email, number, age);
                     break;
                 case 2:
-                    //Pay.PayPage(movieName, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder, Name, Email, Number, Age);
+                    BankLogin.BankLoginPage(movieName, ageList, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder, name, email, number, age);
                     break;
                 case 3:
                     Registration.RegistrationPage(movieName, ageList, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder);

@@ -117,7 +117,7 @@ namespace Cinema
                 }
             }
             string price = totalPriceRoom.ToString("0.00", CultureInfo.InvariantCulture);
-            WriteLine($"\n\nTotal: {price}");
+            WriteLine($"\n\nTotal price: {price}");
 
 
             WriteLine("\n\nPress Backspace to go back");
