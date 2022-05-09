@@ -42,8 +42,6 @@ namespace Cinema
                 WriteLine($"Email: {Email}");
                 WriteLine($"Number: 06-{Number}");
                 WriteLine($"Leeftijd: {Age}\n");
-
-
             }
 
             if (Check)

@@ -13,7 +13,7 @@ namespace Cinema.page
             decimal totalPrice = totalPriceRoom + totalPriceOrder;
 
             string title = "Choose a payment method:\n";
-            string[] options = { "Paypal", "Ideal", "CreditcardW", "Back" };
+            string[] options = { "Paypal", "Ideal", "Creditcard", "Back" };
             Pays mainMenu = new(title, options, totalPrice);
             int selectedIndex = mainMenu.Run();
 
