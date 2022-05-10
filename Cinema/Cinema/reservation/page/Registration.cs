@@ -13,7 +13,7 @@ namespace Cinema.page
         {
             string title = "Fill in your info.\n";
             string[] options = { "Payment", "Back" };
-            Registrar mainMenu = new(title, options, ageList);
+            Registrat mainMenu = new(title, options, ageList);
             (int selectedIndex, string name, string email, string number, string age) = mainMenu.Run();
 
             switch (selectedIndex)
