@@ -8,15 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="login\TextTemplate1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TextTemplate1.txt</LastGenOutput>
-    </None>
-    <None Update="login\TextTemplate1.txt">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>TextTemplate1.tt</DependentUpon>
-    </None>
     <None Update="reservation\data\accounts.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
