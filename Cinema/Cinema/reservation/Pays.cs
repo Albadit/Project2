@@ -1,6 +1,7 @@
 ﻿using Cinema.page;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,36 +9,24 @@ using static System.Console;
 
 namespace Cinema
 {
-    class res
+    class Pays
     {
         private int SelectedIndex;
-        private string[] Options;
-        private string Prompt;
+        private readonly string[] Options;
+        private readonly string Prompt;
+        private readonly decimal TotalPrice;
 
-        public res(string title, string[] options)
+        public Pays(string title, string[] options, decimal totalPrice)
         {
             Prompt = title;
             Options = options;
             SelectedIndex = 0;
+            TotalPrice = totalPrice;
         }
 
         private void Display()
         {
             WriteLine(Prompt);
-
-            Write("Enter the reservation code: ");
-            var reservatioCode = ReadLine();
-
-            if (reservatioCode == "123")
-            {
-                chooseScreen.chooseScreenPage();
-            }
-            else
-            {
-                Console.WriteLine("Reservation ID is not know.");
-            }
-            
-
             for (int i = 0; i < Options.Length; i++)
             {
                 string currentOptions = Options[i];
@@ -68,6 +57,9 @@ namespace Cinema
                 
             }
             ResetColor();
+
+            string price = TotalPrice.ToString("0.00", CultureInfo.InvariantCulture);
+            WriteLine($"\n\nTotal price: {price}");
         }
 
         public int Run()

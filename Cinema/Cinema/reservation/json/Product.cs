@@ -16,7 +16,7 @@ namespace Cinema
         public string Category { get; set; } = string.Empty;
         public decimal Price { get; set; } = 0;
 
-        public static string JsonFileName() => Path.Combine("data", "products.json");
+        public static string JsonFileName() => Path.Combine("reservation/data", "products.json");
 
         public static List<Product> ReadAll()
         {
