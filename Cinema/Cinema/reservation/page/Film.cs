@@ -12,8 +12,8 @@ namespace Cinema.page
     {
         public static void FilmPage()
         {
-            List<string> movieList = Movie.Movies();
-            List<string> movieNames = Movie.movieNames;
+            (List<string> movieList, List<string> movieNames) = Movie.Movies();
+            List<int> ageLists = Movie.MovieAge();
             movieList.Add("Back");
 
             string title = "Choice your film\n";
@@ -29,7 +29,8 @@ namespace Cinema.page
             else
             {
                 string movieName = movieNames[selectedIndex];
-                Seats.SeatPage(movieName);
+                int ageList = ageLists[selectedIndex];
+                Seats.SeatPage(movieName, ageList);
             }
         }
     }

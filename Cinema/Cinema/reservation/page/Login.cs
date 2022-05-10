@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,26 +6,23 @@ using System.Threading.Tasks;
 
 namespace Cinema.page
 {
-    class RegistrationPage
+    class Login
     {
-        public static void RegistrationPagePage(string filmName)
+        public static void LoginPage()
         {
-            string title = "Fill in your info.\n";
-            string[] options = { "Payment", "Back" };
-            Registration mainMenu = new(title, options);
+            string prompt = "Select you login screen\n";
+            string[] options = { "Admin", "Reservation", "Back" };
+            Menu mainMenu = new Menu(prompt, options);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex)
             {
                 case 0:
-                    Pay.PayPage(filmName);
                     break;
                 case 1:
                     break;
                 case 2:
-                    break;
-                case 3:
-                    Seats.SeatPage(filmName);
+                    Home.HomePage();
                     break;
             }
         }

@@ -1,6 +1,7 @@
 ﻿using Cinema.page;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,17 +14,21 @@ namespace Cinema
         private int SelectedIndexHor;
         private int SelectedIndexVer;
         private readonly List<List<int>> Options;
+        private readonly List<List<decimal>> SeatPrice;
+        private readonly int RoomId;
         private readonly string Prompt;
 
-        public Seat(string prompt, List<List<int>> options)
+        public Seat(string prompt, List<List<int>> options, List<List<decimal>> seatPrice, int roomId)
         {
             Prompt = prompt;
             Options = options;
+            SeatPrice = seatPrice;
+            RoomId = roomId;
             SelectedIndexHor = 0;
             SelectedIndexVer = 0;
         }
 
-        public void RoomDraw(List<List<int>> check)
+        public void RoomDraw()
         {
             int rows = Options.Count;
             int columns = Options[0].Count;
@@ -61,13 +66,6 @@ namespace Cinema
                     else if (Options[row - 1][column] == 3) { Write("  V"); }
                     if (Options[row - 1][column] == 4 && SelectedIndexHor == column && SelectedIndexVer == row - 1) { ForegroundColor = ConsoleColor.Red; Write("  X"); }
                     else if (Options[row - 1][column] == 4) { ForegroundColor = ConsoleColor.DarkYellow; Write("  X"); }
-                    /*if (check.Count > row)
-                    {
-                        if (check[SelectedIndexVer][SelectedIndexHor] == Options[row - 1][column])
-                        {
-                            ForegroundColor = ConsoleColor.Yellow; Write("  X");
-                        }
-                    }*/
                     
                 }
                 ResetColor();
@@ -98,11 +96,11 @@ namespace Cinema
             Write("\n");
         }
 
-        private void Display(List<List<int>> check, bool trigger)
+        private void Display(List<string> seatsList, decimal totalPriceRoom, bool trigger)
         {
             WriteLine(Prompt);
 
-            RoomDraw(check);
+            RoomDraw();
 
             if (trigger) { 
                 if (Options[SelectedIndexVer][SelectedIndexHor] == 4)
@@ -115,28 +113,31 @@ namespace Cinema
                 }
                 else
                 {
-                    foreach (var item in check)
-                    {
-                        Write($"\nYour {item[0]} selected row {item[1] + 1} on column {item[2] + 1}");
-                    }
+                    foreach (var item in seatsList) Write(item);
                 }
             }
+            string price = totalPriceRoom.ToString("0.00", CultureInfo.InvariantCulture);
+            WriteLine($"\n\nTotal price: {price}");
+
 
             WriteLine("\n\nPress Backspace to go back");
             ResetColor();
         }
 
-        public (int, int) Run()
+        public (List<List<int>>, List<string>, decimal) Run()
         {
+            (List<List<List<int>>> seatList, List<List<decimal>> seatPrice) = Room.Rooms();
             List<List<int>> check = new();
-            int count = 0;
+            List<string> seatsList = new();
+            decimal totalPriceRoom = 0;
             bool trigger = false;
+            bool enter = false;
 
             ConsoleKey keyPressed;
             do
             {
                 Clear();
-                Display(check, trigger);
+                Display(seatsList, totalPriceRoom, trigger);
 
                 ConsoleKeyInfo keyInfo = ReadKey(true);
                 keyPressed = keyInfo.Key;
@@ -144,11 +145,6 @@ namespace Cinema
                 if (keyPressed == ConsoleKey.Backspace)
                 {
                     Film.FilmPage();
-                }
-
-                else if (keyPressed == ConsoleKey.Spacebar)
-                {
-                    /*Orders.OrdersPage(movieName);*/
                 }
 
                 else if (keyPressed == ConsoleKey.A)
@@ -171,12 +167,54 @@ namespace Cinema
                         
                         if (aprove)
                         {
-                            count++;
-                            check.Add(new() { count, SelectedIndexVer, SelectedIndexHor });
+                            int Price = 0;
+                            for (int i = 0; i < seatPrice[RoomId].Count; i++)
+                            {
+                                if (i == Options[SelectedIndexVer][SelectedIndexHor])
+                                {
+                                    totalPriceRoom += SeatPrice[RoomId][i];
+                                    Price = i;
+                                    break;
+                                }
+                            }
+                            int value = Options[SelectedIndexVer][SelectedIndexHor];
+                            Options[SelectedIndexVer][SelectedIndexHor] = 4;
+                            check.Add(new() { value, SelectedIndexVer, SelectedIndexHor });
+
+                            string letter;
+                            if (value == 1) letter = "S";
+                            else if (value == 2) letter = "M";
+                            else letter = "V";
+                            seatsList.Add($"\n{letter} seat | row: {SelectedIndexVer + 1} | column: {SelectedIndexHor + 1} | Price: {seatPrice[RoomId][Price]}");
                         }
-                        
                     }
-                    Display(check, trigger);
+                    Display(seatsList, totalPriceRoom, trigger);
+                }
+
+                else if (keyPressed == ConsoleKey.D)
+                {
+                    if (Options[SelectedIndexVer][SelectedIndexHor] == 4)
+                    {
+                        for (int i = 0; i < check.Count; i++)
+                        {
+                            if (SelectedIndexVer == check[i][1] && SelectedIndexHor == check[i][2])
+                            {
+                                check.Remove(check[i]);
+                                seatsList.Remove(seatsList[i]);
+                                Options[SelectedIndexVer][SelectedIndexHor] = seatList[RoomId][SelectedIndexVer][SelectedIndexHor];
+                                for (int j = 0; j < seatPrice[RoomId].Count; j++)
+                                {
+                                    if (j == Options[SelectedIndexVer][SelectedIndexHor])
+                                    {
+                                        totalPriceRoom -= SeatPrice[RoomId][j];
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    Display(seatsList, totalPriceRoom, trigger);
                 }
 
                 else if(keyPressed == ConsoleKey.DownArrow)
@@ -217,10 +255,16 @@ namespace Cinema
                         SelectedIndexHor = Options[0].Count - 1;
                     }
                 }
-            }
-            while (keyPressed != ConsoleKey.Enter);
 
-            return (SelectedIndexHor, SelectedIndexVer);
+                else if (keyPressed == ConsoleKey.Enter)
+                {
+                    if (check.Count != 0) enter = true;
+                    else enter = false;
+                }
+            }
+            while (!enter);
+
+            return (Options, seatsList, totalPriceRoom);
         }
     }
 }

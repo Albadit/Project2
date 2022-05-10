@@ -15,7 +15,7 @@ namespace Cinema
         public string Password { get; set; } = string.Empty;
         public string CreditcardNumber { get; set; } = string.Empty;
 
-        public static string JsonFileName() => Path.Combine("data", "accounts.json");
+        public static string JsonFileName() => Path.Combine("reservation/data", "accounts.json");
 
         public static List<Example> ReadAll()
         {
@@ -28,6 +28,7 @@ namespace Cinema
             string json = JsonSerializer.Serialize(accounts);
             File.WriteAllText(JsonFileName(), json);
         }
+
         public void Accounts()
         {
             var accounts = ReadAll();

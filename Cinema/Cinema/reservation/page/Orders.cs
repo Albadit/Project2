@@ -10,7 +10,7 @@ namespace Cinema.page
 {
     class Orders
     {
-        public static void OrdersPage(string movieName)
+        public static void OrdersPage(string movieName, int ageList, List<List<int>> room, List<string> seatsList, decimal totalPriceRoom)
         {
             List<string> orderList = Product.Products();
             orderList.Add("Back");
@@ -18,14 +18,16 @@ namespace Cinema.page
             string title = "Choice your drinks and food\n";
             string[] options = orderList.ToArray();
             Order mainMenu = new(title, options);
-            int selectedIndex = mainMenu.Run();
+            (int selectedIndex, List<string> ordersList, decimal totalPriceOrder) = mainMenu.Run();
 
             if (selectedIndex == options.Length - 1)
             {
-                Seats.SeatPage(movieName);
-            } else
+                Seats.SeatPage(movieName, ageList);
+            }
+
+            else
             {
-                RegistrationPage.RegistrationPagePage(movieName);
+                Registration.RegistrationPage(movieName, ageList, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder);
             }
         }
     }
