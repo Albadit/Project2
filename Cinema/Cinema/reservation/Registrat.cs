@@ -9,7 +9,7 @@ using static System.Console;
 
 namespace Cinema
 {
-    class Registrar
+    class Registrat
     {
         private int SelectedIndex;
         private readonly string[] Options;
@@ -21,7 +21,7 @@ namespace Cinema
         private string Age;
         private bool Check;
 
-        public Registrar(string title, string[] options, int ageList)
+        public Registrat(string title, string[] options, int ageList)
         {
             Prompt = title;
             Options = options;
