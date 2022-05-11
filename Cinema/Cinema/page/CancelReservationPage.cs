@@ -13,7 +13,7 @@ namespace Cinema.page
             List<string> ReservationList = ReservationCheck.ReservationList;
             string title = "Please put in your reservation code you would like to cancel.\n";
             string[] options = ReservationList.ToArray();
-            CancelReservation mainMenu = new(title, options);
+            Menu mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();
 
             if (selectedIndex == options.Length - 1)
@@ -24,3 +24,5 @@ namespace Cinema.page
         }
     }
 }
+    
+
