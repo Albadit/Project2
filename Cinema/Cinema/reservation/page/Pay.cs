@@ -8,7 +8,7 @@ namespace Cinema.page
 {
     class Pay
     {
-        public static void PayPage(int movieId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] information)
+        public static void PayPage(int movieId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
         {
             decimal totalPrice = totalPriceRoom + totalPriceOrder;
 
@@ -20,13 +20,13 @@ namespace Cinema.page
             switch (selectedIndex)
             {
                 case 0:
-                    BankLogin.BankLoginPage(movieId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, information);
+                    BankLogin.BankLoginPage(movieId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, personalInfo);
                     break;
                 case 1:
-                    Ideal.IdealPage(movieId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, information);
+                    Ideal.IdealPage(movieId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, personalInfo);
                     break;
                 case 2:
-                    BankLogin.BankLoginPage(movieId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, information);
+                    BankLogin.BankLoginPage(movieId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, personalInfo);
                     break;
                 case 3:
                     Registration.RegistrationPage(movieId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder);
