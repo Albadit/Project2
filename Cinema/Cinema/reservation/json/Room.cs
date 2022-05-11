@@ -45,7 +45,6 @@ namespace Cinema
             {
                 roomId.AddRange(new List<Room> { new Room(room.Id, room.Price, room.Seats) });
             }
-            WriteAll(roomId);
             return roomId;
         }
     }

@@ -25,7 +25,10 @@
     <None Update="reservation\data\reservation.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="reservation\data\Room.json">
+    <None Update="reservation\data\time.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="reservation\data\room.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
