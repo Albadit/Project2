@@ -10,9 +10,9 @@ namespace Cinema
 {
     class Reservation
     {
-        public Reservation(int reservationId, int reservationCode, int movieId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
+        public Reservation(int id, int reservationCode, int movieId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
         {
-            Id = reservationId;
+            Id = id;
             ReservationCode = reservationCode;
             MovieId = movieId;
             MovieId = movieId;
