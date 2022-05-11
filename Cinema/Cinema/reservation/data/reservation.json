@@ -1,28 +1,46 @@
 [
   {
-    "ReservationId": 0,
-    "ReservationCode": 490908,
+    "Id": 0,
+    "ReservationCode": 907419,
     "MovieId": 0,
     "YourSeats": [
       [
         1,
         4,
         1
-      ],
+      ]
+    ],
+    "TotalPriceRoom": 12.5,
+    "OrdersList": [
+    ],
+    "TotalPriceOrder": 0,
+    "PersonalInfo": [
+      "asdfasd dsf ",
+      "sdf@dfsdf.sdf",
+      "12345678",
+      "21"
+    ]
+  },
+  {
+    "Id": 1,
+    "ReservationCode": 839388,
+    "MovieId": 0,
+    "YourSeats": [
       [
         1,
         4,
-        2
+        1
       ]
     ],
-    "TotalPriceRoom": 25.0,
+    "TotalPriceRoom": 12.5,
     "OrdersList": [
+      "1x Koffie | Price: 2.60"
     ],
-    "TotalPriceOrder": 0.00,
+    "TotalPriceOrder": 2.60,
     "PersonalInfo": [
-      "asd asd",
-      "asdas@asd.asd",
-      "12345567",
+      "asd sdsad",
+      "asd@sd.sd",
+      "12345678",
       "21"
     ]
   }
