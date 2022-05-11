@@ -1,0 +1,29 @@
+[
+  {
+    "ReservationId": 0,
+    "ReservationCode": 490908,
+    "MovieId": 0,
+    "YourSeats": [
+      [
+        1,
+        4,
+        1
+      ],
+      [
+        1,
+        4,
+        2
+      ]
+    ],
+    "TotalPriceRoom": 25.0,
+    "OrdersList": [
+    ],
+    "TotalPriceOrder": 0.00,
+    "PersonalInfo": [
+      "asd asd",
+      "asdas@asd.asd",
+      "12345567",
+      "21"
+    ]
+  }
+]
