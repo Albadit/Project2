@@ -8,25 +8,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="reservation\data\movies.json" />
+    <None Remove="reservation\data\products.json" />
     <None Remove="reservation\data\reservation.json" />
+    <None Remove="reservation\data\room.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="reservation\data\movies.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="reservation\data\products.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="reservation\data\reservation.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="reservation\data\movies.json">
+    <Content Include="reservation\data\room.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="reservation\data\products.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="reservation\data\room.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
