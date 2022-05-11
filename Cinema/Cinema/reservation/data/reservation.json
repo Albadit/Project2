@@ -1,0 +1,18 @@
+[
+  {
+    "Id": 0,
+    "ReservationCode": 123456,
+    "MovieId": 3,
+    "YourSeats": [
+      [ 3, 5, 5 ],
+      [ 3, 6, 5 ]
+    ],
+    "TotalPriceRoom": 12.5,
+    "OrdersList": [
+      "2x Coca Cola | Price: 3.10",
+      "1x Redbull | Price: 3.50"
+    ],
+    "TotalPriceOrder": 6.6,
+    "Information": [ "Ardit Fazliji", "ardit-nl@gmail.com", "06-12345678", "21" ]
+  }
+]

@@ -8,25 +8,33 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <None Remove="reservation\data\movies.json" />
+    <None Remove="reservation\data\products.json" />
+    <None Remove="reservation\data\reservation.json" />
+    <None Remove="reservation\data\room.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="data\accounts.json">
+    <Content Include="reservation\data\movies.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\movies.json">
+    </Content>
+    <Content Include="reservation\data\products.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\products.json">
+    </Content>
+    <Content Include="reservation\data\reservation.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\reservation.json">
+    </Content>
+    <Content Include="reservation\data\room.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="data\room.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoFixture" Version="4.17.0" />
   </ItemGroup>
 
 </Project>

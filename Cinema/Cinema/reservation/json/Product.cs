@@ -11,12 +11,20 @@ namespace Cinema
 {
     class Product
     {
+        public Product(int id, string name, string category, decimal price)
+        {
+            Id = id;
+            Name = name;
+            Category = category;
+            Price = price;
+        }
+
         public int Id { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
         public string Category { get; set; } = string.Empty;
         public decimal Price { get; set; } = 0;
 
-        public static string JsonFileName() => Path.Combine("data", "products.json");
+        public static string JsonFileName() => Path.Combine("reservation/data", "products.json");
 
         public static List<Product> ReadAll()
         {
@@ -24,29 +32,23 @@ namespace Cinema
             return JsonSerializer.Deserialize<List<Product>>(json) ?? new List<Product>();
         }
 
-        public static List<string> Products()
+        public static void WriteAll(List<Product> orders)
         {
-            List<string> orderList = new();
-
-            var orders = ReadAll();
-            foreach (var order in orders)
-            {
-                string price = order.Price.ToString("0.00", CultureInfo.InvariantCulture);
-                orderList.Add($"{order.Name} | Price: {price}");
-            }
-            return orderList;
+            string json = JsonSerializer.Serialize(orders);
+            File.WriteAllText(JsonFileName(), json);
         }
 
-        public static List<decimal> OrderPrice()
+        public static List<Product> Products()
         {
-            List<decimal> orderPriceList = new();
+            List<Product> productId = new();
 
             var orders = ReadAll();
             foreach (var order in orders)
             {
-                orderPriceList.Add(order.Price);
+                productId.AddRange(new List<Product> { new Product(order.Id, order.Name, order.Category, order.Price) });
             }
-            return orderPriceList;
+            WriteAll(productId);
+            return productId;
         }
     }
 }

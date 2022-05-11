@@ -3,38 +3,47 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using static System.Console;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
 using System.IO;
 
 namespace Cinema
 {
-    class paymentlogin
+    class Payment
     {
         private int SelectedIndex;
-        private string[] Options;
-        private string Prompt;
-        public static int reservationCode = 0;
-
-        public paymentlogin(string title, string[] options)
+        private int ReservationCode;
+        private readonly string[] Options;
+        private readonly string Prompt;
+        private readonly int MovieId;
+        private readonly int[][] YourSeats;
+        private readonly decimal TotalPriceRoom;
+        private readonly List<string> OrdersList;
+        private readonly decimal TotalPriceOrder;
+        private readonly string[] Information;
+        
+        public Payment(string title, string[] options, int movieId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] information)
         {
             Prompt = title;
             Options = options;
             SelectedIndex = 0;
+            ReservationCode = 0;
+            MovieId = movieId;
+            YourSeats = yourSeats;
+            TotalPriceRoom = totalPriceRoom;
+            OrdersList = ordersList;
+            TotalPriceOrder = totalPriceOrder;
+            Information = information;
         }
-
-        private void Display()
+        
+        public void Login()
         {
-            WriteLine(Prompt);
-
             Write("Gebruikersnaam: ");
-            var username = ReadLine();
+            string? username = ReadLine();
             Write("Wachtwoord: ");
             var password = string.Empty;
+
             ConsoleKey key;
             do
             {
@@ -57,22 +66,23 @@ namespace Cinema
                 }
             } while (key != ConsoleKey.Enter);
 
-            WriteLine("\n");
-            WriteLine("Thank you for your reservation. Your reservation had been succesfully received.\n" +
-            "You will receive a confirmation e-mail within 10 minutes.\n");
+            Clear();
+            WriteLine(Prompt);
+            WriteLine($"Thank you for your reservation {username}. Your reservation had been succesfully received.\nYou will receive a confirmation e-mail within 10 minutes.\n");
 
             Random generator = new();
-            reservationCode = generator.Next(100000, 1000000);
-            //random = reservationCode.ToString("000000");
+            ReservationCode = generator.Next(100000, 999999);
 
-            WriteLine("Your reservationcode is: " + reservationCode);
+            (List<Reservation> reservationId, int reservationCode) = Reservation.Reservations(ReservationCode, MovieId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, Information);
 
-            WriteLine("Name: " + Registration.Name);
-            WriteLine("E-mail: " + Registration.Email);
-            WriteLine("Number: " + Registration.Number);
-            WriteLine("Age: " + Registration.Age);
+            WriteLine($"Your reservationcode is: {reservationCode}\n");
+        }
 
-            convert_cs_to_json();
+        private void Display()
+        {
+            WriteLine(Prompt);
+
+            Login();
 
             for (int i = 0; i < Options.Length; i++)
             {
@@ -104,39 +114,6 @@ namespace Cinema
                 
             }
             ResetColor();
-        }
-
-        static void convert_cs_to_json()
-        {
-            var newreservation = new ReservationFormat();
-            newreservation.ReservationCode = reservationCode;
-            newreservation.Movies = "test";
-            newreservation.Name = Registration.Name;
-            newreservation.Email = Registration.Email;
-            newreservation.Number = Registration.Number;
-            newreservation.Age = Registration.Age;
-
-            var newreservationJson = JsonConvert.SerializeObject(newreservation);
-
-            static string JsonFileName() => Path.Combine("../../../data", "reservation.json");
-
-            if (System.IO.File.Exists(JsonFileName()))
-            {
-                string reservationjsonfile = File.ReadAllText(JsonFileName());
-                var reservationjson = JsonConvert.DeserializeObject(reservationjsonfile);
-                File.Delete(JsonFileName());
-                File.WriteAllText(JsonFileName(), "[" + reservationjsonfile.Substring(1, reservationjsonfile.Length - 2) + "," + newreservationJson + "\n]");
-            }
-        }
-
-        public class ReservationFormat
-        {
-            public int ReservationCode { get; set; } = 0;
-            public string Movies { get; set; } = string.Empty;
-            public string Name { get; set; } = string.Empty;
-            public string Email { get; set; } = string.Empty;
-            public string Number { get; set; } = string.Empty;
-            public int Age { get; set; } = 0;
         }
 
         public int Run()
