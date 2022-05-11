@@ -46,6 +46,7 @@ namespace Cinema
             {
                 movieId.AddRange(new List<Movie> { new Movie(movie.Id, movie.Name, movie.Genre, movie.Age) });
             }
+            WriteAll(movieId);
             return movieId;
         }
     }

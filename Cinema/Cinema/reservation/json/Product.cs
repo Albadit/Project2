@@ -47,6 +47,7 @@ namespace Cinema
             {
                 productId.AddRange(new List<Product> { new Product(order.Id, order.Name, order.Category, order.Price) });
             }
+            WriteAll(productId);
             return productId;
         }
     }
