@@ -10,6 +10,14 @@ namespace Cinema
 {
     class Movie
     {
+        public Movie(int id, string name, string[] genre, int age)
+        {
+            Id = id;
+            Name = name;
+            Genre = genre;
+            Age = age;
+        }
+
         public int Id { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
         public string[] Genre { get; set; } = Array.Empty<string>();
@@ -23,46 +31,23 @@ namespace Cinema
             return JsonSerializer.Deserialize<List<Movie>>(json) ?? new List<Movie>();
         }
 
-        public static (List<string>, List<string>) Movies()
+        public static void WriteAll(List<Movie> movies)
         {
-            List<string> movieNames = new();
-            List<string> movieList = new();
-
-            var movies = ReadAll();
-            foreach (var movie in movies)
-            {
-                string genreList = string.Empty;
-                List<string> genreLists = new();
-                foreach (var genre in movie.Genre)
-                {
-                    if (genreLists.Count == movie.Genre.Length - 1)
-                    {
-                        genreLists.Add(genre);
-                        genreList += genre;
-                    }
-                    else
-                    {
-                        genreLists.Add(genre);
-                        genreList += genre + ", ";
-                    }
-                }
-
-                movieNames.Add(movie.Name);
-                movieList.Add($"{movie.Name} | Genre: {genreList} | Age: {movie.Age}");
-            }
-            return (movieList, movieNames);
+            string json = JsonSerializer.Serialize(movies);
+            File.WriteAllText(JsonFileName(), json);
         }
 
-        public static List<int> MovieAge()
+        public static List<Movie> Movies()
         {
-            List<int> ageList = new();
+            List<Movie> movieId = new();
 
             var movies = ReadAll();
             foreach (var movie in movies)
             {
-                ageList.Add(movie.Age);
+                movieId.AddRange(new List<Movie> { new Movie(movie.Id, movie.Name, movie.Genre, movie.Age) });
             }
-            return ageList;
+            WriteAll(movieId);
+            return movieId;
         }
     }
 }

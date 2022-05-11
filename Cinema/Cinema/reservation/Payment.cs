@@ -10,59 +10,33 @@ using System.IO;
 
 namespace Cinema
 {
-    class Paymentlogin
+    class Payment
     {
         private int SelectedIndex;
+        private int ReservationCode;
         private readonly string[] Options;
         private readonly string Prompt;
-        /*private readonly string Name;
-        private readonly string Email;
-        private readonly string Number;
-        private readonly string Age;*/
-
-        public int ReservationCode { get; set; } = 0;
-        public string MovieName { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        public string Number { get; set; } = string.Empty;
-        public string Age { get; set; } = string.Empty;
-
-        public Paymentlogin(string title, string[] options, string name, string email, string number, string age)
+        private readonly int MovieId;
+        private readonly int[][] YourSeats;
+        private readonly decimal TotalPriceRoom;
+        private readonly List<string> OrdersList;
+        private readonly decimal TotalPriceOrder;
+        private readonly string[] Information;
+        
+        public Payment(string title, string[] options, int movieId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] information)
         {
             Prompt = title;
             Options = options;
             SelectedIndex = 0;
             ReservationCode = 0;
-            Name = name;
-            Email = email;
-            Number = number;
-            Age = age;
+            MovieId = movieId;
+            YourSeats = yourSeats;
+            TotalPriceRoom = totalPriceRoom;
+            OrdersList = ordersList;
+            TotalPriceOrder = totalPriceOrder;
+            Information = information;
         }
-
-        public static string JsonFileName() => Path.Combine("reservation/data", "reservation.json");
-
-        public static List<Example> ReadAll()
-        {
-            string json = File.ReadAllText(JsonFileName());
-            return JsonSerializer.Deserialize<List<Example>>(json) ?? new List<Example>();
-        }
-
-        public static void WriteAll(List<Example> accounts)
-        {
-            string json = JsonSerializer.Serialize(accounts);
-            File.WriteAllText(JsonFileName(), json);
-        }
-
-        public static void Reservation()
-        {
-            var accounts = ReadAll();
-            /*foreach (var account in accounts)
-            {
-                WriteLine($"{account.Id} {account.Email}");
-            }*/
-            WriteAll(accounts);
-        }
-
+        
         public void Login()
         {
             Write("Gebruikersnaam: ");
@@ -97,42 +71,12 @@ namespace Cinema
             WriteLine($"Thank you for your reservation {username}. Your reservation had been succesfully received.\nYou will receive a confirmation e-mail within 10 minutes.\n");
 
             Random generator = new();
-            int reservationCode = generator.Next(100000, 999999);
+            ReservationCode = generator.Next(100000, 999999);
+
+            (List<Reservation> reservationId, int reservationCode) = Reservation.Reservations(ReservationCode, MovieId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, Information);
 
             WriteLine($"Your reservationcode is: {reservationCode}\n");
-
-            /*WriteLine("Name: " + Registration.Name);
-            WriteLine("E-mail: " + Registration.Email);
-            WriteLine("Number: " + Registration.Number);
-            WriteLine("Age: " + Registration.Age);*/
-
-            //convert_cs_to_json();
-            //ReservationFormat.Account();
-            //Reservation(Name, Email, Number, Age, reservationCode);
         }
-
-        /*static void convert_cs_to_json()
-        {
-            var newreservation = new ReservationFormat();
-            newreservation.ReservationCode = reservationCode;
-            newreservation.Movies = "test";
-            newreservation.Name = Registration.Name;
-            newreservation.Email = Registration.Email;
-            newreservation.Number = Registration.Number;
-            newreservation.Age = Registration.Age;
-
-            var newreservationJson = JsonConvert.SerializeObject(newreservation);
-
-            static string JsonFileName() => Path.Combine("../../../data", "reservation.json");
-
-            if (System.IO.File.Exists(JsonFileName()))
-            {
-                string reservationjsonfile = File.ReadAllText(JsonFileName());
-                var reservationjson = JsonConvert.DeserializeObject(reservationjsonfile);
-                File.Delete(JsonFileName());
-                File.WriteAllText(JsonFileName(), "[" + reservationjsonfile.Substring(1, reservationjsonfile.Length - 2) + "," + newreservationJson + "\n]");
-            }
-        }*/
 
         private void Display()
         {

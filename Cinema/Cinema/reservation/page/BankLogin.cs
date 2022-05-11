@@ -9,12 +9,12 @@ namespace Cinema.page
 {
     class BankLogin
     {
-        public static void BankLoginPage(string movieName, int ageList, List<List<int>> room, List<string> seatsList, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string name, string email, string number, string age)
+        public static void BankLoginPage(int movieId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] information)
         {
             string title = "Ideal Login Page\n";
             string[] options = {"Back"};
             
-            Paymentlogin mainMenu = new(title, options, name, email, number, age);
+            Payment mainMenu = new(title, options, movieId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, information);
             int selectedIndex = mainMenu.Run();
 
             if (selectedIndex == 0) Home.HomePage();

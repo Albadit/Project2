@@ -8,25 +8,33 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="reservation\data\accounts.json">
+    <None Remove="reservation\data\reservation.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="reservation\data\reservation.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="reservation\data\movies.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="reservation\data\products.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="reservation\data\reservation.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="reservation\data\Room.json">
+    <None Update="reservation\data\room.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="login\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoFixture" Version="4.17.0" />
   </ItemGroup>
 
 </Project>
