@@ -19,7 +19,7 @@ namespace Cinema
         private string Email;
         private string Number;
         private string Age;
-        private string[] Information;
+        private string[] PersonalInfo;
 
         public Books(string title, string[] options, int ageList)
         {
@@ -31,7 +31,7 @@ namespace Cinema
             Email = string.Empty;
             Number = string.Empty;
             Age = string.Empty;
-            Information = Array.Empty<string>();
+            PersonalInfo = Array.Empty<string>();
         }
 
         public void Info()
@@ -120,7 +120,7 @@ namespace Cinema
             Number = number ?? string.Empty;
             Age = age ?? string.Empty;
 
-            Information = Information.Concat(new string[] { Name, Email, Number, Age }).ToArray();
+            PersonalInfo = PersonalInfo.Concat(new string[] { Name, Email, Number, Age }).ToArray();
         }
 
         private void Display()
@@ -193,7 +193,7 @@ namespace Cinema
             }
             while (keyPressed != ConsoleKey.Enter);
 
-            return (SelectedIndex, Information);
+            return (SelectedIndex, PersonalInfo);
         }
     }
 }

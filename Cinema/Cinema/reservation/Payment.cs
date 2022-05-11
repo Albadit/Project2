@@ -21,9 +21,9 @@ namespace Cinema
         private readonly decimal TotalPriceRoom;
         private readonly List<string> OrdersList;
         private readonly decimal TotalPriceOrder;
-        private readonly string[] Information;
+        private readonly string[] PersonalInfo;
         
-        public Payment(string title, string[] options, int movieId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] information)
+        public Payment(string title, string[] options, int movieId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] Personalinfo)
         {
             Prompt = title;
             Options = options;
@@ -34,7 +34,7 @@ namespace Cinema
             TotalPriceRoom = totalPriceRoom;
             OrdersList = ordersList;
             TotalPriceOrder = totalPriceOrder;
-            Information = information;
+            PersonalInfo = Personalinfo;
         }
         
         public void Login()
@@ -73,7 +73,7 @@ namespace Cinema
             Random generator = new();
             ReservationCode = generator.Next(100000, 999999);
 
-            (List<Reservation> reservationId, int reservationCode) = Reservation.Reservations(ReservationCode, MovieId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, Information);
+            (List<Reservation> reservationId, int reservationCode) = Reservation.Reservations(ReservationCode, MovieId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, PersonalInfo);
 
             WriteLine($"Your reservationcode is: {reservationCode}\n");
         }
