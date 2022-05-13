@@ -13,22 +13,24 @@ namespace Cinema
     {
         private int SelectedIndexHor;
         private int SelectedIndexVer;
-        private List<Room> Rooms;
-        private readonly int RoomId;
+        List<Room> Rooms = Room.Rooms();
+        private int MovieId;
+        private int TimeId;
         private readonly string Prompt;
+        List<Time> TimeList = Time.Times();
 
-        public Seat(string prompt, List<Room> room, int roomId)
+        public Seat(string prompt, int movieId, int timeId)
         {
             Prompt = prompt;
-            Rooms = room;
-            RoomId = roomId;
+            MovieId = movieId;
+            TimeId = timeId;
             SelectedIndexHor = 0;
             SelectedIndexVer = 0;
         }
 
         public void RoomDraw()
         {
-            int[][] seatList = Rooms[RoomId].Seats;
+            int[][] seatList = TimeList[TimeId].Seats;
             int rows = seatList.Length;
             int columns = seatList[0].Length;
             string name = "Screen";
@@ -99,7 +101,7 @@ namespace Cinema
 
             RoomDraw();
 
-            int value = Rooms[RoomId].Seats[SelectedIndexVer][SelectedIndexHor];
+            int value = Rooms[TimeList[TimeId].SeatId].Seats[SelectedIndexVer][SelectedIndexHor];
             if (value == 4) { Write("\nSorry this seat is already taken"); }
             else if (value == 0) { Write("\nSorry you can't select that seat"); }
             else { foreach (var item in seatsList) Write(item); }
@@ -113,7 +115,7 @@ namespace Cinema
 
         public (int[][], decimal) Run()
         {
-            int[][] seatList = Rooms[RoomId].Seats;
+            int[][] seatList = TimeList[TimeId].Seats;
             int[][] yourSeats = Array.Empty<int[]>(); 
             List<int> values = new();
             List<string> seatsList = new();
@@ -132,24 +134,24 @@ namespace Cinema
 
                 if (keyPressed == ConsoleKey.Backspace)
                 {
-                    Movies.FilmPage();
+                    Times.TimesPage(MovieId);
                 }
 
                 else if (keyPressed == ConsoleKey.A)
                 {
                     int[] seatPlace = Array.Empty<int>();
-                    seatPlace = seatPlace.Concat(new int[] { seatList[SelectedIndexVer][SelectedIndexHor], SelectedIndexVer + 1, SelectedIndexHor + 1 }).ToArray();
+                    seatPlace = seatPlace.Concat(new int[] { seatList[SelectedIndexVer][SelectedIndexHor], SelectedIndexVer, SelectedIndexHor }).ToArray();
 
                     if (value != 0 && value != 4)
                     {
                         yourSeats = yourSeats.Concat(new int[][] { seatPlace }).ToArray();
-                        totalPriceRoom += Rooms[RoomId].Price[value];
+                        totalPriceRoom += Rooms[TimeList[TimeId].SeatId].Price[value];
                         values.Add(value);
                         string letter;
                         if (value == 1) letter = "S";
                         else if (value == 2) letter = "M";
                         else letter = "V";
-                        seatsList.Add($"\n{letter} seat | row: {SelectedIndexVer + 1} | column: {SelectedIndexHor + 1} | Price: {Rooms[RoomId].Price[value]}");
+                        seatsList.Add($"\n{letter} seat | row: {SelectedIndexVer + 1} | column: {SelectedIndexHor + 1} | Price: {Rooms[TimeList[TimeId].SeatId].Price[value]}");
                         seatList[SelectedIndexVer][SelectedIndexHor] = 4;
                     }
                     Display(seatsList, totalPriceRoom);
@@ -166,14 +168,14 @@ namespace Cinema
                             if (values[i] == 1) letter = "S";
                             else if (values[i] == 2) letter = "M";
                             else letter = "V";
-                            string seat = $"\n{letter} seat | row: {SelectedIndexVer + 1} | column: {SelectedIndexHor + 1} | Price: {Rooms[RoomId].Price[values[i]]}";
+                            string seat = $"\n{letter} seat | row: {SelectedIndexVer + 1} | column: {SelectedIndexHor + 1} | Price: {Rooms[TimeList[TimeId].SeatId].Price[values[i]]}";
 
                             if (seat == list)
                             {
                                 yourSeats = yourSeats.Except(new int[][] { yourSeats[i] }).ToArray();
                                 seatsList.Remove(seatsList[i]);
-                                totalPriceRoom -= Rooms[RoomId].Price[values[i]];
-                                Rooms[RoomId].Seats[SelectedIndexVer][SelectedIndexHor] = values[i];
+                                totalPriceRoom -= Rooms[TimeList[TimeId].SeatId].Price[values[i]];
+                                Rooms[TimeList[TimeId].SeatId].Seats[SelectedIndexVer][SelectedIndexHor] = values[i];
                                 values.Remove(values[i]);
                                 break;
                             }
@@ -189,14 +191,14 @@ namespace Cinema
 
                     if(SelectedIndexVer < 0)
                     {
-                        SelectedIndexVer = Rooms[RoomId].Seats.Length - 1;
+                        SelectedIndexVer = Rooms[TimeList[TimeId].SeatId].Seats.Length - 1;
                     }
                 }
                 else if (keyPressed == ConsoleKey.UpArrow)
                 {
                     SelectedIndexVer++;
 
-                    if (SelectedIndexVer > Rooms[RoomId].Seats.Length - 1)
+                    if (SelectedIndexVer > Rooms[TimeList[TimeId].SeatId].Seats.Length - 1)
                     {
                         SelectedIndexVer = 0;
                     }
@@ -206,7 +208,7 @@ namespace Cinema
                 {
                     SelectedIndexHor++;
 
-                    if (SelectedIndexHor > Rooms[RoomId].Seats[0].Length - 1)
+                    if (SelectedIndexHor > Rooms[TimeList[TimeId].SeatId].Seats[0].Length - 1)
                     {
                         SelectedIndexHor = 0;
                     }
@@ -218,7 +220,7 @@ namespace Cinema
 
                     if (SelectedIndexHor < 0)
                     {
-                        SelectedIndexHor = Rooms[RoomId].Seats[0].Length - 1;
+                        SelectedIndexHor = Rooms[TimeList[TimeId].SeatId].Seats[0].Length - 1;
                     }
                 }
 

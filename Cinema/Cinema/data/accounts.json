@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 0,
+    "Email": "a@b.c",
+    "Password": "xyz",
+    "CreditcardNumber": "097 878 752 307 53"
+  },
+  {
+    "Id": 1,
+    "Email": "d@e.f",
+    "Password": "jkl",
+    "CreditcardNumber": "092 752 143 307 51"
+  }
+]

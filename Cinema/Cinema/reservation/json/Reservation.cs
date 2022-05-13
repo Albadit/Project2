@@ -10,12 +10,12 @@ namespace Cinema
 {
     class Reservation
     {
-        public Reservation(int id, int reservationCode, int movieId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
+        public Reservation(int id, int reservationCode, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
         {
             Id = id;
             ReservationCode = reservationCode;
             MovieId = movieId;
-            MovieId = movieId;
+            TimeId = timeId;
             YourSeats = yourSeats;
             TotalPriceRoom = totalPriceRoom;
             OrdersList = ordersList;
@@ -26,6 +26,7 @@ namespace Cinema
         public int Id { get; set; } = 0;
         public int ReservationCode { get; set; } = 0;
         public int MovieId { get; set; } = 0;
+        public int TimeId { get; set; } = 0;
         public int[][] YourSeats { get; set; } = Array.Empty<int[]>();
         public decimal TotalPriceRoom { get; set; } = 0;
         public List<string> OrdersList { get; set; } = new();
@@ -46,20 +47,30 @@ namespace Cinema
             File.WriteAllText(JsonFileName(), json);
         }
 
-        public static (List<Reservation>, int reservationCode) Reservations(int reservationCode, int movieId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
+        public static void Reservations()
         {
             List<Reservation> reservationsId = new();
-            int id = 0;
+            var reservation = ReadAll();
+            foreach (var book in reservation)
+            {
+                reservationsId.AddRange(new List<Reservation> { new Reservation(book.Id, book.ReservationCode, book.MovieId, book.TimeId, book.YourSeats, book.TotalPriceRoom, book.OrdersList, book.TotalPriceOrder, book.PersonalInfo) });
+            }
+        }
+
+        public static (List<Reservation>, int reservationCode) ReservationsAdd(int reservationCode, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
+        {
+            List<Reservation> reservationsId = new();
             Random generator = new();
+            int id = 0;
 
             var reservation = ReadAll();
             foreach (var book in reservation)
             {
-                id++;
+                id = book.Id + 1;
                 if (reservationCode == book.ReservationCode) { reservationCode = generator.Next(100000, 999999); }
-                reservationsId.AddRange(new List<Reservation> { new Reservation(book.Id, book.ReservationCode, book.MovieId, book.YourSeats, book.TotalPriceRoom, book.OrdersList, book.TotalPriceOrder, book.PersonalInfo) });
+                reservationsId.AddRange(new List<Reservation> { new Reservation(book.Id, book.ReservationCode, book.MovieId, book.TimeId, book.YourSeats, book.TotalPriceRoom, book.OrdersList, book.TotalPriceOrder, book.PersonalInfo) });
             }
-            reservationsId.AddRange(new List<Reservation> { new Reservation(id, reservationCode, movieId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, personalInfo) });
+            reservationsId.AddRange(new List<Reservation> { new Reservation(id, reservationCode, movieId, timeId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, personalInfo) });
             WriteAll(reservationsId);
 
             string sourceFile = Path.Combine("reservation/data", "reservation.json");
@@ -68,6 +79,6 @@ namespace Cinema
             catch (IOException iox) { WriteLine(iox.Message); }
 
             return (reservationsId, reservationCode);
-            }
+        }
     }
 }

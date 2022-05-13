@@ -24,7 +24,11 @@ namespace Cinema.page
             switch (selectedIndex) 
             { 
                 case 0:
-                    Movies.FilmPage();
+<<<<<<< HEAD:Cinema/Cinema/reservation/page/Home.cs
+                    Movies.MoviesPage();
+=======
+                    Film.FilmPage();
+>>>>>>> parent of 5579f1c (fix all bugs):Cinema/Cinema/page/Home.cs
                     break;
                 case 1:
                     Login.LoginPage();
