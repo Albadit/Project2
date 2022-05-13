@@ -17,19 +17,21 @@ namespace Cinema
         private readonly string[] Options;
         private readonly string Prompt;
         private readonly int MovieId;
+        private readonly int TimeId;
         private readonly int[][] YourSeats;
         private readonly decimal TotalPriceRoom;
         private readonly List<string> OrdersList;
         private readonly decimal TotalPriceOrder;
         private readonly string[] PersonalInfo;
         
-        public Payment(string title, string[] options, int movieId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] Personalinfo)
+        public Payment(string title, string[] options, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] Personalinfo)
         {
             Prompt = title;
             Options = options;
             SelectedIndex = 0;
             ReservationCode = 0;
             MovieId = movieId;
+            TimeId = timeId;
             YourSeats = yourSeats;
             TotalPriceRoom = totalPriceRoom;
             OrdersList = ordersList;
@@ -73,8 +75,8 @@ namespace Cinema
             Random generator = new();
             ReservationCode = generator.Next(100000, 999999);
 
-            (List<Reservation> reservationId, int reservationCode) = Reservation.Reservations(ReservationCode, MovieId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, PersonalInfo);
-
+            (List<Reservation> reservationId, int reservationCode) = Reservation.ReservationsAdd(ReservationCode, MovieId, TimeId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, PersonalInfo);
+            Time.TimesChange(TimeId, YourSeats);
             WriteLine($"Your reservationcode is: {reservationCode}\n");
         }
 
