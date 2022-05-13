@@ -24,7 +24,7 @@ namespace Cinema.page
             switch (selectedIndex) 
             { 
                 case 0:
-                    Movies.FilmPage();
+                    Movies.MoviesPage();
                     break;
                 case 1:
                     Login.LoginPage();

@@ -10,16 +10,18 @@ namespace Cinema
 {
     class Movie
     {
-        public Movie(int id, string name, string[] genre, int age)
+        public Movie(int id, string name, int duration, string[] genre, int age)
         {
             Id = id;
             Name = name;
+            Duration = duration;
             Genre = genre;
             Age = age;
         }
 
         public int Id { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
+        public int Duration { get; set; } = 0;
         public string[] Genre { get; set; } = Array.Empty<string>();
         public int Age { get; set; } = 0;
 
@@ -44,7 +46,7 @@ namespace Cinema
             var movies = ReadAll();
             foreach (var movie in movies)
             {
-                movieId.AddRange(new List<Movie> { new Movie(movie.Id, movie.Name, movie.Genre, movie.Age) });
+                movieId.AddRange(new List<Movie> { new Movie(movie.Id, movie.Name, movie.Duration, movie.Genre, movie.Age) });
             }
             return movieId;
         }
