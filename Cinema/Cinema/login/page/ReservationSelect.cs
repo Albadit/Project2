@@ -10,7 +10,9 @@ namespace Cinema.page
     {
         public static void ReservationSelectPage(int reservationId)
         {
-            string prompt = "Select you reservation options.\n";
+            List<Reservation> Reservations = Reservation.Reservations();
+
+            string prompt = $"Welcome {Reservations[reservationId].PersonalInfo[0]}. Please select you reservation options.\n";
             string[] options = { "Change", "Cancel", "Back" };
             Menu mainMenu = new(prompt, options);
             int selectedIndex = mainMenu.Run();

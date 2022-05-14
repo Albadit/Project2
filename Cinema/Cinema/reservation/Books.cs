@@ -120,7 +120,7 @@ namespace Cinema
             Number = number ?? string.Empty;
             Age = age ?? string.Empty;
 
-            PersonalInfo = PersonalInfo.Concat(new string[] { Name, Email, Number, Age }).ToArray();
+            PersonalInfo = PersonalInfo.Concat(new string[] { Name, Email, "06-" + Number, Age }).ToArray();
         }
 
         private void Display()
