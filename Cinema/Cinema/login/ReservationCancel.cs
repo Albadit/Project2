@@ -25,8 +25,7 @@ namespace Cinema.page
         {
             WriteLine(Prompt);
             Reservation.ReservationsCancel(Reservations, ReservationId);
-            //Thread.Sleep(2000);
-            //Home.HomePage();
+            WriteLine("\nPress enter to go back.");
         }
 
         public int Run()
