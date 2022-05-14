@@ -27,7 +27,7 @@ namespace Cinema
         public int SeatId { get; set; } = 0;
         public int[][] Seats { get; set; } = Array.Empty<int[]>();
 
-        public static string JsonFileName() => Path.Combine("reservation/data", "time.json");
+        public static string JsonFileName() => Path.Combine("data", "time.json");
 
         public static List<Time> ReadAll()
         {
@@ -70,8 +70,8 @@ namespace Cinema
             
             WriteAll(TimeId);
 
-            string sourceFile = Path.Combine("reservation/data", "time.json");
-            string destinationFile = Path.Combine("../../../reservation/data", "time.json");
+            string sourceFile = Path.Combine("data", "time.json");
+            string destinationFile = Path.Combine("../../../data", "time.json");
             try { File.Copy(sourceFile, destinationFile, true); }
             catch (IOException iox) { WriteLine(iox.Message); }
 

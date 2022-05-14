@@ -6,25 +6,27 @@ using System.Threading.Tasks;
 
 namespace Cinema.page
 {
-    class Login
+    class ReservationSelect
     {
-        public static void LoginPage()
+        public static void ReservationSelectPage(int reservationId)
         {
-            string prompt = "Select you login screen.\n";
-            string[] options = { "Admin", "Reservation", "Back" };
+            string prompt = "Select you reservation options.\n";
+            string[] options = { "Change", "Cancel", "Back" };
             Menu mainMenu = new(prompt, options);
             int selectedIndex = mainMenu.Run();
+
             switch (selectedIndex)
             {
                 case 0:
                     break;
                 case 1:
-                    ReservationCode.ReservationCodePage();
+                    ReservationCancel.ReservationCancelPage(reservationId);
                     break;
                 case 2:
-                    Home.HomePage();
+                    Login.LoginPage();
                     break;
             }
+           
         }
     }
 }

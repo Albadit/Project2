@@ -11,7 +11,7 @@ namespace Cinema.page
     {
         public static void BankLoginPage(int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
         {
-            string title = "Ideal Login Page\n";
+            string title = "Ideal Login Page.\n";
             string[] options = {"Back"};
             
             Payment mainMenu = new(title, options, movieId, timeId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, personalInfo);

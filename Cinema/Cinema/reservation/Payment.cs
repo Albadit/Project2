@@ -75,7 +75,7 @@ namespace Cinema
             Random generator = new();
             ReservationCode = generator.Next(100000, 999999);
 
-            (List<Reservation> reservationId, int reservationCode) = Reservation.ReservationsAdd(ReservationCode, MovieId, TimeId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, PersonalInfo);
+            int reservationCode = Reservation.ReservationsAdd(ReservationCode, MovieId, TimeId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, PersonalInfo);
             Time.TimesChange(TimeId, YourSeats);
             WriteLine($"Your reservationcode is: {reservationCode}\n");
         }
