@@ -8,7 +8,7 @@ namespace Cinema.page
 {
     class Pay
     {
-        public static void PayPage(string movieName, int ageList, List<List<int>> room, List<string> seatsList, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string name, string email, string number, string age)
+        public static void PayPage(int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
         {
             decimal totalPrice = totalPriceRoom + totalPriceOrder;
 
@@ -20,16 +20,16 @@ namespace Cinema.page
             switch (selectedIndex)
             {
                 case 0:
-                    BankLogin.BankLoginPage(movieName, ageList, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder, name, email, number, age);
+                    BankLogin.BankLoginPage(movieId, timeId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, personalInfo);
                     break;
                 case 1:
-                    Ideal.IdealPage(movieName, ageList, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder, name, email, number, age);
+                    Ideal.IdealPage(movieId, timeId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, personalInfo);
                     break;
                 case 2:
-                    BankLogin.BankLoginPage(movieName, ageList, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder, name, email, number, age);
+                    BankLogin.BankLoginPage(movieId, timeId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, personalInfo);
                     break;
                 case 3:
-                    Registration.RegistrationPage(movieName, ageList, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder);
+                    Registration.RegistrationPage(movieId, timeId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder);
                     break;
             }
         }

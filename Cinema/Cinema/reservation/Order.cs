@@ -13,12 +13,14 @@ namespace Cinema
         private int SelectedIndex;
         private readonly string[] Options;
         private readonly string Prompt;
+        private List<Product> Orders;
 
-        public Order(string title, string[] options)
+        public Order(string title, string[] options, List<Product> order)
         {
             Prompt = title;
             Options = options;
             SelectedIndex = 0;
+            Orders = order;
         }
 
         private void Display(List<string> ordersList, decimal totalPriceOrder)
@@ -55,10 +57,7 @@ namespace Cinema
             }
             ResetColor();
 
-            foreach (var productsOrder in ordersList)
-            {
-                Write($"\n{productsOrder}");
-            }
+            foreach (var productsOrder in ordersList) Write($"\n{productsOrder}");
 
             string price = totalPriceOrder.ToString("0.00", CultureInfo.InvariantCulture);
             WriteLine($"\n\nTotal: {price}");
@@ -66,7 +65,6 @@ namespace Cinema
 
         public (int, List<string>, decimal) Run()
         {
-            List<decimal> orderPriceList = Product.OrderPrice();
             List<string> ordersList = new();
             decimal totalPriceOrder = 0;
 
@@ -103,7 +101,7 @@ namespace Cinema
                         }
                     }
                     if (total ==  1) ordersList.Add($"{total}x {Options[SelectedIndex]}");
-                    totalPriceOrder += orderPriceList[SelectedIndex];
+                    totalPriceOrder += Orders[SelectedIndex].Price;
                     Display(ordersList, totalPriceOrder);
                 }
 
@@ -128,7 +126,7 @@ namespace Cinema
                             total--;
                             ordersList[i] = $"{total}x {Options[SelectedIndex]}";
                             if (total <= 0) ordersList.Remove(ordersList[i]);
-                            if (totalPriceOrder > 0 && totalPriceOrder - orderPriceList[SelectedIndex] >= 0) totalPriceOrder -= orderPriceList[SelectedIndex];
+                            if (totalPriceOrder > 0 && totalPriceOrder - Orders[SelectedIndex].Price >= 0) totalPriceOrder -= Orders[SelectedIndex].Price;
                         }
                     }
                     Display(ordersList, totalPriceOrder);

@@ -8,7 +8,7 @@ namespace Cinema.page
 {
     class Ideal
     {
-        public static void IdealPage(string movieName, int ageList, List<List<int>> room, List<string> seatsList, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string name, string email, string number, string age)
+        public static void IdealPage(int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
         {
             string title = "Choose your bank:\n";
             string[] options = { "ABN AMRO", "ASN Bank", "bunq", "ING", "Knab", "Rabobank", "RegioBank", "Revolut", "SNS", "Svenska Handelsbanken", "Triodos Bank", "Van Lanschot", "Back"};
@@ -18,10 +18,10 @@ namespace Cinema.page
             switch (selectedIndex)
             {
                 case < 12:
-                    BankLogin.BankLoginPage(movieName, ageList, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder, name, email, number, age);
+                    BankLogin.BankLoginPage(movieId, timeId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, personalInfo);
                     break;
                 case 12:
-                    Pay.PayPage(movieName, ageList, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder, name, email, number, age);
+                    Pay.PayPage(movieId, timeId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, personalInfo);
                     break;
             }
         }

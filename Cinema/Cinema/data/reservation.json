@@ -1,0 +1,122 @@
+[
+  {
+    "Id": 0,
+    "ReservationCode": 999000,
+    "MovieId": 0,
+    "TimeId": 0,
+    "YourSeats": [
+      [
+        1,
+        4,
+        1
+      ]
+    ],
+    "TotalPriceRoom": 12.5,
+    "OrdersList": [
+      "2x Koffie | Price: 2.60",
+      "2x Koffie | Price: 2.60"
+    ],
+    "TotalPriceOrder": 0,
+    "PersonalInfo": [
+      "asdfasd dsf ",
+      "sdf@dfsdf.sdf",
+      "12345678",
+      "21"
+    ]
+  },
+  {
+    "Id": 1,
+    "ReservationCode": 370052,
+    "MovieId": 0,
+    "TimeId": 0,
+    "YourSeats": [
+      [
+        1,
+        3,
+        0
+      ]
+    ],
+    "TotalPriceRoom": 12.5,
+    "OrdersList": [
+      "2x Koffie | Price: 2.60"
+    ],
+    "TotalPriceOrder": 5.20,
+    "PersonalInfo": [
+      "asdf sdas",
+      "sdf@sdf.sdf",
+      "12345656",
+      "21"
+    ]
+  },
+  {
+    "Id": 2,
+    "ReservationCode": 557888,
+    "MovieId": 0,
+    "TimeId": 0,
+    "YourSeats": [
+      [
+        1,
+        3,
+        0
+      ]
+    ],
+    "TotalPriceRoom": 12.5,
+    "OrdersList": [
+    ],
+    "TotalPriceOrder": 0,
+    "PersonalInfo": [
+      "asd sad@asd.asd",
+      "asda@sd.ss",
+      "12345678",
+      "21"
+    ]
+  },
+  {
+    "Id": 3,
+    "ReservationCode": 152682,
+    "MovieId": 0,
+    "TimeId": 0,
+    "YourSeats": [
+      [
+        1,
+        3,
+        0
+      ]
+    ],
+    "TotalPriceRoom": 12.5,
+    "OrdersList": [
+      "2x Koffie | Price: 2.60"
+    ],
+    "TotalPriceOrder": 5.20,
+    "PersonalInfo": [
+      "asdf sdf",
+      "asda@sdf.sdf",
+      "12345678",
+      "21"
+    ]
+  },
+  {
+    "Id": 4,
+    "ReservationCode": 128990,
+    "MovieId": 0,
+    "TimeId": 0,
+    "YourSeats": [
+      [
+        1,
+        3,
+        0
+      ]
+    ],
+    "TotalPriceRoom": 12.5,
+    "OrdersList": [
+      "1x Koffie | Price: 2.60"
+    ],
+    "TotalPriceOrder": 2.60,
+    "PersonalInfo": [
+      "Ardit Fazliji",
+      "Ardit@gmail.com",
+      "12345678",
+      "21"
+    ]
+  }
+]

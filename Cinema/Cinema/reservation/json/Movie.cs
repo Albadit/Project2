@@ -10,12 +10,22 @@ namespace Cinema
 {
     class Movie
     {
+        public Movie(int id, string name, int duration, string[] genre, int age)
+        {
+            Id = id;
+            Name = name;
+            Duration = duration;
+            Genre = genre;
+            Age = age;
+        }
+
         public int Id { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
+        public int Duration { get; set; } = 0;
         public string[] Genre { get; set; } = Array.Empty<string>();
         public int Age { get; set; } = 0;
 
-        public static string JsonFileName() => Path.Combine("reservation/data", "movies.json");
+        public static string JsonFileName() => Path.Combine("data", "movies.json");
 
         public static List<Movie> ReadAll()
         {
@@ -23,46 +33,22 @@ namespace Cinema
             return JsonSerializer.Deserialize<List<Movie>>(json) ?? new List<Movie>();
         }
 
-        public static (List<string>, List<string>) Movies()
+        public static void WriteAll(List<Movie> movies)
         {
-            List<string> movieNames = new();
-            List<string> movieList = new();
-
-            var movies = ReadAll();
-            foreach (var movie in movies)
-            {
-                string genreList = string.Empty;
-                List<string> genreLists = new();
-                foreach (var genre in movie.Genre)
-                {
-                    if (genreLists.Count == movie.Genre.Length - 1)
-                    {
-                        genreLists.Add(genre);
-                        genreList += genre;
-                    }
-                    else
-                    {
-                        genreLists.Add(genre);
-                        genreList += genre + ", ";
-                    }
-                }
-
-                movieNames.Add(movie.Name);
-                movieList.Add($"{movie.Name} | Genre: {genreList} | Age: {movie.Age}");
-            }
-            return (movieList, movieNames);
+            string json = JsonSerializer.Serialize(movies);
+            File.WriteAllText(JsonFileName(), json);
         }
 
-        public static List<int> MovieAge()
+        public static List<Movie> Movies()
         {
-            List<int> ageList = new();
+            List<Movie> movieId = new();
 
             var movies = ReadAll();
             foreach (var movie in movies)
             {
-                ageList.Add(movie.Age);
+                movieId.AddRange(new List<Movie> { new Movie(movie.Id, movie.Name, movie.Duration, movie.Genre, movie.Age) });
             }
-            return ageList;
+            return movieId;
         }
     }
 }
