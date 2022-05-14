@@ -1,7 +1,7 @@
 [
   {
     "Id": 0,
-    "ReservationCode": 907419,
+    "ReservationCode": 999000,
     "MovieId": 0,
     "TimeId": 0,
     "YourSeats": [
@@ -13,6 +13,8 @@
     ],
     "TotalPriceRoom": 12.5,
     "OrdersList": [
+      "2x Koffie | Price: 2.60",
+      "2x Koffie | Price: 2.60"
     ],
     "TotalPriceOrder": 0,
     "PersonalInfo": [
