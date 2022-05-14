@@ -11,11 +11,18 @@ namespace Cinema
 {
     class Room
     {
+        public Room(int id, decimal[] price, int[][] seats)
+        {
+            Id = id;
+            Price = price;
+            Seats = seats;
+        }
+
         public int Id { get; set; } = 0;
         public decimal[] Price { get; set; } = Array.Empty<decimal>();
         public int[][] Seats { get; set; } = Array.Empty<int[]>();
 
-        public static string JsonFileName() => Path.Combine("reservation/data", "room.json");
+        public static string JsonFileName() => Path.Combine("data", "room.json");
 
         public static List<Room> ReadAll()
         {
@@ -23,27 +30,22 @@ namespace Cinema
             return JsonSerializer.Deserialize<List<Room>>(json) ?? new List<Room>();
         }
 
-        public static (List<List<List<int>>>, List<List<decimal>>) Rooms()
+        public static void WriteAll(List<Room> rooms)
         {
-            List<List<decimal>> seatPrice = new();
-            List<List<List<int>>> seatList = new();
+            string json = JsonSerializer.Serialize(rooms);
+            File.WriteAllText(JsonFileName(), json);
+        }
+
+        public static List<Room> Rooms()
+        {
+            List<Room> roomId = new();
 
             var rooms = ReadAll();
-            foreach (var seats in rooms)
+            foreach (var room in rooms)
             {
-
-                List<decimal> seat2 = new(seats.Price);
-                seatPrice.Add(seat2);
-
-                List<List<int>> seatList2 = new();
-                foreach (var seat in seats.Seats)
-                {
-                    List<int> seat1 = new(seat);
-                    seatList2.Add(seat1);
-                }
-                seatList.Add(seatList2);
+                roomId.AddRange(new List<Room> { new Room(room.Id, room.Price, room.Seats) });
             }
-            return (seatList, seatPrice);
+            return roomId;
         }
     }
 }

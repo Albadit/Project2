@@ -10,25 +10,23 @@ namespace Cinema.page
 {
     class Orders
     {
-        public static void OrdersPage(string movieName, int ageList, List<List<int>> room, List<string> seatsList, decimal totalPriceRoom)
+        public static void OrdersPage(int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom)
         {
-            List<string> orderList = Product.Products();
+            List<Product> order = Product.Products();
+            List<string> orderList = new();
+            foreach (Product product in order)
+            {
+                orderList.Add($"{product.Name} | Price: {product.Price}");
+            }
             orderList.Add("Back");
 
-            string title = "Choice your drinks and food\n";
+            string title = "Choice your drinks and food.\n";
             string[] options = orderList.ToArray();
-            Order mainMenu = new(title, options);
+            Order mainMenu = new(title, options, order);
             (int selectedIndex, List<string> ordersList, decimal totalPriceOrder) = mainMenu.Run();
 
-            if (selectedIndex == options.Length - 1)
-            {
-                Seats.SeatPage(movieName, ageList);
-            }
-
-            else
-            {
-                Registration.RegistrationPage(movieName, ageList, room, seatsList, totalPriceRoom, ordersList, totalPriceOrder);
-            }
+            if (selectedIndex == options.Length - 1) Seats.SeatPage(movieId, timeId);
+            else Registration.RegistrationPage(movieId, timeId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder);
         }
     }
 }
