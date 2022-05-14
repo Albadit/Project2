@@ -13,7 +13,7 @@ namespace Cinema.page
         {
             List<Movie> movies = Movie.Movies();
 
-            string prompt = $"Choice your seat for the film: {movies[movieId].Name}\n";
+            string prompt = $"Choice your seat for the film: {movies[movieId].Name}.\n";
             Seat mainMenu = new(prompt, movieId, timeId);
             (int[][] yourSeats, decimal totalPriceRoom) = mainMenu.Run();
 

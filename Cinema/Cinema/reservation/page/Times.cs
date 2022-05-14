@@ -31,8 +31,8 @@ namespace Cinema.page
             timeList.Add("Back");
 
             string title;
-            if (timeList.Count <= 1) title = "There is no movie available at this time\n";
-            else title = "Choice your time\n";
+            if (timeList.Count <= 1) title = "There is no movie available at this time.\n";
+            else title = "Choice your time.\n";
             string[] options = timeList.ToArray();
             Menu mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();

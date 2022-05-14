@@ -33,7 +33,7 @@ namespace Cinema
         public decimal TotalPriceOrder { get; set; } = 0;
         public string[] PersonalInfo { get; set; } = Array.Empty<string>();
 
-        public static string JsonFileName() => Path.Combine("reservation/data", "reservation.json");
+        public static string JsonFileName() => Path.Combine("data", "reservation.json");
 
         public static List<Reservation> ReadAll()
         {
@@ -47,7 +47,7 @@ namespace Cinema
             File.WriteAllText(JsonFileName(), json);
         }
 
-        public static void Reservations()
+        public static List<Reservation> Reservations()
         {
             List<Reservation> reservationsId = new();
             var reservation = ReadAll();
@@ -55,30 +55,63 @@ namespace Cinema
             {
                 reservationsId.AddRange(new List<Reservation> { new Reservation(book.Id, book.ReservationCode, book.MovieId, book.TimeId, book.YourSeats, book.TotalPriceRoom, book.OrdersList, book.TotalPriceOrder, book.PersonalInfo) });
             }
+            return reservationsId;
         }
 
-        public static (List<Reservation>, int reservationCode) ReservationsAdd(int reservationCode, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
+        public static int ReservationsAdd(int reservationCode, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
         {
             List<Reservation> reservationsId = new();
             Random generator = new();
+            bool check = true;
             int id = 0;
 
             var reservation = ReadAll();
             foreach (var book in reservation)
             {
                 id = book.Id + 1;
-                if (reservationCode == book.ReservationCode) { reservationCode = generator.Next(100000, 999999); }
+                if (reservationCode == book.ReservationCode) {  }
                 reservationsId.AddRange(new List<Reservation> { new Reservation(book.Id, book.ReservationCode, book.MovieId, book.TimeId, book.YourSeats, book.TotalPriceRoom, book.OrdersList, book.TotalPriceOrder, book.PersonalInfo) });
             }
+
+            while(check)
+            {
+                for (int i = 0; i < reservationsId.Count; i++)
+                {
+                    if (reservationsId[i].ReservationCode != reservationCode)
+                    {
+                        reservationCode = generator.Next(100000, 999999);
+                        check = false;
+                    }
+                    else check = true;
+                }
+            }
+
             reservationsId.AddRange(new List<Reservation> { new Reservation(id, reservationCode, movieId, timeId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, personalInfo) });
             WriteAll(reservationsId);
 
-            string sourceFile = Path.Combine("reservation/data", "reservation.json");
-            string destinationFile = Path.Combine("../../../reservation/data", "reservation.json");
+            string sourceFile = Path.Combine("data", "reservation.json");
+            string destinationFile = Path.Combine("../../../data", "reservation.json");
             try { File.Copy(sourceFile, destinationFile, true); }
             catch (IOException iox) { WriteLine(iox.Message); }
 
-            return (reservationsId, reservationCode);
+            return reservationCode;
+        }
+
+        public static void ReservationsCancel(List<Reservation> Reservations, int reservationId)
+        {
+            for (int i = 0; i < Reservations.Count; i++)
+            {
+                if (Reservations[i].Id == reservationId)
+                {
+                    Reservations.Remove(Reservations[i]);
+                }
+            }
+            WriteAll(Reservations);
+
+            string sourceFile = Path.Combine("data", "reservation.json");
+            string destinationFile = Path.Combine("../../../data", "reservation.json");
+            try { File.Copy(sourceFile, destinationFile, true); }
+            catch (IOException iox) { WriteLine(iox.Message); }
         }
     }
 }

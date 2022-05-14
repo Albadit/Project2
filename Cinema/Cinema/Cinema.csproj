@@ -12,23 +12,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoFixture" Version="4.17.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="reservation\data\movies.json">
+    <None Update="data\movies.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="reservation\data\products.json">
+    <None Update="data\products.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="reservation\data\reservation.json">
+    <None Update="data\reservation.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="reservation\data\time.json">
+    <None Update="data\time.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="reservation\data\room.json">
+    <None Update="data\room.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

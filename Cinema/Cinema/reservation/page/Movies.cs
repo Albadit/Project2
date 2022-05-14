@@ -27,7 +27,7 @@ namespace Cinema.page
             }
             movieList.Add("Back");
 
-            string title = "Choice your film\n";
+            string title = "Choice your movie.\n";
             string[] options = movieList.ToArray();
             Menu mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();

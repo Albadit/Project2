@@ -25,7 +25,7 @@ namespace Cinema
         public string[] Genre { get; set; } = Array.Empty<string>();
         public int Age { get; set; } = 0;
 
-        public static string JsonFileName() => Path.Combine("reservation/data", "movies.json");
+        public static string JsonFileName() => Path.Combine("data", "movies.json");
 
         public static List<Movie> ReadAll()
         {

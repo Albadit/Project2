@@ -20,7 +20,7 @@ namespace Cinema.page
             }
             orderList.Add("Back");
 
-            string title = "Choice your drinks and food\n";
+            string title = "Choice your drinks and food.\n";
             string[] options = orderList.ToArray();
             Order mainMenu = new(title, options, order);
             (int selectedIndex, List<string> ordersList, decimal totalPriceOrder) = mainMenu.Run();
