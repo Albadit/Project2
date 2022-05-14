@@ -111,38 +111,9 @@
     ],
     "TotalPriceOrder": 2.60,
     "PersonalInfo": [
-      "asdf sad",
-      "Asd@sd.sd",
+      "Ardit Fazliji",
+      "Ardit@gmail.com",
       "12345678",
-      "21"
-    ]
-  },
-  {
-    "Id": 5,
-    "ReservationCode": 966059,
-    "MovieId": 0,
-    "TimeId": 0,
-    "YourSeats": [
-      [
-        1,
-        3,
-        0
-      ],
-      [
-        1,
-        4,
-        0
-      ]
-    ],
-    "TotalPriceRoom": 25.0,
-    "OrdersList": [
-      "1x Koffie | Price: 2.60"
-    ],
-    "TotalPriceOrder": 2.60,
-    "PersonalInfo": [
-      "asdf dsf",
-      "asd@sd.sd",
-      "12345567",
       "21"
     ]
   }
