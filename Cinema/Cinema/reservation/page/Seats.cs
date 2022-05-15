@@ -9,17 +9,15 @@ namespace Cinema.page
 {
     class Seats
     {
-        public static void SeatPage(int movieId)
+        public static void SeatPage(int movieId, int timeId)
         {
             List<Movie> movies = Movie.Movies();
-            List<Room> rooms = Room.Rooms();
-            int roomId = 0;
 
-            string prompt = $"Choice your seat for the film: {movies[movieId].Name}\n";
-            Seat mainMenu = new(prompt, rooms, roomId);
+            string prompt = $"Choice your seat for the film: {movies[movieId].Name}.\n";
+            Seat mainMenu = new(prompt, movieId, timeId);
             (int[][] yourSeats, decimal totalPriceRoom) = mainMenu.Run();
 
-            Orders.OrdersPage(movieId, yourSeats, totalPriceRoom);
+            Orders.OrdersPage(movieId, timeId, yourSeats, totalPriceRoom);
         }
     }
 }
