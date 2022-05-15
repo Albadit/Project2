@@ -7,6 +7,9 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using static System.Console;
 using System.IO;
+using System.Net.Mail;
+using System.Net;
+
 
 namespace Cinema
 {
@@ -23,7 +26,9 @@ namespace Cinema
         private readonly List<string> OrdersList;
         private readonly decimal TotalPriceOrder;
         private readonly string[] PersonalInfo;
-        
+
+        public static string JsonFileName() => Path.Combine("data/emailsnew");
+
         public Payment(string title, string[] options, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] Personalinfo)
         {
             Prompt = title;
@@ -80,11 +85,73 @@ namespace Cinema
             WriteLine($"Your reservationcode is: {reservationCode}\n");
         }
 
+        static async Task SendEmail(int reservationCode, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
+        {
+            SmtpClient Client = new SmtpClient()
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential()
+                {
+                    UserName = "tawanharinkextra@gmail.com",
+                    Password = "TawanHarink123"
+                }
+            };
+            MailAddress FromEmail = new MailAddress("hello@cinema.com", "Cinema");
+            MailAddress ToEmail = new MailAddress("tawanharink@gmail.com", "Tawan");
+            MailMessage Message = new MailMessage()
+            {
+                From = FromEmail,
+                Subject = "Confirmation of reservation",
+                Body = ($"Hello {personalInfo[0]},\n" +
+                $" Thank you for your reservation. Here are the details of your reservation:\n" +
+                $"{reservationCode}\n" +
+                $"{movieId}\n" +
+                $"{timeId}\n" +
+                $"{yourSeats}\n" +
+                $"{totalPriceRoom}\n" +
+                $"{ordersList}\n" +
+                $"{totalPriceOrder}\n" +
+                $"{personalInfo}")
+            };
+            Message.To.Add(ToEmail);
+
+            try
+            {
+                Client.Send(Message);
+            }
+            catch (Exception ex)
+            {
+                WriteLine(ex.ToString());
+            }
+
+            /*StringBuilder template = new();
+            template.AppendLine("Dear @Model.FirstName,");
+            template.AppendLine("<p>Thanks for purchasing @Model.ProductName. We hope you enjoy it.</p>");
+            template.AppendLine("- The TimCo Team");
+
+            Email.DefaultSender = sender;
+            Email.DefaultRenderer = new RazorRenderer();
+
+            var email = await Email
+                .From("tim@timco.com")
+                .To(personalInfo[1], personalInfo[0])
+                .Subject("Thanks!")
+                .UsingTemplate(template.ToString(), new { FirstName = personalInfo[0], ProductName = "Bacon-Wrapped Bacon" })
+                //.Body("Thanks for buying our product.")
+                .SendAsync();*/
+        }
+
         private void Display()
         {
             WriteLine(Prompt);
 
             Login();
+
+            SendEmail(ReservationCode, MovieId, TimeId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, PersonalInfo);
 
             for (int i = 0; i < Options.Length; i++)
             {
