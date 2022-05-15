@@ -127,22 +127,6 @@ namespace Cinema
             {
                 WriteLine(ex.ToString());
             }
-
-            /*StringBuilder template = new();
-            template.AppendLine("Dear @Model.FirstName,");
-            template.AppendLine("<p>Thanks for purchasing @Model.ProductName. We hope you enjoy it.</p>");
-            template.AppendLine("- The TimCo Team");
-
-            Email.DefaultSender = sender;
-            Email.DefaultRenderer = new RazorRenderer();
-
-            var email = await Email
-                .From("tim@timco.com")
-                .To(personalInfo[1], personalInfo[0])
-                .Subject("Thanks!")
-                .UsingTemplate(template.ToString(), new { FirstName = personalInfo[0], ProductName = "Bacon-Wrapped Bacon" })
-                //.Body("Thanks for buying our product.")
-                .SendAsync();*/
         }
 
         private void Display()
