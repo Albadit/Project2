@@ -10,16 +10,16 @@ namespace Cinema.page
     {
         public static void LoginPage()
         {
-            string prompt = "Select you login screen\n";
+            string prompt = "Select you login screen.\n";
             string[] options = { "Admin", "Reservation", "Back" };
-            Menu mainMenu = new Menu(prompt, options);
+            Menu mainMenu = new(prompt, options);
             int selectedIndex = mainMenu.Run();
-
             switch (selectedIndex)
             {
                 case 0:
                     break;
                 case 1:
+                    ReservationCode.ReservationCodePage();
                     break;
                 case 2:
                     Home.HomePage();

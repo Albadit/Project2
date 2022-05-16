@@ -22,7 +22,7 @@ namespace Cinema
         public decimal[] Price { get; set; } = Array.Empty<decimal>();
         public int[][] Seats { get; set; } = Array.Empty<int[]>();
 
-        public static string JsonFileName() => Path.Combine("reservation/data", "room.json");
+        public static string JsonFileName() => Path.Combine("data", "room.json");
 
         public static List<Room> ReadAll()
         {

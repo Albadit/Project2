@@ -7,6 +7,9 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using static System.Console;
 using System.IO;
+using System.Net.Mail;
+using System.Net;
+
 
 namespace Cinema
 {
@@ -17,19 +20,23 @@ namespace Cinema
         private readonly string[] Options;
         private readonly string Prompt;
         private readonly int MovieId;
+        private readonly int TimeId;
         private readonly int[][] YourSeats;
         private readonly decimal TotalPriceRoom;
         private readonly List<string> OrdersList;
         private readonly decimal TotalPriceOrder;
         private readonly string[] PersonalInfo;
-        
-        public Payment(string title, string[] options, int movieId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] Personalinfo)
+
+        public static string JsonFileName() => Path.Combine("data/emailsnew");
+
+        public Payment(string title, string[] options, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] Personalinfo)
         {
             Prompt = title;
             Options = options;
             SelectedIndex = 0;
             ReservationCode = 0;
             MovieId = movieId;
+            TimeId = timeId;
             YourSeats = yourSeats;
             TotalPriceRoom = totalPriceRoom;
             OrdersList = ordersList;
@@ -73,9 +80,53 @@ namespace Cinema
             Random generator = new();
             ReservationCode = generator.Next(100000, 999999);
 
-            (List<Reservation> reservationId, int reservationCode) = Reservation.Reservations(ReservationCode, MovieId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, PersonalInfo);
-
+            int reservationCode = Reservation.ReservationsAdd(ReservationCode, MovieId, TimeId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, PersonalInfo);
+            Time.TimesChange(TimeId, YourSeats);
             WriteLine($"Your reservationcode is: {reservationCode}\n");
+        }
+
+        static async Task SendEmail(int reservationCode, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
+        {
+            SmtpClient Client = new SmtpClient()
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential()
+                {
+                    UserName = "tawanharinkextra@gmail.com",
+                    Password = "TawanHarink123"
+                }
+            };
+            MailAddress FromEmail = new MailAddress("hello@cinema.com", "Cinema");
+            MailAddress ToEmail = new MailAddress("tawanharink@gmail.com", "Tawan");
+            MailMessage Message = new MailMessage()
+            {
+                From = FromEmail,
+                Subject = "Confirmation of reservation",
+                Body = ($"Hello {personalInfo[0]},\n" +
+                $" Thank you for your reservation. Here are the details of your reservation:\n" +
+                $"{reservationCode}\n" +
+                $"{movieId}\n" +
+                $"{timeId}\n" +
+                $"{yourSeats}\n" +
+                $"{totalPriceRoom}\n" +
+                $"{ordersList}\n" +
+                $"{totalPriceOrder}\n" +
+                $"{personalInfo}")
+            };
+            Message.To.Add(ToEmail);
+
+            try
+            {
+                Client.Send(Message);
+            }
+            catch (Exception ex)
+            {
+                WriteLine(ex.ToString());
+            }
         }
 
         private void Display()
@@ -83,6 +134,8 @@ namespace Cinema
             WriteLine(Prompt);
 
             Login();
+
+            SendEmail(ReservationCode, MovieId, TimeId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, PersonalInfo);
 
             for (int i = 0; i < Options.Length; i++)
             {
