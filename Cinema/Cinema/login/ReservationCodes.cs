@@ -41,7 +41,15 @@ namespace Cinema.page
                 if (!(codess >= 100000 && codess <= 999999)) WriteLine("\nYou need to have six numbers");
                 else if (code == string.Empty) WriteLine("\nDon't leave blank!");
                 else WriteLine($"\n{codes} is not a valid name!");
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
+                Clear();
+                Login.LoginPage();
+            }
+
+            if (codess >= 100000 && codess <= 999999)
+            {
+                WriteLine("\nThis reservation doesn't exist");
+                Thread.Sleep(2000);
                 Clear();
                 Login.LoginPage();
             }

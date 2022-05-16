@@ -53,6 +53,31 @@ namespace Cinema
             return TimeId;
         }
 
+        public static List<Time> TimesAdd(int timeId, int[][] YourSeats)
+        {
+            List<Time> TimeId = new();
+
+            var Times = ReadAll();
+            foreach (var Time in Times)
+            {
+                TimeId.AddRange(new List<Time> { new Time(Time.Id, Time.MovieId, Time.Duration, Time.Start, Time.SeatId, Time.Seats) });
+            }
+
+            for (int i = 0; i < YourSeats[0].Length; i++)
+            {
+                TimeId[timeId].Seats[YourSeats[i][1]][YourSeats[i][2]] = 4;
+            }
+            
+            WriteAll(TimeId);
+
+            string sourceFile = Path.Combine("data", "time.json");
+            string destinationFile = Path.Combine("../../../data", "time.json");
+            try { File.Copy(sourceFile, destinationFile, true); }
+            catch (IOException iox) { WriteLine(iox.Message); }
+
+            return TimeId;
+        }
+
         public static List<Time> TimesChange(int timeId, int[][] YourSeats)
         {
             List<Time> TimeId = new();
@@ -63,11 +88,11 @@ namespace Cinema
                 TimeId.AddRange(new List<Time> { new Time(Time.Id, Time.MovieId, Time.Duration, Time.Start, Time.SeatId, Time.Seats) });
             }
 
-            for (int i = 0; i < YourSeats.Length; i++)
+            for (int i = 0; i < YourSeats[0].Length; i++)
             {
-                TimeId[timeId].Seats[YourSeats[i][1]][YourSeats[i][2]] = 4;
+                TimeId[timeId].Seats[YourSeats[i][1]][YourSeats[i][2]] = YourSeats[i][0];
             }
-            
+
             WriteAll(TimeId);
 
             string sourceFile = Path.Combine("data", "time.json");
