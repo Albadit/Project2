@@ -63,7 +63,7 @@ namespace Cinema
                 TimeId.AddRange(new List<Time> { new Time(Time.Id, Time.MovieId, Time.Duration, Time.Start, Time.SeatId, Time.Seats) });
             }
 
-            for (int i = 0; i < YourSeats[0].Length; i++)
+            for (int i = 0; i < YourSeats.Length; i++)
             {
                 TimeId[timeId].Seats[YourSeats[i][1]][YourSeats[i][2]] = 4;
             }
@@ -78,7 +78,7 @@ namespace Cinema
             return TimeId;
         }
 
-        public static List<Time> TimesChange(int timeId, int[][] YourSeats)
+        public static List<Time> TimesChange(int timeId, int[][] yourSeats)
         {
             List<Time> TimeId = new();
 
@@ -88,9 +88,9 @@ namespace Cinema
                 TimeId.AddRange(new List<Time> { new Time(Time.Id, Time.MovieId, Time.Duration, Time.Start, Time.SeatId, Time.Seats) });
             }
 
-            for (int i = 0; i < YourSeats[0].Length; i++)
+            for (int i = 0; i < yourSeats.Length; i++)
             {
-                TimeId[timeId].Seats[YourSeats[i][1]][YourSeats[i][2]] = YourSeats[i][0];
+                TimeId[timeId].Seats[yourSeats[i][1]][yourSeats[i][2]] = yourSeats[i][0];
             }
 
             WriteAll(TimeId);
