@@ -62,7 +62,6 @@ namespace Cinema
         {
             List<Reservation> reservationsId = new();
             Random generator = new();
-            bool check = true;
             int id = 0;
 
             var reservation = ReadAll();
@@ -73,16 +72,12 @@ namespace Cinema
                 reservationsId.AddRange(new List<Reservation> { new Reservation(book.Id, book.ReservationCode, book.MovieId, book.TimeId, book.YourSeats, book.TotalPriceRoom, book.OrdersList, book.TotalPriceOrder, book.PersonalInfo) });
             }
 
-            while(check)
+            for (int i = 0; i < reservationsId.Count; i++)
             {
-                for (int i = 0; i < reservationsId.Count; i++)
+                if (reservationsId[i].ReservationCode == reservationCode)
                 {
-                    if (reservationsId[i].ReservationCode != reservationCode)
-                    {
-                        reservationCode = generator.Next(100000, 999999);
-                        check = false;
-                    }
-                    else check = true;
+                    reservationCode = generator.Next(100000, 999999);
+                    i = 0;
                 }
             }
 
