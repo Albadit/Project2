@@ -6,7 +6,10 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using static System.Console;
+using System.Net.Mail;
+using System.Net;
 using System.IO;
+using System.Web;
 
 namespace Cinema
 {
@@ -76,8 +79,38 @@ namespace Cinema
             ReservationCode = generator.Next(100000, 999999);
 
             int reservationCode = Reservation.ReservationsAdd(ReservationCode, MovieId, TimeId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, PersonalInfo);
-            Time.TimesChange(TimeId, YourSeats);
+            Time.TimesAdd(TimeId, YourSeats);
             WriteLine($"Your reservationcode is: {reservationCode}\n");
+        }
+
+        public static void SendEmail(int reservationCode, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
+        {
+            SmtpClient Client = new()
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential()
+                {
+                    UserName = "cinemarotterdams@gmail.com",
+                    Password = "ProjectB123"
+                }
+            };
+
+            MailAddress FromEmail = new("cinemarotterdams@gmail.com", "Cinema Rotterdams");
+            MailAddress ToEmail = new(personalInfo[1], personalInfo[0]);
+            MailMessage Message = new() {
+                From = FromEmail,
+                Subject = "Confirmation of reservation",
+                Body = (Email.Emails(reservationCode, movieId, timeId, yourSeats, totalPriceRoom, ordersList, totalPriceOrder, personalInfo))
+            };
+            Message.IsBodyHtml = true;
+            Message.To.Add(ToEmail);
+
+            try { Client.Send(Message); }
+            catch (Exception ex) { WriteLine(ex.ToString()); }
         }
 
         private void Display()
@@ -85,6 +118,7 @@ namespace Cinema
             WriteLine(Prompt);
 
             Login();
+            SendEmail(ReservationCode, MovieId, TimeId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, PersonalInfo);
 
             for (int i = 0; i < Options.Length; i++)
             {
