@@ -11,7 +11,7 @@ namespace Cinema
 {
     class Email
     {
-        
+
         public static string Emails(int reservationCode, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
         {
             List<Movie> movies = Movie.Movies();
@@ -88,16 +88,16 @@ namespace Cinema
                           <table class='sm-leading-32' style='line-height: 28px; font-size: 14px;' width='100%' cellpadding='0' cellspacing='0' role='presentation'>
                             <tr>
                               <td class='sm-inline-block' style='color: #718096;'>Reservation Code</td>";
-                    text += $"<td class='sm-inline-block' style='font-weight: 600; float: right; color: black;' align='right'>{reservationCode}</td>";
+            text += $"<td class='sm-inline-block' style='font-weight: 600; float: right; color: black;' align='right'>{reservationCode}</td>";
             text += @"</tr>
                             <tr>
                               <td class='sm-inline-block' style='color: #718096;'>Movie</td>";
-                    text += $"<td class='sm-inline-block' style='font-weight: 600; float: right; color: black;' align='right'>{movies[movieId].Name}</td>";
-                  text += @"</tr>
+            text += $"<td class='sm-inline-block' style='font-weight: 600; float: right; color: black;' align='right'>{movies[movieId].Name}</td>";
+            text += @"</tr>
                             <tr>
                               <td class='sm-w-1-4 sm-inline-block' style='color: #718096;'>Time</td>";
-                    text += $"<td class='sm-w-3-4 sm-inline-block' style='font-weight: 600; float: right;color: black;' align='right'>{time}</td>";
-                  text += @"</tr>
+            text += $"<td class='sm-w-3-4 sm-inline-block' style='font-weight: 600; float: right;color: black;' align='right'>{time}</td>";
+            text += @"</tr>
                           </table>
                           <table width='100%' cellpadding='0' cellspacing='0' role='presentation'>
                             <tr>
@@ -110,21 +110,7 @@ namespace Cinema
                             <tr>
                               <td class='sm-w-full sm-inline-block sm-text-center' width='40%'>
                                 <p class='all-font-roboto' style='margin: 0; margin-bottom: 4px; color: #a0aec0; font-size: 10px; text-transform: uppercase; letter-spacing: 1px;'>Date</p>";
-                      text += $"<p class='all-font-roboto' style='font-weight: 600; margin: 0; color: black;'>{date}</p>";
-                    text += @"</td>
-                            </tr>
-                          </table>
-                          <table width='100%' cellpadding='0' cellspacing='0' role='presentation'>
-                            <tr>
-                              <td style='padding-top: 24px; padding-bottom: 24px;'>
-                                <div style='background-color: #edf2f7; height: 2px; line-height: 2px;'>&zwnj;</div>
-                              </td>
-                            </tr>
-                          </table>
-                          <table style='line-height: 28px; font-size: 14px;' width='100%' cellpadding='0' cellspacing='0' role='presentation'>
-                            <tr>
-                              <td style='color: #718096;' >Seats price</td>";
-                    text += $"<td style='font-weight: 600; float: right; color: black;' align='right'>€{priceRoom}</td>";
+            text += $"<p class='all-font-roboto' style='font-weight: 600; margin: 0; color: black;'>{date}</p>";
             text += @"</td>
                             </tr>
                           </table>
@@ -142,12 +128,12 @@ namespace Cinema
             text += @"</tr>
                             <tr>
                               <td style='color: #718096;' >Orders price</td>";
-                    text += $"<td style='font-weight: 600; float: right; color: black;' align='right'>€{priceOrder}</td>";
-                  text += @"</tr>
+            text += $"<td style='font-weight: 600; float: right; color: black;' align='right'>€{priceOrder}</td>";
+            text += @"</tr>
                             <tr>
                               <td style='font-weight: 600; padding-top: 32px; color: black; font-size: 20px;' >Total</td>";
-                    text += $"<td style='font-weight: 600; padding-top: 32px; float: right; color: #68d391; font-size: 20px;' align='right'>€{totalPrice}</td>";
-                  text += @"</tr>
+            text += $"<td style='font-weight: 600; padding-top: 32px; float: right; color: #68d391; font-size: 20px;' align='right'>€{totalPrice}</td>";
+            text += @"</tr>
                           </table>
                         </td>
                       </tr>
