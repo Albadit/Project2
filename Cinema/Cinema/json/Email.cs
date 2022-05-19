@@ -89,7 +89,7 @@ namespace Cinema
                             <tr>
                               <td class='sm-inline-block' style='color: #718096;'>Reservation Code</td>";
                     text += $"<td class='sm-inline-block' style='font-weight: 600; float: right; color: black;' align='right'>{reservationCode}</td>";
-                  text += @"</tr>
+            text += @"</tr>
                             <tr>
                               <td class='sm-inline-block' style='color: #718096;'>Movie</td>";
                     text += $"<td class='sm-inline-block' style='font-weight: 600; float: right; color: black;' align='right'>{movies[movieId].Name}</td>";
@@ -125,7 +125,21 @@ namespace Cinema
                             <tr>
                               <td style='color: #718096;' >Seats price</td>";
                     text += $"<td style='font-weight: 600; float: right; color: black;' align='right'>€{priceRoom}</td>";
-                  text += @"</tr>
+            text += @"</td>
+                            </tr>
+                          </table>
+                          <table width='100%' cellpadding='0' cellspacing='0' role='presentation'>
+                            <tr>
+                              <td style='padding-top: 24px; padding-bottom: 24px;'>
+                                <div style='background-color: #edf2f7; height: 2px; line-height: 2px;'>&zwnj;</div>
+                              </td>
+                            </tr>
+                          </table>
+                          <table style='line-height: 28px; font-size: 14px;' width='100%' cellpadding='0' cellspacing='0' role='presentation'>
+                            <tr>
+                              <td style='color: #718096;' >Seats price</td>";
+            text += $"<td style='font-weight: 600; float: right; color: black;' align='right'>€{priceRoom}</td>";
+            text += @"</tr>
                             <tr>
                               <td style='color: #718096;' >Orders price</td>";
                     text += $"<td style='font-weight: 600; float: right; color: black;' align='right'>€{priceOrder}</td>";
