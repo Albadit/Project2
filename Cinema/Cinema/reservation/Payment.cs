@@ -27,8 +27,6 @@ namespace Cinema
         private readonly decimal TotalPriceOrder;
         private readonly string[] PersonalInfo;
 
-        public static string JsonFileName() => Path.Combine("data/emailsnew");
-
         public Payment(string title, string[] options, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] Personalinfo)
         {
             Prompt = title;
@@ -85,7 +83,7 @@ namespace Cinema
             WriteLine($"Your reservationcode is: {reservationCode}\n");
         }
 
-        static async Task SendEmail(int reservationCode, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
+        public static void SendEmail(int reservationCode, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
         {
             SmtpClient Client = new SmtpClient()
             {
@@ -96,18 +94,18 @@ namespace Cinema
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential()
                 {
-                    UserName = "tawanharinkextra@gmail.com",
-                    Password = "TawanHarink123"
+                    UserName = "cinemarotterdams@gmail.com",
+                    Password = "ProjectB123"
                 }
             };
             MailAddress FromEmail = new MailAddress("hello@cinema.com", "Cinema");
-            MailAddress ToEmail = new MailAddress("tawanharink@gmail.com", "Tawan");
+            MailAddress ToEmail = new MailAddress(personalInfo[1], personalInfo[0]);
             MailMessage Message = new MailMessage()
             {
                 From = FromEmail,
                 Subject = "Confirmation of reservation",
                 Body = ($"Hello {personalInfo[0]},\n" +
-                $" Thank you for your reservation. Here are the details of your reservation:\n" +
+                $" <b>Thank you for your reservation. Here are the details of your reservation:</b>\n" +
                 $"{reservationCode}\n" +
                 $"{movieId}\n" +
                 $"{timeId}\n" +
