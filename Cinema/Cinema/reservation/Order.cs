@@ -61,6 +61,8 @@ namespace Cinema
 
             string price = totalPriceOrder.ToString("0.00", CultureInfo.InvariantCulture);
             WriteLine($"\n\nTotal: {price}");
+            WriteLine("\nPress 'A' to add an item and press 'D' to delete an item");
+            WriteLine("\nWhen you have selected your snacks or drinks press Enter to go to the next page");
         }
 
         public (int, List<string>, decimal) Run()

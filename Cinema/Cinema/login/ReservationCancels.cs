@@ -24,6 +24,7 @@ namespace Cinema.page
         private void Display()
         {
             WriteLine(Prompt);
+            Time.TimesChange(Reservations[ReservationId].TimeId, Reservations[ReservationId].YourSeats);
             Reservation.ReservationsCancel(Reservations, ReservationId);
             WriteLine("\nPress enter to go back.");
         }
