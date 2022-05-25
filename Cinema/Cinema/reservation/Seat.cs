@@ -119,7 +119,7 @@ namespace Cinema
         public (int[][], decimal) Run()
         {
             int[][] seatList = TimeList[TimeId].Seats;
-            int[][] yourSeats = Array.Empty<int[]>(); 
+            int[][] yourSeats = Array.Empty<int[]>();
             List<int> values = new();
             List<string> seatsList = new();
             decimal totalPriceRoom = 0;

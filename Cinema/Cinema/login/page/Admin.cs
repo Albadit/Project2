@@ -10,9 +10,8 @@ namespace Cinema.page
     {
         public static void AdminPage()
         {
-            string prompt = "Please fill in your username and password.\n";
-            string[] options = { "Back" };
-            AdminLogin mainMenu = new(prompt);
+            string Prompt = "Please fill in your username and password.\n";
+            AdminLogin mainMenu = new(Prompt);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex)
