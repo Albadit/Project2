@@ -60,7 +60,24 @@ namespace Cinema
             {
                 movieId.AddRange(new List<Movie> { new Movie(movie.Id, movie.Name, movie.Duration, movie.Genre, movie.Age) });
             }
-            //movieId.AddRange(new List<Reservation> { new Reservation(book.Id, book.ReservationCode, book.MovieId, book.TimeId, book.YourSeats, book.TotalPriceRoom, book.OrdersList, book.TotalPriceOrder, book.PersonalInfo) });
+            string sourceFile = Path.Combine("data", "movies.json");
+            string destinationFile = Path.Combine("../../../data", "movies.json");
+            try { File.Copy(sourceFile, destinationFile, true); }
+            catch (IOException iox) { WriteLine(iox.Message); }
+            return movieId;
+        }
+
+        public static List<Movie> AddMovieToJson(string title, int duration, string[] genre, int age)
+        {
+            List<Movie> movieId = new();
+            int id = 0;
+
+            var movies = ReadAll();
+            foreach (var movie in movies)
+            {
+                id++;
+            }
+            movieId.AddRange(new List<Movie> { new Movie(id, title, duration, genre, age) });
             string sourceFile = Path.Combine("data", "movies.json");
             string destinationFile = Path.Combine("../../../data", "movies.json");
             try { File.Copy(sourceFile, destinationFile, true); }
