@@ -27,7 +27,7 @@ namespace Cinema.page
 
             List<Reservation> Reservations = Reservation.Reservations();
             List<Movie> movies = Movie.Movies();
-            List<Time> times = Time.Times();
+            List<Datetime> times = Datetime.Times();
             List<Room> rooms = Room.Rooms();
             List<string> reservationList = new();
 

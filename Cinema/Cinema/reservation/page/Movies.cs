@@ -33,7 +33,7 @@ namespace Cinema.page
             int selectedIndex = mainMenu.Run();
 
             if (selectedIndex == options.Length - 1) Home.HomePage();
-            else Times.TimesPage(movies[selectedIndex].Id);
+            else Dates.DatesPage(movies[selectedIndex].Id);
         }
     }
 }

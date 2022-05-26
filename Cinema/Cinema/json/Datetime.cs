@@ -8,13 +8,14 @@ using static System.Console;
 
 namespace Cinema
 {
-    class Time
+    class Datetime
     {
-        public Time(int id, int movieId, int duration, int[] start, int seatId, int[][] seats)
+        public Datetime(int id, int movieId, int duration, int[] date, int[] start, int seatId, int[][] seats)
         {
             Id = id;
             MovieId = movieId;
             Duration = duration;
+            Date = date;
             Start = start;
             SeatId = seatId;
             Seats = seats;
@@ -23,44 +24,45 @@ namespace Cinema
         public int Id { get; set; } = 0;
         public int MovieId { get; set; } = 0;
         public int Duration { get; set; } = 0;
+        public int[] Date { get; set; } = Array.Empty<int>();
         public int[] Start { get; set; } = Array.Empty<int>();
         public int SeatId { get; set; } = 0;
         public int[][] Seats { get; set; } = Array.Empty<int[]>();
 
-        public static string JsonFileName() => Path.Combine("data", "time.json");
+        public static string JsonFileName() => Path.Combine("data", "datetime.json");
 
-        public static List<Time> ReadAll()
+        public static List<Datetime> ReadAll()
         {
             string json = File.ReadAllText(JsonFileName());
-            return JsonSerializer.Deserialize<List<Time>>(json) ?? new List<Time>();
+            return JsonSerializer.Deserialize<List<Datetime>>(json) ?? new List<Datetime>();
         }
 
-        public static void WriteAll(List<Time> Times)
+        public static void WriteAll(List<Datetime> Times)
         {
             string json = JsonSerializer.Serialize(Times);
             File.WriteAllText(JsonFileName(), json);
         }
 
-        public static List<Time> Times()
+        public static List<Datetime> Times()
         {
-            List<Time> TimeId = new();
+            List<Datetime> TimeId = new();
 
             var Times = ReadAll();
             foreach (var Time in Times)
             {
-                TimeId.AddRange(new List<Time> { new Time(Time.Id, Time.MovieId, Time.Duration, Time.Start, Time.SeatId, Time.Seats) });
+                TimeId.AddRange(new List<Datetime> { new Datetime(Time.Id, Time.MovieId, Time.Duration, Time.Date, Time.Start, Time.SeatId, Time.Seats) });
             }
             return TimeId;
         }
 
-        public static List<Time> TimesAdd(int timeId, int[][] YourSeats)
+        public static List<Datetime> TimesAdd(int timeId, int[][] YourSeats)
         {
-            List<Time> TimeId = new();
+            List<Datetime> TimeId = new();
 
             var Times = ReadAll();
             foreach (var Time in Times)
             {
-                TimeId.AddRange(new List<Time> { new Time(Time.Id, Time.MovieId, Time.Duration, Time.Start, Time.SeatId, Time.Seats) });
+                TimeId.AddRange(new List<Datetime> { new Datetime(Time.Id, Time.MovieId, Time.Duration, Time.Date, Time.Start, Time.SeatId, Time.Seats) });
             }
 
             for (int i = 0; i < YourSeats.Length; i++)
@@ -70,22 +72,22 @@ namespace Cinema
             
             WriteAll(TimeId);
 
-            string sourceFile = Path.Combine("data", "time.json");
-            string destinationFile = Path.Combine("../../../data", "time.json");
+            string sourceFile = Path.Combine("data", "datetime.json");
+            string destinationFile = Path.Combine("../../../data", "datetime.json");
             try { File.Copy(sourceFile, destinationFile, true); }
             catch (IOException iox) { WriteLine(iox.Message); }
 
             return TimeId;
         }
 
-        public static List<Time> TimesChange(int timeId, int[][] yourSeats)
+        public static List<Datetime> TimesChange(int timeId, int[][] yourSeats)
         {
-            List<Time> TimeId = new();
+            List<Datetime> TimeId = new();
 
             var Times = ReadAll();
             foreach (var Time in Times)
             {
-                TimeId.AddRange(new List<Time> { new Time(Time.Id, Time.MovieId, Time.Duration, Time.Start, Time.SeatId, Time.Seats) });
+                TimeId.AddRange(new List<Datetime> { new Datetime(Time.Id, Time.MovieId, Time.Duration, Time.Date, Time.Start, Time.SeatId, Time.Seats) });
             }
 
             for (int i = 0; i < yourSeats.Length; i++)
@@ -95,8 +97,8 @@ namespace Cinema
 
             WriteAll(TimeId);
 
-            string sourceFile = Path.Combine("data", "time.json");
-            string destinationFile = Path.Combine("../../../data", "time.json");
+            string sourceFile = Path.Combine("data", "datetime.json");
+            string destinationFile = Path.Combine("../../../data", "datetime.json");
             try { File.Copy(sourceFile, destinationFile, true); }
             catch (IOException iox) { WriteLine(iox.Message); }
 
