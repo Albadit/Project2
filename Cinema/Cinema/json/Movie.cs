@@ -65,6 +65,7 @@ namespace Cinema
 
             movieId.AddRange(new List<Movie> { new Movie(id, name, duration, genre, age) });
             WriteAll(movieId);
+
             string sourceFile = Path.Combine("data", "movies.json");
             string destinationFile = Path.Combine("../../../data", "movies.json");
             try { File.Copy(sourceFile, destinationFile, true); }

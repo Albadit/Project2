@@ -15,7 +15,7 @@ namespace Cinema
         public static string Emails(int reservationCode, int movieId, int timeId, int[][] yourSeats, decimal totalPriceRoom, List<string> ordersList, decimal totalPriceOrder, string[] personalInfo)
         {
             List<Movie> movies = Movie.Movies();
-            List<Time> times = Time.Times();
+            List<Datetime> times = Datetime.Times();
             string text = string.Empty;
 
             int hour = times[timeId].Start[0] * 60;
@@ -25,7 +25,8 @@ namespace Cinema
             int min = (int)((minute - (int)minute) * 60);
             string time = $"{times[timeId].Start[0]}:{times[timeId].Start[1]} - {hour}:{min}";
 
-            string date = DateTime.Now.ToString("d MMMM yyyy");
+            DateTime dates = new(times[timeId].Date[0], times[timeId].Date[1], times[timeId].Date[2]);
+            string date = ($"{dates:dd MMMM yyyy}");
 
             string priceRoom = totalPriceRoom.ToString("0.00", CultureInfo.InvariantCulture);
             string priceOrder = totalPriceOrder.ToString("0.00", CultureInfo.InvariantCulture);

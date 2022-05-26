@@ -8,9 +8,9 @@ using static System.Console;
 
 namespace Cinema.page
 {
-    class Movies
+    class MovieSelect
     {
-        public static void MoviesPage()
+        public static void MovieDateTimePage()
         {
             List<Movie> movies = Movie.Movies();
             List<string> movieList = new();
@@ -33,7 +33,7 @@ namespace Cinema.page
             int selectedIndex = mainMenu.Run();
 
             if (selectedIndex == options.Length - 1) Home.HomePage();
-            else Dates.DatesPage(movies[selectedIndex].Id);
+            else MovieDateTime.MovieDateTimePage(selectedIndex);
         }
     }
 }
