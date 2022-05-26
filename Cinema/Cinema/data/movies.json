@@ -1,1 +1,109 @@
-[{"Id":0,"Name":"Uncharted","Duration":116,"Genre":["Action","Adventure"],"Age":12},{"Id":1,"Name":"The Batman","Duration":175,"Genre":["Action","Drama","Crime"],"Age":12},{"Id":2,"Name":"Spider-Man No Way Home","Duration":148,"Genre":["Action","Adventure"],"Age":12},{"Id":3,"Name":"Moonfall","Duration":120,"Genre":["Action","Science Fiction"],"Age":12},{"Id":4,"Name":"X","Duration":106,"Genre":["Horror"],"Age":16},{"Id":5,"Name":"Ambulance","Duration":136,"Genre":["Action","Thriller"],"Age":16},{"Id":6,"Name":"Blacklight","Duration":108,"Genre":["Action","Thriller"],"Age":12},{"Id":7,"Name":"Dog","Duration":101,"Genre":["Drama"],"Age":12},{"Id":8,"Name":"De Drekkies","Duration":85,"Genre":["Kids"],"Age":0},{"Id":9,"Name":"Sing 2","Duration":110,"Genre":["Kids"],"Age":6},{"Id":10,"Name":"Test","Duration":120,"Genre":["Horror","Action"],"Age":16},{"Id":11,"Name":"Minions","Duration":155,"Genre":["Animation"],"Age":0}]
+[
+  {
+    "Id": 0,
+    "Name": "Uncharted",
+    "Duration": 116,
+    "Genre": [
+      "Action",
+      "Adventure"
+    ],
+    "Age": 12
+  },
+  {
+    "Id": 1,
+    "Name": "The Batman",
+    "Duration": 175,
+    "Genre": [
+      "Action",
+      "Drama",
+      "Crime"
+    ],
+    "Age": 12
+  },
+  {
+    "Id": 2,
+    "Name": "Spider-Man No Way Home",
+    "Duration": 148,
+    "Genre": [
+      "Action",
+      "Adventure"
+    ],
+    "Age": 12
+  },
+  {
+    "Id": 3,
+    "Name": "Moonfall",
+    "Duration": 120,
+    "Genre": [
+      "Action",
+      "Science Fiction"
+    ],
+    "Age": 12
+  },
+  {
+    "Id": 4,
+    "Name": "X",
+    "Duration": 106,
+    "Genre": [
+      "Horror"
+    ],
+    "Age": 16
+  },
+  {
+    "Id": 5,
+    "Name": "Ambulance",
+    "Duration": 136,
+    "Genre": [
+      "Action",
+      "Thriller"
+    ],
+    "Age": 16
+  },
+  {
+    "Id": 6,
+    "Name": "Blacklight",
+    "Duration": 108,
+    "Genre": [
+      "Action",
+      "Thriller"
+    ],
+    "Age": 12
+  },
+  {
+    "Id": 7,
+    "Name": "Dog",
+    "Duration": 101,
+    "Genre": [
+      "Drama"
+    ],
+    "Age": 12
+  },
+  {
+    "Id": 8,
+    "Name": "De Drekkies",
+    "Duration": 85,
+    "Genre": [
+      "Kids"
+    ],
+    "Age": 0
+  },
+  {
+    "Id": 9,
+    "Name": "Sing 2",
+    "Duration": 110,
+    "Genre": [
+      "Kids"
+    ],
+    "Age": 6
+  },
+  {
+    "Id": 10,
+    "Name": "test",
+    "Duration": 120,
+    "Genre": [
+      "test",
+      "test"
+    ],
+    "Age": 12
+  }
+]

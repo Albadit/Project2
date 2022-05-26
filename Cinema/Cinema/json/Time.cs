@@ -102,5 +102,32 @@ namespace Cinema
 
             return TimeId;
         }
+
+        public static List<Time> AddTimesToJson(int duration, int[] start, int seatid, int[][]seats)
+        {
+            List<Time> TimeId = new();
+            int id = 0;
+            int movie_id = 0;
+
+            var times = ReadAll();
+            var movies = Movie.ReadAll();
+            foreach (var movie in movies)
+            {
+                movie_id = movie.Id;
+            }
+            foreach (var time in times)
+            {
+                id = time.Id + 1;
+                TimeId.AddRange(new List<Time> { new Time(time.Id, time.MovieId, time.Duration, time.Start, time.SeatId, time.Seats) });
+            }
+
+            TimeId.AddRange(new List<Time> { new Time(id, movie_id, duration, start, seatid, seats) });
+            WriteAll(TimeId);
+            string sourceFile = Path.Combine("data", "time.json");
+            string destinationFile = Path.Combine("../../../data", "time.json");
+            try { File.Copy(sourceFile, destinationFile, true); }
+            catch (IOException iox) { WriteLine(iox.Message); }
+            return TimeId;
+        }
     }
 }
