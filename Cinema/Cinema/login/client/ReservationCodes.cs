@@ -31,7 +31,7 @@ namespace Cinema.page
             {
                 if (codess == Reservations[i].ReservationCode)
                 {
-                    AdminSelect.ReservationSelectPage(i);
+                    ReservationSelect.ReservationSelectPage(i);
                     break;
                 }
             }
