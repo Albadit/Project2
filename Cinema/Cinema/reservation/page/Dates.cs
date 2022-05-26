@@ -33,10 +33,10 @@ namespace Cinema.page
                 }
                 if (count >= 2) dateList.RemoveAt(i);
             }
-
             dateList.Add("Back");
+
             string title;
-            if (dateList.Count <= 0) title = "There is no movie available at this date.\n";
+            if (dateList.Count <= 1) title = "There is no movie available at this date.\n";
             else title = "Choice your date.\n";
             string[] options = dateList.ToArray();
             Menu mainMenu = new(title, options);
