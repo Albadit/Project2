@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
+using static System.Console;
 
 namespace Cinema.page
 {
-    class Admin
+    class MovieDateTime
     {
-        public static void AdminPage()
+        public static void MovieDateTimePage(int movieId)
         {
-            string Prompt = "Please fill in your username and password.\n";
-            AdminLogin mainMenu = new(Prompt);
+            MoviesDateTime mainMenu = new(movieId);
             mainMenu.Run();
         }
     }

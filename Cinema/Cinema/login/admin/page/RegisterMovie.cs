@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Cinema.page
 {
-    class Admin
+    class RegisterMovie
     {
-        public static void AdminPage()
+        public static void RegisterMoviePage()
         {
-            string Prompt = "Please fill in your username and password.\n";
-            AdminLogin mainMenu = new(Prompt);
+            string prompt = "Welcome Please select you reservation options.\n";
+            RegisterMovies mainMenu = new(prompt);
             mainMenu.Run();
         }
     }

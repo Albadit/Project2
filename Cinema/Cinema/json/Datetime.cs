@@ -104,5 +104,30 @@ namespace Cinema
 
             return TimeId;
         }
+
+        public static List<Datetime> TimesAddNew(int movieId, int duration, int[] date, int[] start, int seatId)
+        {
+            List<Datetime> TimeId = new();
+            List<Room> Rooms = Room.Rooms();
+            int timeId = 0;
+
+            var Times = ReadAll();
+            foreach (var Time in Times)
+            {
+                timeId = Time.Id + 1;
+                TimeId.AddRange(new List<Datetime> { new Datetime(Time.Id, Time.MovieId, Time.Duration, Time.Date, Time.Start, Time.SeatId, Time.Seats) });
+            }
+
+            TimeId.AddRange(new List<Datetime> { new Datetime(timeId, movieId, duration, date, start, seatId, Rooms[seatId].Seats) });
+
+            WriteAll(TimeId);
+
+            string sourceFile = Path.Combine("data", "datetime.json");
+            string destinationFile = Path.Combine("../../../data", "datetime.json");
+            try { File.Copy(sourceFile, destinationFile, true); }
+            catch (IOException iox) { WriteLine(iox.Message); }
+
+            return TimeId;
+        }
     }
 }

@@ -11,20 +11,20 @@ namespace Cinema.page
         public static void AdminSelectPage()
         {
             string prompt = $"Welcome Please select you reservation options.\n";
-            string[] options = { "Information", "Cancel", "Back" };
+            string[] options = { "Register Movie", "Add Movie Date and Time", "Back" };
             Menu mainMenu = new(prompt, options);
             int selectedIndex = mainMenu.Run();
 
             switch (selectedIndex)
             {
                 case 0:
-                    //ReservationInfo.ReservationInfoPage();
+                    RegisterMovie.RegisterMoviePage();
                     break;
                 case 1:
-                    //ReservationCancel.ReservationCancelPage();
+                    MovieSelect.MovieDateTimePage();
                     break;
                 case 2:
-                    //Login.LoginPage();
+                    Login.LoginPage();
                     break;
             }
            
