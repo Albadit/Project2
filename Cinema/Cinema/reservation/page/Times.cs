@@ -25,7 +25,7 @@ namespace Cinema.page
                     hour = (int)(minutes / 60);
                     int min = (int)((minute - (int)minute) * 60);
 
-                    timeList.Add($"{time.Start[0]}:{time.Start[1]} till {hour}:{min}");
+                    timeList.Add($"{time.Start[0]}:{time.Start[1]} - {hour}:{min}");
                 }
             }
             timeList.Add("Back");

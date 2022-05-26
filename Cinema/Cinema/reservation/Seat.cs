@@ -109,14 +109,17 @@ namespace Cinema
             string price = totalPriceRoom.ToString("0.00", CultureInfo.InvariantCulture);
             WriteLine($"\n\nTotal price: {price}");
 
+
+            WriteLine("\nPress 'A' to add a seat and press 'D' to delete a seat");
             WriteLine("\n\nPress Backspace to go back");
+            WriteLine("\nIf you have selected a seat press Enter to go to the next page");
             ResetColor();
         }
 
         public (int[][], decimal) Run()
         {
             int[][] seatList = TimeList[TimeId].Seats;
-            int[][] yourSeats = Array.Empty<int[]>(); 
+            int[][] yourSeats = Array.Empty<int[]>();
             List<int> values = new();
             List<string> seatsList = new();
             decimal totalPriceRoom = 0;
