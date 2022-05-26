@@ -15,7 +15,7 @@ namespace Cinema.page
             ReservationInfos mainMenu = new(prompt, reservationId);
             int selectedIndex = mainMenu.Run();
 
-            if (selectedIndex == options.Length - 1) ReservationSelect.ReservationSelectPage(reservationId);
+            if (selectedIndex == options.Length - 1) AdminSelect.ReservationSelectPage(reservationId);
 
         }
     }

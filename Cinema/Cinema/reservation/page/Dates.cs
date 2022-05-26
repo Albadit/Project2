@@ -23,11 +23,21 @@ namespace Cinema.page
                     dateList.Add($"{dates:dd MMMM yyyy}");
                 }
             }
-            dateList.Add("Back");
+          
+            for (int i = 0; i < dateList.Count; i++)
+            {
+                int count = 0;
+                for (int j = 0; j < dateList.Count; j++)
+                {
+                    if (dateList[i] == dateList[j]) count++;
+                }
+                if (count >= 2) dateList.RemoveAt(i);
+            }
 
+            dateList.Add("Back");
             string title;
             if (dateList.Count <= 0) title = "There is no movie available at this date.\n";
-            else title = "Choice your time.\n";
+            else title = "Choice your date.\n";
             string[] options = dateList.ToArray();
             Menu mainMenu = new(title, options);
             int selectedIndex = mainMenu.Run();

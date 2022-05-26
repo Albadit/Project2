@@ -95,24 +95,5 @@
       "Kids"
     ],
     "Age": 6
-  },
-  {
-    "Id": 10,
-    "Name": "Test",
-    "Duration": 120,
-    "Genre": [
-      "Horror",
-      "Action"
-    ],
-    "Age": 16
-  },
-  {
-    "Id": 11,
-    "Name": "Minions",
-    "Duration": 155,
-    "Genre": [
-      "Animation"
-    ],
-    "Age": 0
   }
 ]
