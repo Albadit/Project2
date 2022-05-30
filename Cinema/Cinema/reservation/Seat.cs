@@ -17,7 +17,7 @@ namespace Cinema
         private int MovieId;
         private int TimeId;
         private readonly string Prompt;
-        List<Time> TimeList = Time.Times();
+        List<Datetime> TimeList = Datetime.Times();
 
         public Seat(string prompt, int movieId, int timeId)
         {
@@ -119,7 +119,7 @@ namespace Cinema
         public (int[][], decimal) Run()
         {
             int[][] seatList = TimeList[TimeId].Seats;
-            int[][] yourSeats = Array.Empty<int[]>(); 
+            int[][] yourSeats = Array.Empty<int[]>();
             List<int> values = new();
             List<string> seatsList = new();
             decimal totalPriceRoom = 0;
@@ -137,7 +137,7 @@ namespace Cinema
 
                 if (keyPressed == ConsoleKey.Backspace)
                 {
-                    Times.TimesPage(MovieId);
+                    Dates.DatesPage(MovieId);
                 }
 
                 else if (keyPressed == ConsoleKey.A)

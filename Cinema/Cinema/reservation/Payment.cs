@@ -79,7 +79,7 @@ namespace Cinema
             ReservationCode = generator.Next(100000, 999999);
 
             int reservationCode = Reservation.ReservationsAdd(ReservationCode, MovieId, TimeId, YourSeats, TotalPriceRoom, OrdersList, TotalPriceOrder, PersonalInfo);
-            Time.TimesAdd(TimeId, YourSeats);
+            Datetime.TimesAdd(TimeId, YourSeats);
             WriteLine($"Your reservationcode is: {reservationCode}\n");
         }
 

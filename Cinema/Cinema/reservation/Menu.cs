@@ -39,17 +39,13 @@ namespace Cinema
                     BackgroundColor = ConsoleColor.Black;
                 }
 
-                if (i == Options.Length - 1)
+                if (i == Options.Length - 2)
                 {
-                    WriteLine($" {currentOptions}");
-                }
-                else if (i == Options.Length - 2)
-                {
-                    WriteLine($"{i + 1}) {currentOptions}\n");
+                    WriteLine($" {currentOptions}\n");
                 }
                 else
                 {
-                    WriteLine($"{i + 1}) {currentOptions}");
+                    WriteLine($" {currentOptions}");
                 }
                 
             }

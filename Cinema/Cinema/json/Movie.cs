@@ -50,5 +50,27 @@ namespace Cinema
             }
             return movieId;
         }
+
+        public static List<Movie> MoviesAdd(string name, int duration, string[] genre, int age)
+        {
+            List<Movie> movieId = new();
+            int id = 0;
+
+            var movies = ReadAll();
+            foreach (var movie in movies)
+            {
+                id = movie.Id + 1;
+                movieId.AddRange(new List<Movie> { new Movie(movie.Id, movie.Name, movie.Duration, movie.Genre, movie.Age) });
+            }
+
+            movieId.AddRange(new List<Movie> { new Movie(id, name, duration, genre, age) });
+            WriteAll(movieId);
+
+            string sourceFile = Path.Combine("data", "movies.json");
+            string destinationFile = Path.Combine("../../../data", "movies.json");
+            try { File.Copy(sourceFile, destinationFile, true); }
+            catch (IOException iox) { WriteLine(iox.Message); }
+            return movieId;
+        }
     }
 }

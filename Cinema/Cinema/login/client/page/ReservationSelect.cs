@@ -13,7 +13,7 @@ namespace Cinema.page
             List<Reservation> Reservations = Reservation.Reservations();
 
             string prompt = $"Welcome {Reservations[reservationId].PersonalInfo[0]}. Please select you reservation options.\n";
-            string[] options = { "Information", "Change", "Cancel", "Back" };
+            string[] options = { "Information", "Cancel", "Back" };
             Menu mainMenu = new(prompt, options);
             int selectedIndex = mainMenu.Run();
 
@@ -23,11 +23,9 @@ namespace Cinema.page
                     ReservationInfo.ReservationInfoPage(reservationId);
                     break;
                 case 1:
-                    break;
-                case 2:
                     ReservationCancel.ReservationCancelPage(reservationId);
                     break;
-                case 3:
+                case 2:
                     Login.LoginPage();
                     break;
             }
