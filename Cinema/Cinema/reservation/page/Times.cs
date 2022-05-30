@@ -30,7 +30,10 @@ namespace Cinema.page
                     hour = (int)(minutes / 60);
                     int min = (int)((minute - (int)minute) * 60);
 
-                    timeList.Add($"{time.Start[0]}:{time.Start[1]} - {hour}:{min}");
+                    string dzero = time.Start[1].ToString();
+                    if (dzero == "0") { dzero = "00"; }
+
+                    timeList.Add($"{time.Start[0]}:{dzero} - {hour}:{min}");
                 }
             }
             timeList.Add("Back");

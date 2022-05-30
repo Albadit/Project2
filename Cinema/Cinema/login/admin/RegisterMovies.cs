@@ -37,7 +37,7 @@ namespace Cinema.page
                 Thread.Sleep(1000);
                 Clear();
                 WriteLine($"What is the title of the movie? {name}");
-                Write($"What is the duration of the movie in minutes? ");
+                Write("What is the duration of the movie in minutes? ");
                 duration = ReadLine();
                 durations = duration ?? string.Empty;
                 if (durations.All(char.IsNumber) && duration != string.Empty) durationss = Convert.ToInt32(duration);
