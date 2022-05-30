@@ -50,17 +50,17 @@ namespace Cinema
                         if (room_choice.ToUpper() == "SMALL" || room_choice.ToUpper() == "S")
                         {
                             room_array[i][j] = 0;
-                            break;
+                            choice_made = true;
                         }
                         else if (room_choice.ToUpper() == "MEDIUM" || room_choice.ToUpper() == "M")
                         {
                             room_array[i][j] = 1;
-                            break;
+                            choice_made = true;
                         }
                         else if (room_choice.ToUpper() == "LARGE" || room_choice.ToUpper() == "L")
                         {
                             room_array[i][j] = 2;
-                            break;
+                            choice_made = true;
                         }
                         else
                         {

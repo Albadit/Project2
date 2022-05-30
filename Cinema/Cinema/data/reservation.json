@@ -1,1 +1,79 @@
-[{"Id":0,"ReservationCode":497138,"MovieId":0,"TimeId":0,"YourSeats":[[1,0,2]],"TotalPriceRoom":12.5,"OrdersList":[],"TotalPriceOrder":0,"PersonalInfo":["test test","tawanharink@gmail.com","06-12345678","123"]},{"Id":1,"ReservationCode":152969,"MovieId":0,"TimeId":0,"YourSeats":[[1,3,0]],"TotalPriceRoom":12.5,"OrdersList":["2x Koffie | Price: 2.60"],"TotalPriceOrder":5.20,"PersonalInfo":["ardit fazliji","ardit-nl@outlook.com","06-21341423","31"]}]
+[
+  {
+    "Id": 0,
+    "ReservationCode": 497138,
+    "MovieId": 0,
+    "TimeId": 0,
+    "YourSeats": [
+      [
+        1,
+        0,
+        2
+      ]
+    ],
+    "TotalPriceRoom": 12.5,
+    "OrdersList": [
+    ],
+    "TotalPriceOrder": 0,
+    "PersonalInfo": [
+      "test test",
+      "tawanharink@gmail.com",
+      "06-12345678",
+      "123"
+    ]
+  },
+  {
+    "Id": 1,
+    "ReservationCode": 152969,
+    "MovieId": 0,
+    "TimeId": 0,
+    "YourSeats": [
+      [
+        1,
+        3,
+        0
+      ]
+    ],
+    "TotalPriceRoom": 12.5,
+    "OrdersList": [
+      "2x Koffie | Price: 2.60"
+    ],
+    "TotalPriceOrder": 5.20,
+    "PersonalInfo": [
+      "ardit fazliji",
+      "ardit-nl@outlook.com",
+      "06-21341423",
+      "31"
+    ]
+  },
+  {
+    "Id": 2,
+    "ReservationCode": 128418,
+    "MovieId": 0,
+    "TimeId": 0,
+    "YourSeats": [
+      [
+        1,
+        3,
+        4
+      ],
+      [
+        2,
+        4,
+        4
+      ]
+    ],
+    "TotalPriceRoom": 27.5,
+    "OrdersList": [
+      "1x Popcorn Zout | Price: 3.50",
+      "1x Redbull | Price: 3.50"
+    ],
+    "TotalPriceOrder": 7.00,
+    "PersonalInfo": [
+      "Naish van Buuren",
+      "naishvanbuuren8@gmail.com",
+      "06-18991638",
+      "20"
+    ]
+  }
+]
