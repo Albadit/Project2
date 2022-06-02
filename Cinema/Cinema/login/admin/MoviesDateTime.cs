@@ -44,6 +44,20 @@ namespace Cinema
                 int times_amountss = 0;
                 if (times_amounts.All(char.IsNumber) && times_amount != string.Empty) times_amountss = Convert.ToInt32(times_amount);
 
+                while (times_amounts == string.Empty || !times_amounts.All(char.IsNumber))
+                {
+                    if (times_amounts == string.Empty) WriteLine("\nDon't leave blank!");
+                    else WriteLine($"\n{times_amounts} is not a valid number!");
+                    Thread.Sleep(1000);
+                    Clear();
+                    WriteLine($"What is the date of day {i + 1} (YYYY/MM/DD)? {date_unediteds}");
+                    Write($"How many times does the movie play on {date_unedited}? ");
+                    times_amount = ReadLine();
+                    times_amounts = times_amount ?? string.Empty;
+                    times_amountss = 0;
+                    if (times_amounts.All(char.IsNumber) && times_amount != string.Empty) times_amountss = Convert.ToInt32(times_amount);
+                }
+
                 for (int j = 0; j < times_amountss; j++)
                 {
                     starting_times[i] = new int[times_amountss][];

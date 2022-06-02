@@ -24,6 +24,17 @@ namespace Cinema.page
             string? name = ReadLine();
             string names = name ?? string.Empty;
 
+            while (names == string.Empty)
+            {
+                if (names == string.Empty) WriteLine("\nDon't leave blank!");
+                else WriteLine($"\n{names} is not a valid duration!");
+                Thread.Sleep(1000);
+                Clear();
+                Write("What is the title of the movie? ");
+                name = ReadLine();
+                names = name ?? string.Empty;
+            }
+
             Write("What is the duration of the movie in minutes? ");
             string? duration = ReadLine();
             string durations = duration ?? string.Empty;
@@ -69,6 +80,25 @@ namespace Cinema.page
                 Write($"What is genres {i + 1}? ");
                 string? genre = ReadLine();
                 string genress = genre ?? string.Empty;
+                
+                while (genress == string.Empty)
+                {
+                    if (genre_amount == string.Empty) WriteLine("\nDon't leave blank!");
+                    else if (genre_amountss <= 0) WriteLine($"\n{genre_amounts} is not a valid number!");
+                    Thread.Sleep(1000);
+                    Clear();
+                    WriteLine($"What is the title of the movie? {name}");
+                    WriteLine($"What is the duration of the movie in minutes? {duration}");
+                    WriteLine($"How many genres does the movie have? {genre_amounts}");
+                    for (int j = 0; j < genres.Length; j++)
+                    { 
+                        if (j < i) WriteLine($"What is genres {j + 1}? {genres[j]}");
+                    }
+                    Write($"What is genres {i + 1}? ");
+                    genre = ReadLine();
+                    genress = genre ?? string.Empty;
+                    if (genress != string.Empty) genres = genres.Concat(new string[] { genress }).ToArray();
+                }
                 genres = genres.Concat(new string[] { genress }).ToArray();
             }
 
