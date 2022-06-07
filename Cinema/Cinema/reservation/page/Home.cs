@@ -16,6 +16,10 @@ namespace Cinema.page
      / /   / / __ \/ _ \/ __ `__ \/ __ `/
     / /___/ / / / /  __/ / / / / / /_/ / 
     \____/_/_/ /_/\___/_/ /_/ /_/\__,_/  
+    
+
+    
+ Use the arrow keys and the enter button to navigate through this system.
     ";
             string[] options = { "Films", "Account", "Exit" };
             Menu mainMenu = new(title, options);
