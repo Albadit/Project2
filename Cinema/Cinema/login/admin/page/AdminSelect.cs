@@ -11,7 +11,7 @@ namespace Cinema.page
         public static void AdminSelectPage()
         {
             string prompt = $"Welcome Please select you reservation options.\n";
-            string[] options = { "Register Movie", "Add Movie Date and Time", "Back" };
+            string[] options = { "Add a new Movie", "Add a Date and Time to an existing Movie", "Back" };
             Menu mainMenu = new(prompt, options);
             int selectedIndex = mainMenu.Run();
 
