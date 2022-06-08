@@ -1,1 +1,1 @@
-[]
+[{"Id":0,"ReservationCode":951397,"MovieId":0,"TimeId":0,"YourSeats":[[1,8,0]],"TotalPriceRoom":12.5,"OrdersList":["1x Fanta | Price: 3.10","1x Redbull | Price: 3.50","1x Lipton Ice Tea | Price: 3.10"],"TotalPriceOrder":9.70,"PersonalInfo":["ardit fazliji","ardit-nl@outlook.com","06-12342341","21"]},{"Id":1,"ReservationCode":617679,"MovieId":0,"TimeId":0,"YourSeats":[[1,9,0]],"TotalPriceRoom":12.5,"OrdersList":["2x Koffie | Price: 2.60"],"TotalPriceOrder":5.20,"PersonalInfo":["asdf asdf","ardit-nl@outlook.com","06-21343214","21"]}]

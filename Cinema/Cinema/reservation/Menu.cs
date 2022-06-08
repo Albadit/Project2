@@ -47,7 +47,6 @@ namespace Cinema
                 {
                     WriteLine($" {currentOptions}");
                 }
-                
             }
             ResetColor();
         }
