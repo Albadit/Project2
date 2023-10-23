@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-	<PreserveComplilationComplex>true</PreserveComplilationComplex>
+    <TargetFramework>net7.0</TargetFramework>
+  <PreserveComplilationComplex>true</PreserveComplilationComplex>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
